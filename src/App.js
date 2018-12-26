@@ -2,6 +2,8 @@ import React, { Component,Suspense} from 'react';
 // import {Provider} from "react-redux";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
+import './style.less';
+
 
 import Home from "./Containers"
 
