@@ -1,7 +1,11 @@
 import React from "react";
 
+
+
 export default function () {
     return (
-        <div>Board</div>
+        <div>
+            Home
+        </div>
     )
 }

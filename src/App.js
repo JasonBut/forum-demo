@@ -1,22 +1,22 @@
 import React, { Component,Suspense} from 'react';
-// import {Provider} from "react-redux";
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-
-import './style.less';
+import {BrowserRouter as Router} from "react-router-dom";
+import "antd/dist/antd.css"
 
 
-import Home from "./Containers"
 
-
-// const Home = React.lazy(() => import('./Containers/Home'));
+const Header = React.lazy(() => import("./Components/Header"));
+const Footer = React.lazy(() => import("./Components/Footer"));
+const Home = React.lazy(() => import('./Containers/'));
 
 class App extends Component {
     render() {
         return (
             <Router>
-                <Switch>
-                    <Route path={"/"} component={Home} />
-                </Switch>
+                <Suspense fallback={<div>Loading...</div>}>
+                    <Header />
+                    <Home />
+                    <Footer />
+                </Suspense>
             </Router>
         );
     }

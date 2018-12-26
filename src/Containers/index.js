@@ -1,16 +1,23 @@
-import React,{Suspense} from "react";
+import React from "react";
+import {Route} from "react-router-dom";
+import {Layout} from "antd";
 
-const Header = React.lazy(() => import("../Components/Header"));
-const Board = React.lazy(() => import("./Board"));
-const Footer = React.lazy(() => import("../Components/Footer"));
+import Board from "./Board";
+import Login from '../Components/Login';
 
+
+
+
+
+const {Content} = Layout;
 
 export default function () {
     return (
-        <Suspense fallback={<div>Loading</div>}>
-            <Header />
-            <Board />
-            <Footer />
-        </Suspense>
+        <Layout>
+            <Content>
+                <Route path="/login" component={Login} />
+                <Route exact path="/" component={Board} />
+            </Content>
+        </Layout>
     )
 }
