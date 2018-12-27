@@ -1,12 +1,11 @@
 import React from "react";
-import {Route} from "react-router-dom";
+import {Route,Switch} from "react-router-dom";
 import {Layout} from "antd";
+import Loadable from "../api/Loadable";
 
-import Board from "./Board";
-import Login from '../Components/Login';
-
-
-
+const Login = Loadable(() => import("../Components/Login"));
+const Board = Loadable(() => import("./Board"));
+const PostList = Loadable(() => import("./PostList/"));
 
 
 const {Content} = Layout;
@@ -15,8 +14,12 @@ export default function () {
     return (
         <Layout>
             <Content>
-                <Route path="/login" component={Login} />
-                <Route exact path="/" component={Board} />
+                <Switch>
+                    <Route exact path="/" render={(props) => <Board {...props} />} />
+                    <Route path="/login" render={(props) => <Login {...props} />} />
+                    <Route exact path="/board/:id" render={(props) => <PostList {...props} />} />
+                </Switch>
+
             </Content>
         </Layout>
     )

@@ -4,7 +4,6 @@
 #login .login-form {
   width: 20em;
   margin: 20em auto;
-  padding: 0;
 }
 #login .login-form [type="submit"] {
   width: 10em;

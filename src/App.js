@@ -1,22 +1,21 @@
-import React, { Component,Suspense} from 'react';
+import React, { Component} from 'react';
 import {BrowserRouter as Router} from "react-router-dom";
 import "antd/dist/antd.css"
+import Loadable from "./api/Loadable";
 
-
-
-const Header = React.lazy(() => import("./Components/Header"));
-const Footer = React.lazy(() => import("./Components/Footer"));
-const Home = React.lazy(() => import('./Containers/'));
+const Header = Loadable(() => import("./Components/Header"));
+const Footer = Loadable(() => import("./Components/Footer"));
+const Home = Loadable(() => import('./Containers/'));
 
 class App extends Component {
     render() {
         return (
             <Router>
-                <Suspense fallback={<div>Loading...</div>}>
+                <>
                     <Header />
                     <Home />
                     <Footer />
-                </Suspense>
+                </>
             </Router>
         );
     }
