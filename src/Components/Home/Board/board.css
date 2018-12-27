@@ -1,0 +1,8 @@
+#board .board-card {
+  width: 40em;
+  margin: 1em auto 0 auto;
+}
+#board .board-card:first-child {
+  margin: 5em auto 0 auto;
+}
+/*# sourceMappingURL=board.css.map */

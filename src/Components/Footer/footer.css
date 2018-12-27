@@ -2,11 +2,11 @@
   text-align: center;
 }
 .footer span {
-  font-size: 14px;
-  margin-left: 20px;
+  font-size: 1em;
+  margin-left: 1em;
 }
 .footer span span {
-  margin: 5px;
+  margin: 0.5em;
 }
 .footer a {
   color: #545456;

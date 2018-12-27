@@ -1,0 +1,13 @@
+.button-area {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 5em;
+}
+.button-area #publish-button {
+  display: block;
+  float: right;
+  right: 11em;
+  margin: 1em 0;
+}
+/*# sourceMappingURL=button.css.map */

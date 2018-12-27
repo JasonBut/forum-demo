@@ -36,12 +36,12 @@
     {
       "id": "board_1",
       "boardName": "JavaScript",
-      "boardDesc": "Test"
+      "boardDesc": "Board 1"
     },
     {
       "id": "board_2",
       "boardName": "React",
-      "boardDesc": "Test"
+      "boardDesc": "Board 2"
     }
   ],
 
@@ -50,28 +50,25 @@
       "userId": "user_1",
       "boardId": "board_1",
       "id": "posts_1",
-      "title": "Test1",
+      "title": "Post 1",
       "postDate": "12月26日",
-      "content": "asdiashkdjklasjdkljaskl",
-      "likes": 0
+      "content": "asdiashkdjklasjdkljaskl"
     },
     {
       "userId": "user_1",
       "boardId": "board_1",
       "id": "posts_2",
-      "title": "Test2",
+      "title": "Post 2",
       "postDate": "12月26日",
-      "content": "asdiashkdjklasjdkljaskl",
-      "likes": 0
+      "content": "asdiashkdjklasjdkljaskl"
     },
     {
       "userId": "user_2",
       "boardId": "board_2",
       "id": "posts_3",
-      "title": "Test3",
+      "title": "post 3",
       "postDate": "12月26日",
-      "content": "asdiashkdjklasjdkljaskl",
-      "likes": 0
+      "content": "asdiashkdjklasjdkljaskl"
     }
   ],
 
@@ -81,24 +78,21 @@
           "postId" : "post_1",
           "userId" : "user_5",
           "content": "fuck you asshole",
-          "commentDate": "12月26日",
-          "likes": 0
+          "commentDate": "12月26日"
       },
       {
           "id": "comment_2",
           "postId" : "post_1",
           "userId" : "user_5",
           "content": "fuck you asshole",
-          "commentDate": "12月26日",
-          "likes": 0
+          "commentDate": "12月26日"
       },
       {
           "id": "comment_3",
           "postId" : "post_2",
           "userId" : "user_5",
           "content": "fuck you asshole",
-          "commentDate": "12月26日",
-          "likes": 0
+          "commentDate": "12月26日"
       }
   ]
 }

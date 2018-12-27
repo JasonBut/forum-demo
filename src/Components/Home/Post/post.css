@@ -1,0 +1,24 @@
+#post {
+  margin: 5em auto;
+  width: 40em;
+}
+#post p {
+  margin: 0;
+  padding: 0.1em 2em 1.5em 2em;
+}
+#post .post-value p {
+  font-size: 1.3em;
+}
+#post .post-value p:last-child {
+  font-size: 0.8em;
+  font-weight: bold;
+  text-align: right;
+  margin: -2em 1.3em 0 0;
+}
+#post .comment-list-item p {
+  padding-top: 1em;
+}
+#post .comment-list-item .comment-date {
+  font-size: 0.8em;
+}
+/*# sourceMappingURL=post.css.map */

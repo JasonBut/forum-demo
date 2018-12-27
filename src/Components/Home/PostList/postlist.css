@@ -1,0 +1,24 @@
+#postList .post-list {
+  text-align: center;
+}
+#postList .post-list .post-list-item h3 {
+  display: block;
+  float: left;
+  width: 60%;
+  text-align: left;
+  line-height: 3.75em;
+  border-right: #cecece 0.0625em solid;
+  border-left: #cecece 0.0625em solid;
+  padding-left: 0.8em;
+}
+#postList .post-list .post-list-item div {
+  float: left;
+  width: 20%;
+}
+#postList .post-list .post-list-item div p {
+  margin: 0.45em auto;
+}
+#postList .post-list .post-list-item div + div {
+  border-right: #cecece 0.0625em solid;
+}
+/*# sourceMappingURL=postlist.css.map */
