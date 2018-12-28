@@ -2,14 +2,23 @@ import React from "react";
 import {Divider,List} from "antd";
 import PropTypes from "prop-types";
 
-CommentListView.propTypes = {
-    commentList : PropTypes.arrayOf(PropTypes.shape({
-        id : PropTypes.string.isRequired,
-        content : PropTypes.string.isRequired,
-        commentDate : PropTypes.string.isRequired,
-    })).isRequired,
+CommentListView.defaultProps = {
+    list : [
+        {
+            id : "",
+            content : "",
+            commentDate : "",
+        }
+    ]
 };
 
+CommentListView.propTypes = {
+    list : PropTypes.arrayOf(PropTypes.shape({
+        id : PropTypes.string,
+        content : PropTypes.string,
+        commentDate : PropTypes.string,
+    })).isRequired,
+};
 
 export default function CommentListView (props) {
     return (
@@ -17,7 +26,7 @@ export default function CommentListView (props) {
             <Divider>Comments</Divider>
             <List
                 className="comment-list"
-                dataSource={props.commentList}
+                dataSource={props.list}
                 bordered
                 renderItem={(item) => {
                     return(

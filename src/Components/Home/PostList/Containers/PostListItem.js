@@ -1,7 +1,27 @@
 import React,{Component} from "react";
-import PostListItemView from "../UI/PostListItem-view"
+import {connect} from "react-redux";
+import {Lazy} from "../../../../Utils";
 
-export default class extends Component {
+import {mapStates} from "../../../../Redux/Reducers";
+import {DataFetchFilter} from "../../../../Utils/";
+import {fetchDataAction} from "../../../../Redux/Reducers/UIFetchDataReducers";
+
+const PostListItemView = Lazy(() => import("../UI/PostListItem-view"));
+
+
+
+const mapState = () => {
+    return{
+        list : mapStates.getFetchData("list"),
+    }
+};
+
+const mapDispatch = {
+    fetchListAction: fetchDataAction,
+};
+
+@connect(mapState,mapDispatch)
+class PostListItem extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -9,12 +29,28 @@ export default class extends Component {
         }
     }
 
-    render() {
-        return (
-            <div id="postList">
-                <PostListItemView {...this.props} author={this.state.author} />
-            </div>
-
+    componentDidMount () {
+        this.props.fetchListAction("List",
+            DataFetchFilter({
+                type : "Posts",
+                id : this.props.match.params.id,
+            })
         );
     }
+
+    render() {
+        const {list} = this.props;
+        if (Array.isArray(list) && list.length > 0) {
+            return (
+                <div id="postList">
+                    <PostListItemView {...this.props} author={this.state.author} />
+                </div>
+            )
+        } else {
+            return null;
+        }
+    }
 }
+
+
+export default PostListItem;

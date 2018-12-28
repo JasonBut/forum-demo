@@ -1,19 +1,36 @@
 import React,{Component} from "react";
-import PostView from "../UI/Post-view";
+import {Lazy} from "../../../../Utils";
+import {connect} from "react-redux";
+import {mapStates} from "../../../../Redux/Reducers";
+import {fetchDataAction} from "../../../../Redux/Reducers/UIFetchDataReducers";
+import DataFetchFilter from "../../../../Utils/api/DataFetchFilter";
 
-const post = {
-        userId: "user_1",
-        boardId: "board_1",
-        id: "posts_1",
-        title: "Post 1",
-        postDate: "12月26日",
-        content: "asdiashkdjklasjdkljaskl"
+const PostView = Lazy(() => import("../UI/Post-view"));
+
+const mapState = () => ({
+    post : mapStates.getFetchData("post"),
+});
+
+const mapDispatch = {
+    fetchDataAction
 };
 
-export default class extends Component {
+
+@connect(mapState,mapDispatch)
+class Post extends Component {
+    componentWillMount () {
+        this.props.fetchDataAction("post",
+            DataFetchFilter({
+                type : "Post",
+                id : this.props.match.params.id,
+            })
+        )
+    }
     render() {
         return (
-            <PostView post={post} />
+            <PostView {...this.props} />
         );
     }
 }
+
+export default Post

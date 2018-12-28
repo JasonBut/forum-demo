@@ -21,3 +21,9 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+src/Components/Commons/Editor/editor.css
+src/Components/Commons/Editor/editor.css.map
+src/Components/Home/Post/post.css
+src/Components/Home/Post/post.css.map
+package-lock.json
+package-lock.json

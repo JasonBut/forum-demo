@@ -3,11 +3,33 @@ import PropTypes from "prop-types";
 import {Card} from "antd";
 import {Link} from "react-router-dom";
 
+BoardView.defaultProps = {
+    list : [
+        {
+            id : "",
+            boardName : "",
+            boardDesc : "",
+        }
+    ]
+};
+
+BoardView.propTypes = {
+    list : PropTypes.arrayOf(PropTypes.shape(
+        {
+            id : PropTypes.string,
+            boardName : PropTypes.string,
+            boardDesc : PropTypes.string,
+        }
+    )).isRequired,
+};
+
+
+
 export default function BoardView (props) {
     return (
         <div id="board">
             {
-                props.boards.map((item) => {
+                props.list.map((item) => {
                     const boardId = item.id.split("_")[1];
                     return(
                         <Card key={item.id}
@@ -26,13 +48,3 @@ export default function BoardView (props) {
         </div>
     )
 }
-
-BoardView.propTypes = {
-    boards : PropTypes.arrayOf(PropTypes.shape(
-        {
-            id : PropTypes.string.isRequired,
-            boardName : PropTypes.string.isRequired,
-            boardDesc : PropTypes.string.isRequired,
-        }
-    )).isRequired,
-};

@@ -1,18 +1,21 @@
 import React from "react";
 import "./post.less";
 import Post from "./Containers/Post";
-import CommentList from "./Containers/CommentList";
-import {PostButton,Editor} from "../../Commons/"
+import {Lazy} from "../../../Utils"
 
-const editable = false;
+const PostButton = Lazy(() => import("../../Commons/PostButton"));
+const Editor = Lazy(() => import("../../Commons/Editor"));
+const CommentList = Lazy(() => import("./Containers/CommentList"));
 
-export default function () {
+const editable = true;
+
+export default function (props) {
     return (
         <>
             <PostButton />
             <div id="post">
-                { editable ? <Post /> : <Editor mode="post" /> }
-                <CommentList />
+                { editable ? <Post {...props} /> : <Editor mode="post" /> }
+                <CommentList {...props} />
                 <Editor mode="comment" />
             </div>
         </>

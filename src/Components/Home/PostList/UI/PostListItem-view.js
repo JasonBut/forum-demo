@@ -3,16 +3,31 @@ import {List} from "antd";
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 
+PostListItemView.defaultProps = {
+    list : [
+        {
+            id : "",
+            title : "",
+            postDate : "",
+        }
+    ],
+    author : "",
+};
+
 PostListItemView.propTypes = {
-    postList :  PropTypes.array.isRequired,
-    author : PropTypes.string.isRequired,
+    list :  PropTypes.arrayOf(PropTypes.shape({
+        id : PropTypes.string,
+        title : PropTypes.string,
+        postDate : PropTypes.string,
+    })).isRequired,
+    author : PropTypes.string,
 };
 
 export default function PostListItemView (props) {
     return (
         <List
             className="post-list"
-            dataSource={props.postList}
+            dataSource={props.list}
             bordered
             renderItem={(item) => {
                 const postId = item.id.split("_")[1];

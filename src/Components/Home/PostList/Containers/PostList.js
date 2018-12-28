@@ -1,41 +1,15 @@
 import React,{Component} from "react";
-import PostListItem from "./PostListItem";
-import {Editor,PostButton} from "../../../Commons/"
+import {Lazy} from "../../../../Utils";
 
-
-const postList = [
-    {
-        "userId": "user_1",
-        "boardId": "board_1",
-        "id": "posts_1",
-        "title": "Post 1",
-        "postDate": "12月26日",
-        "content": "Post 1 test"
-    },
-    {
-        "userId": "user_1",
-        "boardId": "board_1",
-        "id": "posts_2",
-        "title": "Post 2",
-        "postDate": "12月26日",
-        "content": "Post 2 Test"
-    },
-    {
-        "userId": "user_2",
-        "boardId": "board_2",
-        "id": "posts_3",
-        "title": "post 3",
-        "postDate": "12月26日",
-        "content": "Post 3 tEST"
-    }
-];
+const Editor = Lazy(() => import("../../../Commons/Editor"));
+const PostButton = Lazy(() => import("../../../Commons/PostButton"));
+const PostListItem = Lazy(() => import("./PostListItem"));
 
 export default class extends Component {
-
     constructor (props) {
         super (props);
         this.state = {
-            editable : false
+            editable : false,
         }
     }
 
@@ -51,9 +25,8 @@ export default class extends Component {
             <>
                 <PostButton onClick={this.publish} />
                 {this.state.editable ? <Editor mode="post" /> : null}
-                <PostListItem postList={postList} />
+                <PostListItem {...this.props} />
             </>
-
         );
     }
 }

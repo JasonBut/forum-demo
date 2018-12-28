@@ -4,13 +4,24 @@ import {Divider } from "antd";
 
 PostView.propTypes = {
     post : PropTypes.shape({
-        id : PropTypes.string.isRequired,
-        userId : PropTypes.string.isRequired,
-        boardId : PropTypes.string.isRequired,
-        title : PropTypes.string.isRequired,
-        content : PropTypes.string.isRequired,
-        postDate : PropTypes.string.isRequired,
+        id : PropTypes.string,
+        userId : PropTypes.string,
+        boardId : PropTypes.string,
+        title : PropTypes.string,
+        content : PropTypes.string,
+        postDate : PropTypes.string,
     }).isRequired,
+};
+
+PostView.defaultProps = {
+    post : {
+        id : "",
+        userId : "",
+        boardId : "",
+        title : "",
+        content : "",
+        postDate : "",
+    }
 };
 
 export default function PostView (props) {

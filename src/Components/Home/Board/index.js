@@ -1,6 +1,8 @@
 import React from "react";
-import Board from "./Containers/Board";
 import "./board.less";
+import {Lazy} from "../../../Utils"
+
+const Board = Lazy(() => import("./Containers/Board"));
 
 
 export default function () {

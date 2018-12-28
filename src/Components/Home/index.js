@@ -1,15 +1,14 @@
 import React from "react";
 import {Route,Switch} from "react-router-dom";
 import {Layout} from "antd";
-import {Loadable} from "../../Utils/";
+import {Lazy} from "../../Utils/";
 import "./home.less"
 
-const Board = Loadable(() => import("./Board"));
-const PostList = Loadable(() => import("./PostList"));
-const Post = Loadable(() => import("./Post"));
-
-const Rollback = Loadable(() => import("../Commons/Rollback"));
-const Login = Loadable(() => import("../Commons/Login"));
+const Board = Lazy(() => import("./Board"));
+const PostList = Lazy(() => import("./PostList"));
+const Post = Lazy(() => import("./Post"));
+const Rollback = Lazy(() => import("../Commons/Rollback"));
+const Login = Lazy(() => import("../Commons/Login"));
 
 
 const {Content} = Layout;
