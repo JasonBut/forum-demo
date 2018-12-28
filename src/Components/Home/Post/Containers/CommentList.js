@@ -1,5 +1,5 @@
 import React,{Component} from "react";
-import {List,Divider} from "antd";
+import CommentListView from "../UI/CommentListView";
 
 const commentList = [
     {
@@ -28,36 +28,7 @@ const commentList = [
 export default class extends Component {
     render() {
         return (
-            <div id="commentList">
-                <Divider>Comments</Divider>
-                <List
-                    className="comment-list"
-                    dataSource={commentList}
-                    bordered
-                    renderItem={(item) => {
-                        return(
-                            <List.Item
-                                key={item.id}
-                                className="comment-list-item"
-                            >
-                                <div>
-                                    <Divider orientation="left">Jack</Divider>
-
-                                    <p>{item.content}</p>
-
-                                    <Divider
-                                        className="comment-date"
-                                        orientation="right"
-                                    >
-                                        {item.commentDate}
-                                    </Divider>
-
-                                </div>
-                            </List.Item>
-                        )
-                    }}
-                />
-            </div>
+            <CommentListView commentList={commentList} />
         )
     }
 }

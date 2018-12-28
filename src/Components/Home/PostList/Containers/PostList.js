@@ -50,7 +50,7 @@ export default class extends Component {
         return (
             <>
                 <PostButton onClick={this.publish} />
-                {this.state.editable ? <Editor /> : null}
+                {this.state.editable ? <Editor mode="post" /> : null}
                 <PostListItem postList={postList} />
             </>
 
