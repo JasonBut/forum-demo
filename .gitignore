@@ -31,3 +31,7 @@ yarn.lock
 package-lock.json
 src/Components/Home/Board/board.css.map
 src/Components/Home/Board/board.css
+src/Components/Commons/Rollback/rollback.css
+src/Components/Commons/Rollback/rollback.css.map
+src/Components/Footer/footer.css
+src/Components/Footer/footer.css.map
