@@ -2,24 +2,30 @@ import React,{Component} from "react";
 import {connect} from "react-redux";
 import {Lazy,DataFetchFilter} from "../../../../Utils";
 import {mapStates,mapDispatches} from "../../../../Redux/";
+import PropTypes from "prop-types";
 
 
-const BoardView = Lazy(() => import("../UI/Board-view"));
+const BoardView = Lazy(() => import("../UI/BoardUI"));
 
-const mapState = () => {
+const mapState = (state) => {
     return{
-        list : mapStates.getFetchData("list"),
+        list : mapStates.getFetchList(state),
+        isSuccess : mapStates.getAppIsSuccess(state),
     }
 };
 
 const mapDispatch = {
-    fetchListAction: mapDispatches.fetchDataAction,
+    fetchDataAction: mapDispatches.fetchDataAction,
 };
 
-@connect(mapState,mapDispatch)
+@connect(mapState,mapDispatch,undefined,{pure : false})
 class BoardContainer extends Component {
+    static propTypes = {
+        list : PropTypes.array,
+        fetchDataAction : PropTypes.func,
+    };
     componentDidMount () {
-        this.props.fetchListAction("List",
+        this.props.fetchDataAction(
             DataFetchFilter({
                 type : "Boards",
             })
@@ -27,8 +33,8 @@ class BoardContainer extends Component {
     }
 
     render() {
-        const {list} = this.props;
-        if (Array.isArray(list) && list.length > 0) {
+        const {list,isSuccess} = this.props;
+        if (isSuccess && Array.isArray(list) && list.length > 0) {
             return(
                 <BoardView {...this.props} />
             )

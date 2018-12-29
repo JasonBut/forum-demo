@@ -65,7 +65,7 @@
       "content": "asdiashkdjklasjdkljaskl"
     },
     {
-      "userId": "user_1",
+      "userId": "user_5",
       "boardId": "board_1",
       "id": "post_2",
       "title": "Post 2",
@@ -73,7 +73,7 @@
       "content": "asdiashkdjklasjdkljaskl"
     },
     {
-      "userId": "user_2",
+      "userId": "user_4",
       "boardId": "board_2",
       "id": "post_3",
       "title": "post 3",
@@ -81,7 +81,7 @@
       "content": "asdiashkdjklasjdkljaskl"
     },
     {
-      "userId": "user_2",
+      "userId": "user_3",
       "boardId": "board_3",
       "id": "post_4",
       "title": "post 4",
@@ -97,7 +97,7 @@
       "content": "asdiashkdjklasjdkljaskl"
     },
     {
-      "userId": "user_2",
+      "userId": "user_1",
       "boardId": "board_4",
       "id": "post_6",
       "title": "post 6",
@@ -110,35 +110,35 @@
       {
           "id": "comment_1",
           "postId" : "post_1",
-          "userId" : "user_5",
+          "userId" : "user_1",
           "content": "fuck you asshole",
           "commentDate": "12月26日"
       },
       {
           "id": "comment_2",
           "postId" : "post_2",
-          "userId" : "user_5",
+          "userId" : "user_4",
           "content": "fuck you asshole",
           "commentDate": "12月26日"
       },
       {
           "id": "comment_3",
           "postId" : "post_3",
-          "userId" : "user_5",
+          "userId" : "user_3",
           "content": "fuck you asshole",
           "commentDate": "12月26日"
       },
       {
           "id": "comment_4",
           "postId" : "post_4",
-          "userId" : "user_5",
+          "userId" : "user_1",
           "content": "fuck you asshole",
           "commentDate": "12月26日"
       },
       {
           "id": "comment_5",
           "postId" : "post_5",
-          "userId" : "user_5",
+          "userId" : "user_2",
           "content": "fuck you asshole",
           "commentDate": "12月26日"
       },

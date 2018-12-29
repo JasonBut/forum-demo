@@ -3,7 +3,7 @@ import createSagaMiddleware from "redux-saga";
 import {routerMiddleware} from "connected-react-router";
 import {createBrowserHistory} from "history";
 import rootSagas from "./Sagas/"
-import createRootReducers,{mapStatesInterface,mapDispatchInterface as mapDispatches} from "./Reducers/"
+import createRootReducers,{mapStates,mapDispatches} from "./Reducers/"
 
 const history = createBrowserHistory();
 const sagaMiddleware = createSagaMiddleware();
@@ -18,7 +18,6 @@ const stores = createStore(
     ),
 );
 
-const mapStates =  mapStatesInterface(stores);
 sagaMiddleware.run(rootSagas);
 
 

@@ -1,7 +1,7 @@
 import React from "react";
 import {Route,Switch} from "react-router-dom";
-import {Layout} from "antd";
 import {Lazy} from "../../Utils/";
+import {Layout} from "antd";
 import "./home.less"
 
 const Board = Lazy(() => import("./Board"));

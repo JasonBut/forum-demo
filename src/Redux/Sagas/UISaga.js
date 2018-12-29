@@ -1,43 +1,43 @@
-import {put, call, take, fork} from "redux-saga/effects"
+import {put, call, take, fork,select} from "redux-saga/effects"
 import axios from "axios";
 import Types from "../ActionsTypes"
 
+function* fetchData(params) {
+    if ( !(yield select((state) => state.App.isLoading))) {
+        yield put({type : Types.FETCH_START});
 
-function* fetchData(params, mode) {
-    if (!params) {
-        return new Error(`Params should be a defined value`);
-    }
-
-    try {
-        const fetchData = yield call(axios.get,`http://localhost:4000/${params}`);
-        if (fetchData.status !== 200) {
-            return new Error(fetchData.statusText);
+        if (!params) {
+            return new Error(`Params should be a defined value`);
         }
 
-        //返回列表信息
-        if (mode === "list") {
-            if (!Array.isArray(fetchData.data)) {
-                return new Error(`Fetched data should be "array"`);
+        try {
+            const fetchData = yield call(axios.get,`http://localhost:4000/${params}`);
+            if (fetchData.status !== 200) {
+                return new Error(fetchData.statusText);
             }
-            yield put({type : Types.FETCH_LIST_SUCCEEDED, data : fetchData.data});
 
-        //返回文章信息
-        } else {
-            if (typeof fetchData.data !== "object") {
-                return new Error(`Fetched data should be "object"`);
+            const data = fetchData.data;
+
+            if (typeof data !== "object") {
+                return new Error(`Fetched data should be "object" or "array`);
             }
-            yield put({type : Types.FETCH_POST_SUCCEEDED, data : fetchData.data});
+
+            !!(Array.isArray(data))
+            ? yield put({type : Types.FETCH_LIST_SUCCEEDED, data})
+            : yield put({type : Types.FETCH_POST_SUCCEEDED, data});
+
+            yield put({type: Types.FETCH_SUCCEEDED});
+
+        } catch (err) {
+            yield put({type : Types.FETCH_FAILED,err});
+
         }
-
-    } catch (err) {
-        yield put({type : Types.FETCH_FAILED,err});
     }
 }
-
 export function* watchFetchList() {
     while (true) {
-        const {params,mode} = yield take(Types.FETCH_REQUESTED);
-        yield fork(fetchData,params,mode);
+        const {params} = yield take(Types.FETCH_REQUESTED);
+        yield fork(fetchData,params);
     }
 }
 

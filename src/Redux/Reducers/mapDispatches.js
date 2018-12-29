@@ -2,15 +2,7 @@ import Types from "../ActionsTypes";
 
 //Actions Creator
 //UI actions
-const fetchDataAction = function (type, filter) {
-    if (typeof type !== 'string') {
-        return new Error(`Invalid type for fetch action, excepted "String`);
-    }
-    //统一type格式
-    const lowerCaseType = type.toLowerCase();
-    if (lowerCaseType !== "post" && lowerCaseType !== "list") {
-        return new Error(`Invalid type for fetch action, should only "Post" or "List"`);
-    }
+const fetchDataAction = function (filter) {
     //根据type类型获取相应的action类型
     let action = {
         type : Types.FETCH_REQUESTED,
@@ -20,7 +12,6 @@ const fetchDataAction = function (type, filter) {
         return {
             ...action,
             params : filter,
-            mode : lowerCaseType,
         }
     }
     return action;

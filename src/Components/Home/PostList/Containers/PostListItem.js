@@ -1,44 +1,57 @@
 import React,{Component} from "react";
+import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {Lazy,DataFetchFilter} from "../../../../Utils";
-import {mapStates,mapDispatches} from "../../../../Redux/";
+import {Link} from "react-router-dom";
+import {List} from "antd";
+import {mapStates,mapDispatches} from "../../../../Redux";
 
-const PostListItemView = Lazy(() => import("../UI/PostListItem-view"));
 
-const mapState = () => ({
-    list : mapStates.getFetchData("list"),
-    patchId : mapStates.getPathId(),
+const mapState = (state) => ({
+    isSuccess : mapStates.getAppIsSuccess(state),
 });
 
 const mapDispatch = {
-    fetchListAction: mapDispatches.fetchDataAction,
+    fetchDataAction : mapDispatches.fetchDataAction,
 };
 
-@connect(mapState,mapDispatch)
-class PostListItem extends Component {
+@connect(mapState,mapDispatch,undefined,{pure : false})
+class PostListItem extends Component{
+    static propTypes = {
+        id : PropTypes.string,
+        title : PropTypes.string,
+        postDate : PropTypes.string,
+        userId : PropTypes.string,
+        author : PropTypes.string,
+    };
+
     constructor(props) {
         super(props);
         this.state = {
-            author : "Jason But",
+            author : "",
         }
     }
 
-    componentDidMount () {
-        this.props.fetchListAction("List",
-            DataFetchFilter({
-                type : "Posts",
-                id : this.props.patchId,
-            })
-        );
-    }
 
     render() {
-        const {list} = this.props;
-        if (Array.isArray(list) && list.length > 0) {
+        const {id, title, postDate,isSuccess} = this.props;
+        const postId = id.split("_")[1];
+
+        if (isSuccess) {
             return (
-                <div id="postList">
-                    <PostListItemView {...this.props} author={this.state.author} />
-                </div>
+                <List.Item
+                    key={id}
+                    className="post-list-item"
+                >
+                    <h3><Link to={`/post/${postId}`}>{title}</Link></h3>
+                    <div>
+                        <p>作者</p>
+                        <p>{this.state.author}</p>
+                    </div>
+                    <div>
+                        <p>发布时间</p>
+                        <p>{postDate}</p>
+                    </div>
+                </List.Item>
             )
         } else {
             return null;

@@ -3,7 +3,7 @@ import {Lazy} from "../../../../Utils";
 
 const Editor = Lazy(() => import("../../../Commons/Editor"));
 const PostButton = Lazy(() => import("../../../Commons/PostButton"));
-const PostListItem = Lazy(() => import("./PostListItem"));
+const PostListItem = Lazy(() => import("./PostListArea"));
 
 export default class extends Component {
     constructor (props) {

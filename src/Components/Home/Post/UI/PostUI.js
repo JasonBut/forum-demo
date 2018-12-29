@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Divider } from "antd";
 
-PostView.propTypes = {
+PostUI.propTypes = {
     post : PropTypes.shape({
         id : PropTypes.string,
         userId : PropTypes.string,
@@ -13,7 +13,7 @@ PostView.propTypes = {
     }).isRequired,
 };
 
-PostView.defaultProps = {
+PostUI.defaultProps = {
     post : {
         id : "",
         userId : "",
@@ -24,7 +24,7 @@ PostView.defaultProps = {
     }
 };
 
-export default function PostView (props) {
+export default function PostUI (props) {
     return (
         <div className="post-value">
             <Divider orientation="left"><h1>{props.post.title}</h1></Divider>

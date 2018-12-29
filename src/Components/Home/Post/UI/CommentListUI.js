@@ -2,7 +2,7 @@ import React from "react";
 import {Divider,List} from "antd";
 import PropTypes from "prop-types";
 
-CommentListView.defaultProps = {
+CommentListUI.defaultProps = {
     list : [
         {
             id : "",
@@ -12,7 +12,7 @@ CommentListView.defaultProps = {
     ]
 };
 
-CommentListView.propTypes = {
+CommentListUI.propTypes = {
     list : PropTypes.arrayOf(PropTypes.shape({
         id : PropTypes.string,
         content : PropTypes.string,
@@ -20,7 +20,7 @@ CommentListView.propTypes = {
     })).isRequired,
 };
 
-export default function CommentListView (props) {
+export default function CommentListUI (props) {
     return (
         <div id="commentList">
             <Divider>Comments</Divider>

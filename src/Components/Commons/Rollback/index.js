@@ -1,9 +1,18 @@
+import React,{Component} from "react";
 import {Icon} from "antd";
-import React from "react";
 import "./rollback.less";
+import {history} from "../../../Redux";
 
-export default function () {
-    return (
-        <Icon id="rollBack" type="rollback" />
-    )
+class RollBack extends Component {
+    render() {
+        return (
+            <Icon
+                id="rollBack"
+                type="rollback"
+                onClick={() => history.goBack()}
+            />
+        )
+    }
 }
+
+export default RollBack;
