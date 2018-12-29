@@ -1,10 +1,8 @@
 import React,{Component} from "react";
 import {connect} from "react-redux";
-import {Lazy} from "../../../../Utils";
+import {Lazy,DataFetchFilter} from "../../../../Utils";
+import {mapStates,mapDispatches} from "../../../../Redux/";
 
-import {mapStates} from "../../../../Redux/Reducers";
-import {DataFetchFilter} from "../../../../Utils/";
-import {fetchDataAction} from "../../../../Redux/Reducers/UIFetchDataReducers";
 
 const BoardView = Lazy(() => import("../UI/Board-view"));
 
@@ -15,7 +13,7 @@ const mapState = () => {
 };
 
 const mapDispatch = {
-    fetchListAction: fetchDataAction
+    fetchListAction: mapDispatches.fetchDataAction,
 };
 
 @connect(mapState,mapDispatch)

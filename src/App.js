@@ -1,9 +1,9 @@
 //依赖
 import React, {Component} from 'react';
-import {BrowserRouter as Router} from "react-router-dom";
+import {ConnectedRouter} from "connected-react-router";
 import {Provider} from "react-redux"
 import Loadable from "./Utils/api/Lazy"; //按需导入功能API
-import Stores from "./Redux/Stores"
+import Stores,{history} from "./Redux"
 
 //样式文件
 import "antd/dist/antd.css"
@@ -20,13 +20,13 @@ class App extends Component {
     render() {
         return (
             <Provider store={Stores}>
-                <Router>
+                <ConnectedRouter history={history}>
                     <Layout>
                         <Header />
                         <Home />
                         <Footer />
                     </Layout>
-                </Router>
+                </ConnectedRouter>
             </Provider>
         );
     }

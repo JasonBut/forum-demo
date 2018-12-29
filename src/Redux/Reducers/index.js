@@ -1,19 +1,16 @@
 import {combineReducers} from "redux";
+import {connectRouter} from "connected-react-router";
 import UIReducer from "./UIFetchDataReducers"
-import stores from "../Stores"
+
 
 //Root Reducers
-export default combineReducers({
-    UI : UIReducer
+export default (history) => combineReducers({
+    UI : UIReducer,
+    router : connectRouter(history),
 });
 
 
 //States Interface
-export const mapStates = {
+export mapStatesInterface from "./mapStates";
+export mapDispatchInterface from "./mapDispatches";
 
-    getFetchData : function (value) {
-        if (value && value.toLowerCase() === "list" || value.toLowerCase() === "post") {
-            return stores.getState().UI[value];
-        }
-    },
-};

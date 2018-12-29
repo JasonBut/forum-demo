@@ -1,10 +1,7 @@
 import React,{Component} from "react";
 import {connect} from "react-redux";
-import {Lazy} from "../../../../Utils";
-
-import {mapStates} from "../../../../Redux/Reducers";
-import {DataFetchFilter} from "../../../../Utils/";
-import {fetchDataAction} from "../../../../Redux/Reducers/UIFetchDataReducers";
+import {Lazy,DataFetchFilter} from "../../../../Utils";
+import {mapStates,mapDispatches} from "../../../../Redux/";
 
 const PostListItemView = Lazy(() => import("../UI/PostListItem-view"));
 
@@ -17,7 +14,7 @@ const mapState = () => {
 };
 
 const mapDispatch = {
-    fetchListAction: fetchDataAction,
+    fetchListAction: mapDispatches.fetchDataAction,
 };
 
 @connect(mapState,mapDispatch)

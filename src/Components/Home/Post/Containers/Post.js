@@ -1,9 +1,7 @@
 import React,{Component} from "react";
-import {Lazy} from "../../../../Utils";
 import {connect} from "react-redux";
-import {mapStates} from "../../../../Redux/Reducers";
-import {fetchDataAction} from "../../../../Redux/Reducers/UIFetchDataReducers";
-import DataFetchFilter from "../../../../Utils/api/DataFetchFilter";
+import {Lazy,DataFetchFilter} from "../../../../Utils";
+import {mapStates,mapDispatches} from "../../../../Redux/";
 
 const PostView = Lazy(() => import("../UI/Post-view"));
 
@@ -12,7 +10,7 @@ const mapState = () => ({
 });
 
 const mapDispatch = {
-    fetchDataAction
+    fetchDataAction : mapDispatches.fetchDataAction,
 };
 
 
