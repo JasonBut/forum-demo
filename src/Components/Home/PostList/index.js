@@ -4,8 +4,8 @@ import {Lazy} from "../../../Utils"
 
 const PostList = Lazy(() => import("./Containers/PostList"));
 
-export default function (props) {
+export default function () {
     return (
-        <PostList {...props} />
+        <PostList />
     )
 }

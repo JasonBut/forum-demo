@@ -9,13 +9,13 @@ const CommentList = Lazy(() => import("./Containers/CommentList"));
 
 const editable = true;
 
-export default function (props) {
+export default function () {
     return (
         <>
             <PostButton />
             <div id="post">
-                { editable ? <Post {...props} /> : <Editor mode="post" /> }
-                <CommentList {...props} />
+                { editable ? <Post /> : <Editor mode="post" /> }
+                <CommentList />
                 <Editor mode="comment" />
             </div>
         </>

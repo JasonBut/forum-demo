@@ -12,8 +12,8 @@ const stores = createStore(
     createRootReducers(history),
     compose(
         applyMiddleware(
+            routerMiddleware(history),
             sagaMiddleware,
-            routerMiddleware(history)
         )
     ),
 );

@@ -5,13 +5,10 @@ import {mapStates,mapDispatches} from "../../../../Redux/";
 
 const PostListItemView = Lazy(() => import("../UI/PostListItem-view"));
 
-
-
-const mapState = () => {
-    return{
-        list : mapStates.getFetchData("list"),
-    }
-};
+const mapState = () => ({
+    list : mapStates.getFetchData("list"),
+    patchId : mapStates.getPathId(),
+});
 
 const mapDispatch = {
     fetchListAction: mapDispatches.fetchDataAction,
@@ -30,7 +27,7 @@ class PostListItem extends Component {
         this.props.fetchListAction("List",
             DataFetchFilter({
                 type : "Posts",
-                id : this.props.match.params.id,
+                id : this.props.patchId,
             })
         );
     }

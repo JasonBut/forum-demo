@@ -7,6 +7,7 @@ const CommentListView = Lazy(() => import("../UI/CommentListView"));
 
 const mapState = () => ({
     list : mapStates.getFetchData("list"),
+    pathId : mapStates.getPathId(),
 });
 
 const mapDispatch = {
@@ -19,7 +20,7 @@ class CommentList extends Component {
         this.props.fetchListAction("List",
             DataFetchFilter({
                 type : "Comments",
-                id : this.props.match.params.id,
+                id : this.props.pathId,
             })
         );
     }

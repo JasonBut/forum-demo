@@ -25,7 +25,7 @@ export default class extends Component {
             <>
                 <PostButton onClick={this.publish} />
                 {this.state.editable ? <Editor mode="post" /> : null}
-                <PostListItem {...this.props} />
+                <PostListItem />
             </>
         );
     }

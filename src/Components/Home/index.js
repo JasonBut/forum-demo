@@ -18,10 +18,10 @@ export default function () {
         <Content id="content">
             <Rollback />
             <Switch>
-                <Route exact path="/" render={(props) => <Board {...props} />} />
-                <Route path="/login" render={(props) => <Login {...props} />} />
-                <Route path="/board/:id" render={(props) => <PostList {...props} />} />
-                <Route path="/post/:id" render={(props) => <Post {...props} />} />
+                <Route exact path="/" component={Board} />
+                <Route path="/login" component={Login} />
+                <Route path="/board/:id"  component={PostList} />
+                <Route path="/post/:id" component={Post} />
             </Switch>
         </Content>
     )

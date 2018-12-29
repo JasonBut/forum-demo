@@ -7,6 +7,7 @@ const PostView = Lazy(() => import("../UI/Post-view"));
 
 const mapState = () => ({
     post : mapStates.getFetchData("post"),
+    pathId : mapStates.getPathId(),
 });
 
 const mapDispatch = {
@@ -20,7 +21,7 @@ class Post extends Component {
         this.props.fetchDataAction("post",
             DataFetchFilter({
                 type : "Post",
-                id : this.props.match.params.id,
+                id : this.props.pathId,
             })
         )
     }
