@@ -1,4 +1,4 @@
-export default function fetchListFilter ({type,id}) {
+export default ({type,id}) => {
     if (typeof type !== "string") {
         return new Error("Invalid type for 'Type', excepted 'String'")
     }

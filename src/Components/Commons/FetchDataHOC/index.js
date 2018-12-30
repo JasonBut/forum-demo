@@ -5,7 +5,7 @@ import {withRouter} from "react-router";
 import {dataFetchFilter} from "../../../Utils";
 import {mapDispatches, mapStates} from "../../../Redux/Reducers";
 
-export default function (WrappedUIComponent,type) {
+export default (WrappedUIComponent,type) => {
     const mapState = (state) => ({
         list : mapStates.getFetchList(state),
         post : mapStates.getFetchPost(state),

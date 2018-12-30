@@ -17,6 +17,27 @@ const fetchDataAction = function (filter) {
     return action;
 };
 
+//Form actions
+const formDataOnChange = function (event) {
+    const {name,value} = event.target;
+    return {
+        type : Types.FORM_VALUE_ONCHANGE,
+        payload : {
+            name,
+            value,
+        }
+    }
+};
+
+const formToggleIsEditing = function (isEditing) {
+    return {
+        type : Types.FORM_TOGGLE_EDITING,
+        isEditing : !isEditing,
+    }
+};
+
 export default {
     fetchDataAction,
+    formDataOnChange,
+    formToggleIsEditing,
 }

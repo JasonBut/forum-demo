@@ -4,8 +4,6 @@ import PostList from "./Containers/PostList";
 
 
 
-export default function () {
-    return (
-        <PostList />
-    )
-}
+export default () => (
+    <PostList />
+)

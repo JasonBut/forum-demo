@@ -4,8 +4,7 @@ import "./footer.less";
 
 const {Footer} = Layout;
 
-export default function () {
-    return (
+export default () => (
         <Footer className="footer">
             <span>
                 <Icon type="github" />
@@ -27,5 +26,4 @@ export default function () {
                     <span><a href="mailto://Jason.But@yahoo.com">Jason.But@yahoo.com</a></span>
             </span>
         </Footer>
-    )
-}
+)

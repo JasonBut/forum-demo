@@ -14,16 +14,14 @@ const Login = lazy(() => import("../Commons/Login"));
 
 const {Content} = Layout;
 
-export default function () {
-    return (
-        <Content id="content">
-            <Rollback />
-            <Switch>
-                <Route exact path="/" component={Board} />
-                <Route path="/login" component={Login} />
-                <Route path="/board/:id"  component={PostList} />
-                <Route path="/post/:id" component={Post} />
-            </Switch>
-        </Content>
-    )
-}
+export default () => (
+    <Content id="content">
+        <Rollback />
+        <Switch>
+            <Route exact path="/" component={Board} />
+            <Route path="/login" component={Login} />
+            <Route path="/board/:id"  component={PostList} />
+            <Route path="/post/:id" component={Post} />
+        </Switch>
+    </Content>
+)
