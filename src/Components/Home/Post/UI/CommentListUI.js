@@ -2,16 +2,6 @@ import React from "react";
 import {Divider,List} from "antd";
 import PropTypes from "prop-types";
 
-CommentListUI.defaultProps = {
-    list : [
-        {
-            id : "",
-            content : "",
-            commentDate : "",
-        }
-    ]
-};
-
 CommentListUI.propTypes = {
     list : PropTypes.arrayOf(PropTypes.shape({
         id : PropTypes.string,

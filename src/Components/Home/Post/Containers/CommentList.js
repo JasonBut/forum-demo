@@ -16,7 +16,7 @@ const mapDispatch = {
     fetchDataAction: mapDispatches.fetchDataAction,
 };
 
-@connect(mapState,mapDispatch,undefined,{pure : false})
+@connect(mapState,mapDispatch)
 class CommentList extends Component {
     static propTypes = {
         list : PropTypes.array,

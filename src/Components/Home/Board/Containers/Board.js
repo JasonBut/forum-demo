@@ -34,7 +34,7 @@ class BoardContainer extends Component {
 
     render() {
         const {list,isSuccess} = this.props;
-        if (isSuccess && Array.isArray(list) && list.length > 0) {
+        if (isSuccess && Array.isArray(list) && list.length >= 1) {
             return(
                 <BoardView {...this.props} />
             )

@@ -3,16 +3,6 @@ import PropTypes from "prop-types";
 import {Card} from "antd";
 import {Link} from "react-router-dom";
 
-BoardUI.defaultProps = {
-    list : [
-        {
-            id : "",
-            boardName : "",
-            boardDesc : "",
-        }
-    ]
-};
-
 BoardUI.propTypes = {
     list : PropTypes.arrayOf(PropTypes.shape(
         {
@@ -22,7 +12,6 @@ BoardUI.propTypes = {
         }
     )).isRequired,
 };
-
 
 
 export default function BoardUI (props) {

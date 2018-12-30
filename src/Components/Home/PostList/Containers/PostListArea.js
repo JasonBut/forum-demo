@@ -16,7 +16,7 @@ const mapDispatch = {
     fetchDataAction: mapDispatches.fetchDataAction,
 };
 
-@connect(mapState,mapDispatch,undefined,{pure : false})
+@connect(mapState,mapDispatch)
 class PostListArea extends Component {
     static propTypes = {
         list : PropTypes.array,
@@ -35,6 +35,7 @@ class PostListArea extends Component {
 
     render() {
         const {list,isSuccess} = this.props;
+        console.log(isSuccess);
         if (isSuccess && Array.isArray(list) && list.length >= 1) {
             return (
                 <div id="postList">

@@ -6,15 +6,15 @@ import {List} from "antd";
 import {mapStates,mapDispatches} from "../../../../Redux";
 
 
-const mapState = (state) => ({
-    isSuccess : mapStates.getAppIsSuccess(state),
-});
+// const mapState = (state) => ({
+//     isSuccess : mapStates.getAppIsSuccess(state),
+// });
 
 const mapDispatch = {
     fetchDataAction : mapDispatches.fetchDataAction,
 };
 
-@connect(mapState,mapDispatch,undefined,{pure : false})
+@connect(null,mapDispatch)
 class PostListItem extends Component{
     static propTypes = {
         id : PropTypes.string,
@@ -33,10 +33,9 @@ class PostListItem extends Component{
 
 
     render() {
-        const {id, title, postDate,isSuccess} = this.props;
+        const {id, title, postDate} = this.props;
         const postId = id.split("_")[1];
-
-        if (isSuccess) {
+        if (this.props) {
             return (
                 <List.Item
                     key={id}
