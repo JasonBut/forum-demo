@@ -11,6 +11,7 @@ const initialState = {
 //Reducers
 export default function UIReducer (state = initialState, action) {
     switch (action.type) {
+
         case  Types.FETCH_FAILED :
             console.log(action.err);
             return {

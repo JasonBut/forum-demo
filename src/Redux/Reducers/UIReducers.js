@@ -10,13 +10,14 @@ const initialState = {
 //Reducers
 export default function UIReducer (state = initialState, action) {
     switch (action.type) {
-        case Types.FETCH_LIST_SUCCEEDED :
+
+        case Types.UI_FETCH_LIST_SUCCEEDED :
             return {
                 ...state,
                 list : action.data
             };
 
-        case Types.FETCH_POST_SUCCEEDED :
+        case Types.UI_FETCH_POST_SUCCEEDED :
             return {
                 ...state,
                 post: action.data,

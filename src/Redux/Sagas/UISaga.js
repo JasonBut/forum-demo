@@ -35,13 +35,13 @@ function* fetchData(params) {
                     newData.push({...item,author});
                 }
             }
-            yield put({type : Types.FETCH_LIST_SUCCEEDED, data : newData})
+            yield put({type : Types.UI_FETCH_LIST_SUCCEEDED, data : newData})
 
             //非数组代表post数据
         } else {
             const author = yield call(getUserById,data.userId);
             const newData = {...data,author};
-            yield put({type : Types.FETCH_POST_SUCCEEDED, data : newData})
+            yield put({type : Types.UI_FETCH_POST_SUCCEEDED, data : newData})
         }
 
         yield put({type: Types.FETCH_SUCCEEDED});
@@ -50,9 +50,10 @@ function* fetchData(params) {
         yield put({type : Types.FETCH_FAILED,err});
     }
 }
-export function* watchFetchList() {
+
+export function* watchFetchData() {
     while (true) {
-        const {params} = yield take(Types.FETCH_REQUESTED);
+        const {params} = yield take(Types.UI_FETCH_REQUESTED);
         yield fork(fetchData,params);
     }
 }
