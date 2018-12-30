@@ -2,7 +2,7 @@
 import React, {Component} from 'react';
 import {ConnectedRouter} from "connected-react-router";
 import {Provider} from "react-redux"
-import Lazy from "./Utils/api/Lazy"; //按需导入功能API
+import Lazy from "./Utils/api/lazy"; //按需导入功能API
 import Stores,{history} from "./Redux"
 
 

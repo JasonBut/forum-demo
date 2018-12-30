@@ -1,11 +1,8 @@
 import React from "react";
 import "./post.less";
 import Post from "./Containers/Post";
-import {Lazy} from "../../../Utils"
-
-const PostButton = Lazy(() => import("../../Commons/PostButton"));
-const Editor = Lazy(() => import("../../Commons/Editor"));
-const CommentList = Lazy(() => import("./Containers/CommentList"));
+import CommentList from "./Containers/CommentListHOC";
+import {Editor,PostButton} from "../../Commons";
 
 const editable = true;
 

@@ -3,34 +3,29 @@ import PropTypes from "prop-types";
 import {Divider } from "antd";
 
 PostUI.propTypes = {
-    post : PropTypes.shape({
-        id : PropTypes.string,
-        userId : PropTypes.string,
-        boardId : PropTypes.string,
-        title : PropTypes.string,
-        content : PropTypes.string,
-        postDate : PropTypes.string,
-    }).isRequired,
+    userId : PropTypes.string.isRequired,
+    title : PropTypes.string.isRequired,
+    content : PropTypes.string.isRequired,
+    postDate : PropTypes.string.isRequired,
+    author : PropTypes.string.isRequired,
 };
 
 PostUI.defaultProps = {
-    post : {
-        id : "",
-        userId : "",
-        boardId : "",
-        title : "",
-        content : "",
-        postDate : "",
-    }
+    userId : "",
+    title : "",
+    content : "",
+    postDate : "",
+    author : "",
 };
 
 export default function PostUI (props) {
+    const {title,content,author,postDate} = props;
     return (
         <div className="post-value">
-            <Divider orientation="left"><h1>{props.post.title}</h1></Divider>
-            <p>{props.post.content}</p>
-            <Divider orientation="right"><h3>Jason.but</h3></Divider>
-            <p>{props.post.postDate}</p>
+            <Divider orientation="left"><h1>{title}</h1></Divider>
+            <p>{content}</p>
+            <Divider orientation="right"><h3>{author}</h3></Divider>
+            <p>{postDate}</p>
         </div>
     );
 }

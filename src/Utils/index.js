@@ -1,2 +1,4 @@
-export Lazy from "./api/Lazy";
-export DataFetchFilter from "./api/DataFetchFilter"
+export lazy from "./api/lazy";
+export dataFetchFilter from "./api/dataFetchFilter";
+export getUserById from "./api/getUserById";
+export asyncGet from "./api/asyncGet";

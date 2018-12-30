@@ -1,8 +1,8 @@
 import React from "react";
 import "./postlist.less"
-import {Lazy} from "../../../Utils"
+import PostList from "./Containers/PostList";
 
-const PostList = Lazy(() => import("./Containers/PostList"));
+
 
 export default function () {
     return (

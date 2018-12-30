@@ -16,9 +16,6 @@ export default function fetchListFilter ({type,id}) {
         case "post" :
             return `posts/post_${id}`;
 
-        // case "author" :
-        //     return `users/${id}`;
-
         default :
             return new Error(`Invalid type for data filter`);
     }

@@ -1,10 +1,9 @@
 import React,{Component} from "react";
 import {connect} from "react-redux";
-import {Lazy,DataFetchFilter} from "../../../../Utils";
-import {mapStates,mapDispatches} from "../../../../Redux/";
 import PropTypes from "prop-types";
-
-const PostView = Lazy(() => import("../UI/PostUI"));
+import {dataFetchFilter} from "../../../../Utils";
+import {mapStates,mapDispatches} from "../../../../Redux/";
+import PostView from "../UI/PostUI";
 
 const mapState = (state) => ({
     post : mapStates.getFetchPost(state),
@@ -16,8 +15,7 @@ const mapDispatch = {
     fetchDataAction : mapDispatches.fetchDataAction,
 };
 
-
-@connect(mapState,mapDispatch,undefined,{pure : false})
+@connect(mapState,mapDispatch)
 class Post extends Component {
     static propTypes = {
         post : PropTypes.object,
@@ -25,24 +23,29 @@ class Post extends Component {
         fetchDataAction : PropTypes.func,
     };
 
-
     componentWillMount () {
         this.props.fetchDataAction(
-            DataFetchFilter({
+            dataFetchFilter({
                 type : "Post",
                 id : this.props.pathId,
             })
-        )
+        );
     }
+
     render() {
-        if (this.props.isSuccess) {
+        const {post,isSuccess} = this.props;
+        if (post) {
+            const {title,content,postDate,author} = post;
+            const props = {title,content,postDate,author};
             return (
-                <PostView {...this.props} />
+                (isSuccess)
+                    ? <PostView {...props} />
+                    : null
             );
+
         } else {
             return null;
         }
-
     }
 }
 

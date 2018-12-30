@@ -1,9 +1,7 @@
 import React,{Component} from "react";
-import {Lazy} from "../../../../Utils";
+import PostListArea from "./PostListItemHOC";
+import {Editor,PostButton} from "../../../Commons";
 
-const Editor = Lazy(() => import("../../../Commons/Editor"));
-const PostButton = Lazy(() => import("../../../Commons/PostButton"));
-const PostListItem = Lazy(() => import("./PostListArea"));
 
 export default class extends Component {
     constructor (props) {
@@ -25,7 +23,7 @@ export default class extends Component {
             <>
                 <PostButton onClick={this.publish} />
                 {this.state.editable ? <Editor mode="post" /> : null}
-                <PostListItem />
+                <PostListArea />
             </>
         );
     }
