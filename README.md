@@ -25,4 +25,4 @@ QQ    : 153436677
 * axios
 
 
-[挖坑记录](./UPDATE.md)
+[挖坑日常](./UPDATE.md)
