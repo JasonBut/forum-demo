@@ -5,11 +5,10 @@ import {withRouter} from "react-router";
 import {dataFetchFilter} from "../../../Utils";
 import {mapDispatches, mapStates} from "../../../Redux/Reducers";
 
-
-
 export default function (WrappedUIComponent,type) {
     const mapState = (state) => ({
         list : mapStates.getFetchList(state),
+        post : mapStates.getFetchPost(state),
         isSuccess : mapStates.getAppIsSuccess(state),
     });
 
@@ -22,7 +21,7 @@ export default function (WrappedUIComponent,type) {
     class ListHOC extends Component {
         static propTypes = {
             list : PropTypes.array,
-            patchId : PropTypes.number,
+            post : PropTypes.object,
             fetchDataAction : PropTypes.func,
             match : PropTypes.object,
         };
@@ -50,11 +49,20 @@ export default function (WrappedUIComponent,type) {
             }
         }
         render() {
-            const {list,isSuccess} = this.props;
-            return (
-                (isSuccess && Array.isArray(list) && list.length > 0) &&
-                <WrappedUIComponent {...this.props} />
-            )
+            const {list,post,isSuccess} = this.props;
+            if (type === "post") {
+                return (
+                    (isSuccess && post && typeof post === "object")
+                        ? <WrappedUIComponent {...post} />
+                        : null
+                );
+            } else {
+                return (
+                    (isSuccess && Array.isArray(list) && list.length > 0)
+                        ? <WrappedUIComponent {...this.props} />
+                        : null
+                )
+            }
         }
     }
 
