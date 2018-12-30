@@ -18,7 +18,7 @@ export default function (WrappedUIComponent,type) {
 
     @withRouter
     @connect(mapState,mapDispatch)
-    class ListHOC extends Component {
+    class FetchDataHOC extends Component {
         static propTypes = {
             list : PropTypes.array,
             post : PropTypes.object,
@@ -66,5 +66,5 @@ export default function (WrappedUIComponent,type) {
         }
     }
 
-    return ListHOC
+    return FetchDataHOC
 }

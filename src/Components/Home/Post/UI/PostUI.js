@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import {Divider } from "antd";
 
 PostUI.propTypes = {
-    userId : PropTypes.string.isRequired,
     title : PropTypes.string.isRequired,
     content : PropTypes.string.isRequired,
     postDate : PropTypes.string.isRequired,
@@ -11,7 +10,6 @@ PostUI.propTypes = {
 };
 
 PostUI.defaultProps = {
-    userId : "",
     title : "",
     content : "",
     postDate : "",

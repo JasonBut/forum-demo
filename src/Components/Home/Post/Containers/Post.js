@@ -1,4 +1,4 @@
 import PostUI from "../UI/PostUI";
-import {ListHOC} from "../../../Commons"
+import {FetchDataHOC} from "../../../Commons"
 
-export default ListHOC(PostUI,"post")
+export default FetchDataHOC(PostUI,"post")

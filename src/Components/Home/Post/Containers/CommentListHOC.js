@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Divider,List} from "antd";
 
-import {ListHOC} from "../../../Commons"
+import {FetchDataHOC} from "../../../Commons"
 import CommentListItemUI from "../UI/CommentListItemUI"
 
 CommentListUI.propTypes = {
@@ -32,4 +32,4 @@ function CommentListUI (props) {
     )
 }
 
-export default ListHOC(CommentListUI,"comments")
+export default FetchDataHOC(CommentListUI,"comments")

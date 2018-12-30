@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {List} from "antd";
 
-import {ListHOC} from "../../../Commons";
+import {FetchDataHOC} from "../../../Commons";
 import PostListItemUI from "../UI/PostListItemUI";
 
 PostListArea.propTypes = {
@@ -36,4 +36,4 @@ function PostListArea (props) {
     )
 }
 
-export default ListHOC(PostListArea,"posts");
+export default FetchDataHOC(PostListArea,"posts");

@@ -1,5 +1,5 @@
 import BoardView from "../UI/BoardUI";
-import {ListHOC} from "../../../Commons";
+import {FetchDataHOC} from "../../../Commons";
 
 
-export default ListHOC(BoardView,"boards")
+export default FetchDataHOC(BoardView,"boards")
