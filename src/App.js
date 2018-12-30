@@ -1,35 +1,27 @@
-//依赖
 import React, {Component} from 'react';
-import {ConnectedRouter} from "connected-react-router";
 import {Provider} from "react-redux"
+import {BrowserRouter as Router} from "react-router-dom";
 import Lazy from "./Utils/api/lazy"; //按需导入功能API
-import Stores,{history} from "./Redux"
-
-
-//样式文件
-import "antd/dist/antd.css"
+import Stores from "./Redux"
 import {Layout} from "antd";
-
+import "antd/dist/antd.css"
 
 //组件按需加载
 const Header = Lazy(() => import("./Components/Header"));
 const Footer = Lazy(() => import("./Components/Footer"));
 const Home = Lazy(() => import('./Components/Home/'));
 
-
-
-
 class App extends Component {
     render() {
         return (
             <Provider store={Stores}>
-                <ConnectedRouter history={history}>
+                <Router>
                     <Layout>
                         <Header />
                         <Home />
                         <Footer />
                     </Layout>
-                </ConnectedRouter>
+                </Router>
             </Provider>
         );
     }

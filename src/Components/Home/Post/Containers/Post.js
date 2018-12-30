@@ -1,13 +1,13 @@
 import React,{Component} from "react";
-import {connect} from "react-redux";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {withRouter} from "react-router";
 import {dataFetchFilter} from "../../../../Utils";
 import {mapStates,mapDispatches} from "../../../../Redux/";
 import PostView from "../UI/PostUI";
 
 const mapState = (state) => ({
     post : mapStates.getFetchPost(state),
-    pathId : mapStates.getPathId(state),
     isSuccess : mapStates.getAppIsSuccess(state),
 });
 
@@ -15,6 +15,7 @@ const mapDispatch = {
     fetchDataAction : mapDispatches.fetchDataAction,
 };
 
+@withRouter
 @connect(mapState,mapDispatch)
 class Post extends Component {
     static propTypes = {
@@ -27,7 +28,7 @@ class Post extends Component {
         this.props.fetchDataAction(
             dataFetchFilter({
                 type : "Post",
-                id : this.props.pathId,
+                id : this.props.match.params.id,
             })
         );
     }

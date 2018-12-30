@@ -1,7 +1,6 @@
 import React,{Component} from "react";
 import {Icon} from "antd";
 import "./rollback.less";
-import {history} from "../../../Redux";
 
 class RollBack extends Component {
     render() {
@@ -9,7 +8,7 @@ class RollBack extends Component {
             <Icon
                 id="rollBack"
                 type="rollback"
-                onClick={() => history.goBack()}
+                onClick={() => window.history.back()}
             />
         )
     }
