@@ -3,6 +3,6 @@ import "./editor.less";
 import Editor from "./Containers/Editor";
 
 
-export default () => (
-    <Editor />
+export default (props) => (
+    <Editor mode={props.mode} />
 )

@@ -7,7 +7,7 @@ const initialState = {
     postTitle : "",
     postContent : "",
     commentContent : "",
-    isEditing : false,
+    isPosting : false,
 };
 
 //Reducers
@@ -16,16 +16,15 @@ export default function FormEventReducers (state = initialState, action) {
 
         case Types.FORM_VALUE_ONCHANGE :
             const {name,value} = action.payload;
-            console.log(action.payload);
             return {
                 ...state,
                 [name] : value,
             };
 
-        case Types.FORM_TOGGLE_EDITING :
-            console.log(action.isEditing);
+        case Types.FORM_TOGGLE_POSTING :
             return {
-                ...state, isEditing : action.isEditing,
+                ...state,
+                isPosting : action.isPosting,
             };
 
 

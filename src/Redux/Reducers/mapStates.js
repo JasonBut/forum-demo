@@ -12,6 +12,6 @@ export default{
     getAuthIsLogged : (state) => state.Auth.isLogged,
 
     getFormValue : (state,typeName) => state.Form[typeName],
-    getFormIsEditing : (state) => state.Form.isEditing,
+    getFormIsPosting : (state) => state.Form.isPosting,
 
 }

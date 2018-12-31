@@ -7,7 +7,7 @@ import {mapStates,mapDispatches} from "../../../Redux/Reducers";
 
 
 const mapState = (state) => ({
-    isEditing : mapStates.getFormIsEditing(state),
+    isPosting : mapStates.getFormIsPosting(state),
 });
 
 const mapDispatch = {
@@ -17,18 +17,18 @@ const mapDispatch = {
 @connect(mapState,mapDispatch)
 class PostButton extends Component{
     static propTypes = {
-        isEditing: PropTypes.bool,
+        isPosting: PropTypes.bool,
         toggleEditing: PropTypes.func,
     };
 
     render() {
-        const {toggleEditing, isEditing} = this.props;
+        const {toggleEditing, isPosting} = this.props;
         return (
             <div className="button-area">
                 <Button
                     id="publish-button"
                     type="primary"
-                    onClick={() => toggleEditing(isEditing)}
+                    onClick={() => toggleEditing(isPosting)}
                     ghost
                 >
                     Publish

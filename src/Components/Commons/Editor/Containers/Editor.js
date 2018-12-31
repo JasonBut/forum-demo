@@ -4,11 +4,12 @@ import {mapStates,mapDispatches} from "../../../../Redux/Reducers";
 import EditorUI from "../UI/EditorUI";
 
 
-const mapState = (state) => ({
+const mapState = (state,ownProps) => ({
     title: mapStates.getFormValue(state,"postTitle"),
     post: mapStates.getFormValue(state,"postContent"),
     comment: mapStates.getFormValue(state,"commentContent"),
-    isEditing : mapStates.getFormIsEditing(state),
+    isPosting : mapStates.getFormIsPosting(state),
+    mode : ownProps.mode,
 });
 
 const mapDispatch = {
@@ -19,7 +20,7 @@ const mapDispatch = {
 class Editor extends Component {
     render() {
         return (
-            this.props.isEditing && <EditorUI {...this.props} />
+            <EditorUI {...this.props} />
         );
     }
 }

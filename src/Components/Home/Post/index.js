@@ -1,18 +1,17 @@
 import React from "react";
 import "./post.less";
-import Post from "./Containers/Post";
+import PostArea from "./Containers/PostArea";
 import CommentList from "./Containers/CommentList";
 import {Editor,PostButton} from "../../Commons";
 
-const editable = true;
 
 export default () => (
     <>
         <PostButton />
         <div id="post">
-            { editable ? <Post /> : <Editor mode="post" /> }
+            <PostArea />
             <CommentList />
-            <Editor mode="comment" />
+            <Editor mode="comment"  />
         </div>
     </>
 )

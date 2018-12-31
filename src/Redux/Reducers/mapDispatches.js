@@ -31,8 +31,8 @@ const formDataOnChange = function (event) {
 
 const formToggleIsEditing = function (isEditing) {
     return {
-        type : Types.FORM_TOGGLE_EDITING,
-        isEditing : !isEditing,
+        type : Types.FORM_TOGGLE_POSTING,
+        isPosting : !isEditing,
     }
 };
 
