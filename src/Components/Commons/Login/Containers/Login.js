@@ -10,6 +10,7 @@ const mapState = (state) => ({
 
 const mapDispatch = {
     handleChange : mapDispatches.formDataOnChange,
+    handleSubmit : mapDispatches.formLoginSubmit,
 };
 
 @connect(mapState,mapDispatch)

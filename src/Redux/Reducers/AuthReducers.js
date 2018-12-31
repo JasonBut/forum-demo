@@ -3,7 +3,8 @@ import Types from "../ActionsTypes"
 //初始State
 const initialState = {
     isLogged : false,
-    authUser : null,
+    authUserId : null,
+    logErr: null,
 };
 
 
@@ -11,18 +12,25 @@ const initialState = {
 export default function AuthReducer (state = initialState, action) {
     switch (action.type) {
 
-        case Types.AUTH_LOGIN_SUCCESS :
+        case Types.AUTH_LOGIN_SUCCEEDED :
             return {
                 ...state,
                 isLogged: true,
-                authUser: action.authUser,
+                authUserId: action.authUserId,
+            };
+
+        case Types.AUTH_LOGIN_FAILED :
+            return {
+                ...state,
+                isLogged:false,
+                logErr: action.logErr,
             };
 
         case Types.AUTH_LOGOUT :
             return {
                 ...state,
                 isLogged: false,
-                authUser: null,
+                authUserId: null,
             };
 
 

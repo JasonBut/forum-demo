@@ -2,8 +2,8 @@ import Types from "../ActionsTypes"
 
 //初始State
 const initialState = {
-    loginUsername : "Jason",
-    loginPassword : "aaaaa",
+    loginUsername : "",
+    loginPassword : "",
     postTitle : "",
     postContent : "",
     commentContent : "",
@@ -25,6 +25,13 @@ export default function FormEventReducers (state = initialState, action) {
             return {
                 ...state,
                 isPosting : action.isPosting,
+            };
+
+        case Types.AUTH_LOGIN_SUCCEEDED :
+            return {
+                ...state,
+                loginUsername: "",
+                loginPassword: "",
             };
 
 

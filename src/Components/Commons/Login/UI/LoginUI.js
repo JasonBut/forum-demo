@@ -6,14 +6,19 @@ FormUI.propTypes = {
     username : PropTypes.string,
     password : PropTypes.string,
     handleChange : PropTypes.func,
+    handleSubmit : PropTypes.func,
 }
 
 
 export default function FormUI (props) {
-    const {username,password,handleChange} = props;
+    const {username, password, handleChange, handleSubmit} = props;
     return (
         <div id="login">
-            <Form layout="horizontal" className="login-form">
+            <Form
+                layout="horizontal"
+                className="login-form"
+                onSubmit={handleSubmit}
+            >
 
                 <Form.Item>
                     <Input

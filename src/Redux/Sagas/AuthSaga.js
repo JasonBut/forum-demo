@@ -1,17 +1,34 @@
-import {take,put,fork} from "redux-saga/effects"
+import {take,put,fork,call} from "redux-saga/effects"
 import Types from "../ActionsTypes"
+import {asyncGetData} from "../../Utils";
 
 
 function* authRequest(params) {
     if (!params) {return new Error(`Invalid params`)}
+
+    const {username,password} = params;
     try {
         yield put({type : Types.FETCH_START});
 
-        yield put({type : Types.AUTH_LOGIN_SUCCESS});
+        const response = yield call(asyncGetData,{type : "username",rule : username});
+        const userProfile = response[0];
 
-        yield put({type : Types.FETCH_SUCCEEDED});
+        if (!userProfile.id) {
+            yield put({type : Types.AUTH_LOGIN_FAILED, logErr : `Username is not exists`});
+        }
+
+        if (userProfile.password === password) {
+            yield put({type : Types.FETCH_SUCCEEDED});
+            yield put({type : Types.AUTH_LOGIN_SUCCEEDED, authUserId : userProfile.id});
+
+        } else {
+            yield put({
+                type : Types.AUTH_LOGIN_FAILED,
+                logErr : `Incorrect password,please try again.`
+            });
+        }
     } catch (err) {
-        yield put({type : Types.FETCH_FAILED});
+        yield put({type : Types.FETCH_FAILED, err : err});
     }
 }
 

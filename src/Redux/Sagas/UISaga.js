@@ -1,6 +1,6 @@
 import {put, call, take, fork} from "redux-saga/effects"
 import Types from "../ActionsTypes"
-import {asyncGet,getUserById} from "../../Utils"
+import {asyncGetData} from "../../Utils"
 
 
 function* fetchData(params) {
@@ -10,13 +10,8 @@ function* fetchData(params) {
         yield put({type : Types.FETCH_FAILED, err : `Invalid path`});
     }
     try {
-        const response = yield call(asyncGet,params);
-        if (response.status !== 200) {
-            return new Error(response.statusText);
-        }
-
-        const data = response.data;
-
+        const data = yield call(asyncGetData,params);
+        const getAuthor = (id) => asyncGetData({type: "userId" , rule : `${id}`});
 
         if (typeof data !== "object") {
             return new Error(`Fetched data should be "object" or "array`);
@@ -31,16 +26,16 @@ function* fetchData(params) {
                 if (!item.userId){
                     newData.push(item);
                 } else {
-                    const author = yield call(getUserById,item.userId);
-                    newData.push({...item,author});
+                    const author = yield call(getAuthor,item.userId);
+                    newData.push({...item,author : author.nickName});
                 }
             }
             yield put({type : Types.UI_FETCH_LIST_SUCCEEDED, data : newData})
 
             //非数组代表post数据
         } else {
-            const author = yield call(getUserById,data.userId);
-            const newData = {...data,author};
+            const author = yield call(getAuthor,data.userId);
+            const newData = {...data, author :author.nickName, userId : data.userId};
             yield put({type : Types.UI_FETCH_POST_SUCCEEDED, data : newData})
         }
 

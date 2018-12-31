@@ -2,7 +2,6 @@ import React,{Component} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {withRouter} from "react-router";
-import {dataFetchFilter} from "../../../Utils";
 import {mapDispatches, mapStates} from "../../../Redux/Reducers";
 
 export default (WrappedUIComponent,type) => {
@@ -24,6 +23,7 @@ export default (WrappedUIComponent,type) => {
             post : PropTypes.object,
             fetchDataAction : PropTypes.func,
             match : PropTypes.object,
+            isSuccess : PropTypes.bool,
         };
 
         constructor(props) {
@@ -36,12 +36,10 @@ export default (WrappedUIComponent,type) => {
 
         componentWillMount () {
             if (this.state.firstMount) {
-                this.props.fetchDataAction(
-                    dataFetchFilter({
+                this.props.fetchDataAction({
                         type : type,
-                        id : this.props.match.params.id,
-                    })
-                );
+                        rule : this.props.match.params.id,
+                    });
 
                 this.setState({
                     firstMount : false,
@@ -59,7 +57,7 @@ export default (WrappedUIComponent,type) => {
             } else {
                 return (
                     (isSuccess && Array.isArray(list) && list.length > 0)
-                        ? <WrappedUIComponent {...this.props} />
+                        ? <WrappedUIComponent list={list} />
                         : null
                 )
             }

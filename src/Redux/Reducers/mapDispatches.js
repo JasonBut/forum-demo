@@ -29,6 +29,18 @@ const formDataOnChange = function (event) {
     }
 };
 
+const formLoginSubmit = function (event) {
+    event.preventDefault();
+    const {loginUsername, loginPassword} = event.target;
+    return {
+        type : Types.AUTH_LOGIN_REQUESTED,
+        params : {
+            username : loginUsername.value,
+            password : loginPassword.value,
+        }
+    }
+};
+
 const formToggleIsEditing = function (isEditing) {
     return {
         type : Types.FORM_TOGGLE_POSTING,
@@ -36,8 +48,11 @@ const formToggleIsEditing = function (isEditing) {
     }
 };
 
+
+
 export default {
     fetchDataAction,
     formDataOnChange,
     formToggleIsEditing,
+    formLoginSubmit,
 }

@@ -8,6 +8,7 @@ export default{
 
     getFetchList : (state) => state.UI.list,
     getFetchPost : (state) => state.UI.post,
+    getPostAuthor : (state) => state.UI.post.userId,
 
     getAuthIsLogged : (state) => state.Auth.isLogged,
 
