@@ -19,11 +19,10 @@ QQ    : 153436677
 * react-redux
 * redux-saga
 * react-router
-* connected-react-router
 * react-loadable
 * antd
 * less
 * axios
 
 
-[踩坑记录](./UPDATE.md)
+[挖坑日常](./UPDATE.md)
