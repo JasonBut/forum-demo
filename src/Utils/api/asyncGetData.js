@@ -11,15 +11,14 @@ let filters = (rule) => new Map([
 
 export default async ({type,rule}) => {
     if (typeof type !== "string") {
-        return new Error(`Invalid type: ${type}, excepted 'String'`)
+        return new Error(`Invalid type: "${type}", excepted 'String'`)
     }
 
-    const path = filters(rule).get(`${type.toLowerCase()}`);
+    const path = filters(rule).get(type.toLowerCase());
 
     const response = await axios.get(`http://localhost:4000/${path}`);
     if (response.status !== 200) {
         return new Error(response.statusText);
     }
-
     return response.data;
 }

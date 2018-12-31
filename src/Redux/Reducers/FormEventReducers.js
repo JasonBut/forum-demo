@@ -2,8 +2,8 @@ import Types from "../ActionsTypes"
 
 //初始State
 const initialState = {
-    loginUsername : "",
-    loginPassword : "",
+    loginUsername : "Jason",
+    loginPassword : "aaaaaa",
     postTitle : "",
     postContent : "",
     commentContent : "",

@@ -10,23 +10,42 @@ import {Editor, PostButton} from "../../../Commons";
 
 const mapState = (state) => ({
     isPosting : mapStates.getFormIsPosting(state),
+    isLogged : mapStates.getAuthIsLogged(state),
+    post : mapStates.getPost(state),
+    authUserId : mapStates.getAuthUserId(state),
 });
 
 @connect(mapState)
 class PostArea extends Component {
     static propTypes = {
         isPosting : PropTypes.bool,
+        isLogged : PropTypes.bool,
+        post : PropTypes.object,
+        authUserId : PropTypes.string,
     };
 
-
     render() {
+        const {isLogged, authUserId, isPosting, post} = this.props;
+        let isEditable, title, content, authorId;
+        post && (
+            (title = post.title) &&
+            (content = post.content) &&
+            (authorId = post.userId) &&
+            (isEditable = (authUserId === authorId))
+        );
         return (
             <>
-                <PostButton />
+                { isLogged && isEditable
+                    ? <PostButton mode="amend" />
+                    : null
+                }
                 <div id="post">
-                    { this.props.isPosting ? <Editor mode="post" /> : <Post /> }
+                    { isPosting
+                        ? <Editor mode="post" title={title} content={content} />
+                        : <Post />
+                    }
                     <CommentList />
-                    <Editor mode="comment"  />
+                    <Editor mode="comment" />
                 </div>
             </>
         );
@@ -35,4 +54,4 @@ class PostArea extends Component {
 
 
 
-export default PostArea
+export default PostArea;

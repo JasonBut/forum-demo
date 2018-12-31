@@ -3,7 +3,7 @@ import Types from "../ActionsTypes"
 //初始State
 const initialState = {
     isLogged : false,
-    authUserId : null,
+    authUserId : "",
     logErr: null,
 };
 
@@ -30,7 +30,7 @@ export default function AuthReducer (state = initialState, action) {
             return {
                 ...state,
                 isLogged: false,
-                authUserId: null,
+                authUserId: "",
             };
 
 

@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Divider,List} from "antd";
-
 import {FetchDataHOC} from "../../../Commons"
 import CommentListItemUI from "../UI/CommentListItemUI"
 

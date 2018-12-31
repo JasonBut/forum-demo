@@ -6,8 +6,8 @@ import {mapDispatches, mapStates} from "../../../Redux/Reducers";
 
 export default (WrappedUIComponent,type) => {
     const mapState = (state) => ({
-        list : mapStates.getFetchList(state),
-        post : mapStates.getFetchPost(state),
+        list : mapStates.getList(state),
+        post : mapStates.getPost(state),
         isSuccess : mapStates.getAppIsSuccess(state),
     });
 

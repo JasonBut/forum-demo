@@ -6,13 +6,13 @@ export default{
 
 
 
-    getFetchList : (state) => state.UI.list,
-    getFetchPost : (state) => state.UI.post,
-    getPostAuthor : (state) => state.UI.post.userId,
+    getList : (state) => state.UI.list,
+    getPost : (state) => state.UI.post,
 
     getAuthIsLogged : (state) => state.Auth.isLogged,
+    getAuthUserId : (state) => state.Auth.authUserId,
 
-    getFormValue : (state,typeName) => state.Form[typeName],
+    getFormValue : (state,elemName) => state.Form[elemName],
     getFormIsPosting : (state) => state.Form.isPosting,
 
 }

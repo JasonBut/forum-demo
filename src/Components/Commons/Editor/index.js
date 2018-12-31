@@ -4,5 +4,5 @@ import Editor from "./Containers/Editor";
 
 
 export default (props) => (
-    <Editor mode={props.mode} />
+    <Editor mode={props.mode} title={props.title} content={props.content} />
 )

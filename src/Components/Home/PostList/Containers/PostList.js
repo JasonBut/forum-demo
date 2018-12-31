@@ -2,7 +2,7 @@ import React,{Component} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {mapStates} from "../../../../Redux/Reducers"
-import PostListArea from "./PostListItem";
+import PostListArea from "./PostListArea";
 import {Editor,PostButton} from "../../../Commons";
 
 const mapState = (state) => ({
@@ -19,7 +19,7 @@ class PostList extends Component{
         const {isPosting} = this.props;
         return (
             <>
-                <PostButton />
+                <PostButton mode="publish" />
                 {isPosting ? <Editor mode="post" /> : null}
                 <PostListArea />
             </>

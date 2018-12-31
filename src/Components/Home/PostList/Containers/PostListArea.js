@@ -10,7 +10,6 @@ PostListArea.propTypes = {
         id : PropTypes.string,
         title : PropTypes.string,
         postDate : PropTypes.string,
-        userId : PropTypes.string,
         author : PropTypes.string,
     })).isRequired,
 };

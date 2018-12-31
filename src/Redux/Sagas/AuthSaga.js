@@ -11,14 +11,14 @@ function* authRequest(params) {
         yield put({type : Types.FETCH_START});
 
         const response = yield call(asyncGetData,{type : "username",rule : username});
-        const userProfile = response[0];
+        const [userProfile] = response;
 
         if (!userProfile.id) {
             yield put({type : Types.AUTH_LOGIN_FAILED, logErr : `Username is not exists`});
         }
+        yield put({type : Types.FETCH_SUCCEEDED});
 
         if (userProfile.password === password) {
-            yield put({type : Types.FETCH_SUCCEEDED});
             yield put({type : Types.AUTH_LOGIN_SUCCEEDED, authUserId : userProfile.id});
 
         } else {

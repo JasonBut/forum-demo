@@ -6,8 +6,10 @@ import {Button} from "antd";
 import {mapStates,mapDispatches} from "../../../Redux/Reducers";
 
 
-const mapState = (state) => ({
+const mapState = (state,ownProps) => ({
     isPosting : mapStates.getFormIsPosting(state),
+    isLogged : mapStates.getAuthIsLogged(state),
+    mode : ownProps.mode,
 });
 
 const mapDispatch = {
@@ -17,22 +19,28 @@ const mapDispatch = {
 @connect(mapState,mapDispatch)
 class PostButton extends Component{
     static propTypes = {
+        mode: PropTypes.string,
         isPosting: PropTypes.bool,
+        isLogged: PropTypes.bool,
         toggleEditing: PropTypes.func,
     };
 
     render() {
-        const {toggleEditing, isPosting} = this.props;
+        const {toggleEditing, isPosting, isLogged, mode} = this.props;
         return (
             <div className="button-area">
-                <Button
-                    id="publish-button"
-                    type="primary"
-                    onClick={() => toggleEditing(isPosting)}
-                    ghost
-                >
-                    Publish
-                </Button>
+                {
+                    isLogged && (
+                        <Button
+                            id="publish-button"
+                            type="primary"
+                            onClick={() => toggleEditing(isPosting)}
+                            ghost
+                        >
+                            {mode.toLowerCase() === "publish" ? "Publish" : "Amend"}
+                        </Button>
+                    )
+                }
             </div>
         )
     }
