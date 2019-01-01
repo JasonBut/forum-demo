@@ -40,7 +40,7 @@ export default function EditorUI (props) {
             <Form.Item>
                 <Input
                     type="submit"
-                    value={isPostMode ? "Submit" : "Comment"}
+                    value={isPostMode ? "提交" : "发表评论"}
                 />
             </Form.Item>
         </Form>

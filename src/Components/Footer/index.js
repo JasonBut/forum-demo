@@ -8,7 +8,7 @@ export default () => (
         <Footer className="footer">
             <span>
                 <Icon type="github" />
-                <span><a href="https://github.com/JasonBut">Github</a></span>
+                <span><a href="https://github.com/JasonBut" target="_blank">Github</a></span>
             </span>
 
             <span>
@@ -23,7 +23,11 @@ export default () => (
 
             <span>
                     <Icon type="mail" />
-                    <span><a href="mailto://Jason.But@yahoo.com">Jason.But@yahoo.com</a></span>
+                    <span>
+                        <a href="mailto://Jason.But@yahoo.com"  target="_blank">
+                            Jason.But@yahoo.com
+                        </a>
+                    </span>
             </span>
         </Footer>
 )

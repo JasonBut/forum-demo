@@ -38,7 +38,7 @@ class PostButton extends Component{
                             onClick={() => toggleEditing(isPosting)}
                             ghost
                         >
-                            {mode.toLowerCase() === "publish" ? "Publish" : "Amend"}
+                            {mode.toLowerCase() === "publish" ? "发帖" : "编辑帖子"}
                         </Button>
                     )
                 }
