@@ -1,9 +1,9 @@
 import Types from "../ActionsTypes"
 
 const initialState = {
-    isLogged : false,
-    authNickname : "",
-    authUserId : "",
+    isLogged : !!sessionStorage.getItem("isLogged") || false,
+    authNickname : sessionStorage.getItem("authNickname") || "",
+    authUserId : sessionStorage.getItem("authUserId") || "",
     logErr: null,
 };
 

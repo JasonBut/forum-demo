@@ -28,6 +28,11 @@ function* authLoginRequest(params) {
 
         //校检密码
         if (userProfile && userProfile.password === password) {
+            //本地缓存数据
+            sessionStorage.setItem("isLogged","true");
+            sessionStorage.setItem("authUserId",`${userProfile.id}`);
+            sessionStorage.setItem("authNickname",`${userProfile.nickname}`);
+
             yield put({
                 type : Types.AUTH_LOGIN_SUCCEEDED,
                 authUserId : userProfile.id,
@@ -51,10 +56,23 @@ function* authLoginRequest(params) {
     }
 }
 
+function authLogoutRequest() {
+    sessionStorage.removeItem("isLogged");
+    sessionStorage.removeItem("authUserId");
+    sessionStorage.removeItem("authNickname");
+}
+
 
 export function* watchAuthLoginRequest () {
     while (true) {
         const {params} = yield take(Types.AUTH_LOGIN_REQUESTED);
         yield fork(authLoginRequest,params);
+    }
+}
+
+export function* watchAuthLogoutRequest () {
+    while (true) {
+        yield take(Types.AUTH_LOGOUT);
+        yield fork(authLogoutRequest);
     }
 }
