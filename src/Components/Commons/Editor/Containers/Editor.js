@@ -26,11 +26,13 @@ class Editor extends Component {
         amendContent: PropTypes.string,
     };
 
+    //用于发送给handleChange的对象结构
     amendData = (name,value) => {
         return { target : {name, value} }
     };
 
     componentWillMount () {
+        //如果编辑器状态是编辑帖子,则将父组件传入的帖子数据输入相应文本框中
         const {amendTitle,amendContent,handleChange} = this.props;
         amendTitle && handleChange(this.amendData("postTitle",amendTitle));
         amendContent && handleChange(this.amendData("postContent",amendContent));

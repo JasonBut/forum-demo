@@ -5,13 +5,14 @@ import {Icon,Form, Input} from "antd";
 FormUI.propTypes = {
     username : PropTypes.string,
     password : PropTypes.string,
+    logErr : PropTypes.string,
     handleChange : PropTypes.func,
     handleSubmit : PropTypes.func,
 }
 
 
 export default function FormUI (props) {
-    const {username, password, handleChange, handleSubmit} = props;
+    const {username, password, handleChange, handleSubmit, logErr} = props;
     return (
         <Form
             layout="horizontal"
@@ -39,6 +40,8 @@ export default function FormUI (props) {
                     onChange={handleChange}
                 />
             </Form.Item>
+
+            { logErr && <p className="err-message">{logErr}</p> } {/*登录错误信息*/}
 
             <Form.Item>
                 <Input type="submit" value="Login" />

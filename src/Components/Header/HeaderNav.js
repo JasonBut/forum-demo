@@ -31,6 +31,7 @@ class HeaderNav extends Component {
         })
     };
 
+    //根据当前路径去改变导航按键样式
     checkCurrentTab = (pathname) => {
         let currentTab;
         for (let [key,value] of tabFilter) {

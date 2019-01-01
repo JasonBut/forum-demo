@@ -6,9 +6,9 @@ import {mapDispatches, mapStates} from "../../../Redux/Reducers";
 
 export default (WrappedUIComponent,type) => {
     const mapState = (state) => ({
-        list : mapStates.getList(state),
-        post : mapStates.getPost(state),
-        isSuccess : mapStates.getAppIsSuccess(state),
+        list : mapStates.getList(state), //列表数据
+        post : mapStates.getPost(state), //帖子数据
+        isSuccess : mapStates.getAppIsSuccess(state), //App数据获取成功状态
     });
 
     const mapDispatch = {
@@ -35,6 +35,7 @@ export default (WrappedUIComponent,type) => {
 
 
         componentWillMount () {
+            //第一次装载才发送获取数据请求
             if (this.state.firstMount) {
                 this.props.fetchDataAction({
                         type : type,
@@ -47,6 +48,7 @@ export default (WrappedUIComponent,type) => {
             }
         }
         render() {
+            //根据帖子或列表的条件类型,在App确定获取数据成功时渲染组件
             const {list,post,isSuccess} = this.props;
             if (type === "post") {
                 return (

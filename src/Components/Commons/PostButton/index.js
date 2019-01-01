@@ -30,6 +30,7 @@ class PostButton extends Component{
         return (
             <div className="button-area">
                 {
+                    /*登录后才渲染组件*/
                     isLogged && (
                         <Button
                             id="publish-button"

@@ -9,6 +9,7 @@ const mapState = (state) => ({
     username : mapStates.getFormValue(state,"loginUsername"),
     password : mapStates.getFormValue(state,"loginPassword"),
     isLogged : mapStates.getAuthIsLogged(state),
+    logErr : mapStates.getAuthErr(state),
 });
 
 const mapDispatch = {
@@ -24,7 +25,7 @@ class Login extends Component {
     };
 
     render() {
-        const {isLogged} = this.props;
+        const {isLogged} = this.props; //登录状态,用于返回登录成功页面
         return (
             <div className="auth">
                 {isLogged

@@ -1,5 +1,6 @@
 import axios from "axios";
 
+//过滤条件
 let filters = (rule) => new Map([
     ["boards",`boards`],
     ["posts",`posts?boardId=board_${rule}`],
@@ -19,7 +20,7 @@ export default async ({type,rule}) => {
     try {
         const response = await axios.get(`http://localhost:4000/${path}`);
         if (response.status !== 200) {
-            return new Error(response.statusText);
+            throw new Error(response.statusText);
         }
         return response.data;
 

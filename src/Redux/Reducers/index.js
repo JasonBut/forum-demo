@@ -13,7 +13,7 @@ export default combineReducers({
     Form : FormEventReducers,
 });
 
-//States Interface
+//状态及Action Creators接口
 export mapStates from "./mapStates";
 export mapDispatches from "./mapDispatches";
 

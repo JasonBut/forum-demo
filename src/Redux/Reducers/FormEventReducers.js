@@ -1,6 +1,5 @@
 import Types from "../ActionsTypes"
 
-//初始State
 const initialState = {
     loginUsername : "Jason",
     loginPassword : "aaaaaa",
@@ -10,7 +9,6 @@ const initialState = {
     isPosting : false,
 };
 
-//Reducers
 export default function FormEventReducers (state = initialState, action) {
     switch (action.type) {
 

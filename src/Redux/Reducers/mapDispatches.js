@@ -1,6 +1,6 @@
 import Types from "../ActionsTypes";
 
-//Actions Creator
+//Actions Creators
 //UI actions
 const fetchDataAction = function (filter) {
     let action = {
@@ -47,6 +47,7 @@ const formToggleIsEditing = function (isPosting) {
     }
 };
 
+//Auth actions
 const authLogout = function () {
     return {
         type : Types.AUTH_LOGOUT

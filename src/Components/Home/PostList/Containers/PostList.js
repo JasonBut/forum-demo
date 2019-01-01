@@ -16,7 +16,7 @@ class PostList extends Component{
     }
 
     render() {
-        const {isPosting} = this.props;
+        const {isPosting} = this.props; //根据是否正在编辑状态去渲染Editor组件
         return (
             <>
                 <PostButton mode="publish" />

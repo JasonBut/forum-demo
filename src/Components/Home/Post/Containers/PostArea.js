@@ -6,8 +6,6 @@ import Post from "./Post";
 import CommentList from "./CommentList";
 import {Editor, PostButton} from "../../../Commons";
 
-
-
 const mapState = (state) => ({
     isPosting : mapStates.getFormIsPosting(state),
     isLogged : mapStates.getAuthIsLogged(state),
@@ -27,6 +25,7 @@ class PostArea extends Component {
     render() {
         const {isLogged, authUserId, isPosting, post} = this.props;
         let isEditable, title, content, authorId;
+        //获取到post数据后再传递prop到子组件,并根据登录和编辑状态条件去渲染PostButton和Editor组件
         post && (
             (title = post.title) &&
             (content = post.content) &&

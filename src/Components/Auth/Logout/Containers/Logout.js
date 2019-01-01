@@ -12,8 +12,8 @@ const mapDispatch = {
 class Index extends Component{
 
     componentDidMount () {
-        this.props.logout();
-        this.timer = setTimeout(() => {
+        this.props.logout(); //发送注销请求
+        this.timer = setTimeout(() => {  //注销成功后返回上一页
             window.history.go(-1);
         },2000)
     }
