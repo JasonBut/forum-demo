@@ -10,10 +10,10 @@ QQ    : 153436677
 
 
 简介：
->    这是一个基于react的功能比较简单的论坛demo，主要是自己在学习完react后的一个练手项目。
+>    这是一个基于react的功能比较简单的论坛demo，是一个本人学习完react后的一个练手项目。
     
     
-需要用到：
+主要用到：
 * react
 * redux
 * react-redux
@@ -25,4 +25,4 @@ QQ    : 153436677
 * axios
 
 
-[挖坑日常](./UPDATE.md)
+[挖坑自踩日常](./UPDATE.md)
