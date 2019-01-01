@@ -4,14 +4,12 @@ import {lazy} from "../../Utils/";
 import {Layout} from "antd";
 import "./home.less"
 
-
 const Board = lazy(() => import("./Board"));
 const PostList = lazy(() => import("./PostList"));
 const Post = lazy(() => import("./Post"));
 const Rollback = lazy(() => import("../Commons/Rollback"));
 const Login = lazy(() => import("../Auth/Login"));
 const Logout = lazy(() => import("../Auth/Logout"));
-
 
 const {Content} = Layout;
 

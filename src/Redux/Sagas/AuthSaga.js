@@ -1,6 +1,6 @@
 import {take,put,fork,call} from "redux-saga/effects"
 import Types from "../ActionsTypes"
-import {asyncGetData} from "../../Utils";
+import {asyncFetch} from "../../Utils";
 
 function* authLoginRequest(params) {
     if (!params) {throw new Error(`Invalid params`)}
@@ -9,19 +9,23 @@ function* authLoginRequest(params) {
 
     //检查提交的用户名和密码是否存在
     if (!username || !password) {
-        return yield put({type : Types.AUTH_LOGIN_FAILED, logErr : `请输入用户名和密码`});
+        return yield put({type : Types.REQUEST_FAILED, err : `请输入用户名和密码`});
     }
 
     try {
         yield put({type : Types.FETCH_START}); //开始发送获取请求
 
-        const response = yield call(asyncGetData,{type : "username",rule : username}); //根据账号获取用户信息
+        //根据账号获取用户信息
+        const response = yield call(asyncFetch,{
+            mode: "GET",
+            type : "username",
+            rule : username
+        });
         const [userProfile] = response;
 
         // 账号信息不存在返回空数组
         if (!userProfile) {
-            yield put({type : Types.AUTH_LOGIN_FAILED, logErr : `用户名不存在`});
-            throw new Error(`Username is not exists.`);
+            throw new Error(`用户名不存在`);
         }
 
         yield put({type : Types.FETCH_SUCCEEDED}); //只要获取到账号信息,就发送请求完成状态
@@ -46,16 +50,14 @@ function* authLoginRequest(params) {
 
         //密码错误
         } else {
-            yield put({
-                type : Types.AUTH_LOGIN_FAILED,
-                logErr : `密码错误，请重新输入`
-            });
+            throw new Error(`密码错误，请重新输入`)
         }
     } catch (err) {
-        yield put({type : Types.FETCH_FAILED, err : err}); //获取数据失败
+        yield put({type : Types.REQUEST_FAILED, err}); //获取数据失败
     }
 }
 
+//注销时把session缓存清除
 function authLogoutRequest() {
     sessionStorage.removeItem("isLogged");
     sessionStorage.removeItem("authUserId");

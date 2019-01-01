@@ -31,7 +31,6 @@
       "nickname": "Joey666"
     }
   ],
-
   "boards": [
     {
       "id": "board_1",
@@ -54,7 +53,6 @@
       "boardDesc": "Board 4"
     }
   ],
-
   "posts": [
     {
       "userId": "user_1",
@@ -105,49 +103,48 @@
       "content": "asdiashkdjklasjdkljaskl"
     }
   ],
-
   "comments": [
-      {
-          "id": "comment_1",
-          "postId" : "post_1",
-          "userId" : "user_1",
-          "content": "fuck you asshole",
-          "commentDate": "12月26日"
-      },
-      {
-          "id": "comment_2",
-          "postId" : "post_2",
-          "userId" : "user_4",
-          "content": "fuck you asshole",
-          "commentDate": "12月26日"
-      },
-      {
-          "id": "comment_3",
-          "postId" : "post_3",
-          "userId" : "user_3",
-          "content": "fuck you asshole",
-          "commentDate": "12月26日"
-      },
-      {
-          "id": "comment_4",
-          "postId" : "post_4",
-          "userId" : "user_1",
-          "content": "fuck you asshole",
-          "commentDate": "12月26日"
-      },
-      {
-          "id": "comment_5",
-          "postId" : "post_5",
-          "userId" : "user_2",
-          "content": "fuck you asshole",
-          "commentDate": "12月26日"
-      },
-      {
-          "id": "comment_6",
-          "postId" : "post_6",
-          "userId" : "user_5",
-          "content": "fuck you asshole",
-          "commentDate": "12月26日"
-      }
+    {
+      "id": "comment_1",
+      "postId": "post_1",
+      "userId": "user_1",
+      "content": "fuck you asshole",
+      "commentDate": "12月26日"
+    },
+    {
+      "id": "comment_2",
+      "postId": "post_2",
+      "userId": "user_4",
+      "content": "fuck you asshole",
+      "commentDate": "12月26日"
+    },
+    {
+      "id": "comment_3",
+      "postId": "post_3",
+      "userId": "user_3",
+      "content": "fuck you asshole",
+      "commentDate": "12月26日"
+    },
+    {
+      "id": "comment_4",
+      "postId": "post_4",
+      "userId": "user_1",
+      "content": "fuck you asshole",
+      "commentDate": "12月26日"
+    },
+    {
+      "id": "comment_5",
+      "postId": "post_5",
+      "userId": "user_2",
+      "content": "fuck you asshole",
+      "commentDate": "12月26日"
+    },
+    {
+      "id": "comment_6",
+      "postId": "post_6",
+      "userId": "user_5",
+      "content": "fuck you asshole",
+      "commentDate": "12月26日"
+    }
   ]
 }

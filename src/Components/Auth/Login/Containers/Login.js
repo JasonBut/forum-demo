@@ -9,7 +9,7 @@ const mapState = (state) => ({
     username : mapStates.getFormValue(state,"loginUsername"),
     password : mapStates.getFormValue(state,"loginPassword"),
     isLogged : mapStates.getAuthIsLogged(state),
-    logErr : mapStates.getAuthErr(state),
+    logErr : mapStates.getErrorMessage(state),
 });
 
 const mapDispatch = {

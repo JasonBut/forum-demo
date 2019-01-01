@@ -12,7 +12,7 @@ export default (WrappedUIComponent,type) => {
     });
 
     const mapDispatch = {
-        fetchDataAction: mapDispatches.fetchDataAction,
+        fetchData: mapDispatches.fetchData,
     };
 
     @withRouter
@@ -21,7 +21,7 @@ export default (WrappedUIComponent,type) => {
         static propTypes = {
             list : PropTypes.array,
             post : PropTypes.object,
-            fetchDataAction : PropTypes.func.isRequired,
+            fetchData : PropTypes.func.isRequired,
             match : PropTypes.object.isRequired,
             isSuccess : PropTypes.bool.isRequired,
         };
@@ -37,10 +37,11 @@ export default (WrappedUIComponent,type) => {
         componentWillMount () {
             //第一次装载才发送获取数据请求
             if (this.state.firstMount) {
-                this.props.fetchDataAction({
-                        type : type,
-                        rule : this.props.match.params.id,
-                    });
+                this.props.fetchData({
+                    mode : "GET",
+                    type : type,
+                    rule : this.props.match.params.id,
+                });
 
                 this.setState({
                     firstMount : false,

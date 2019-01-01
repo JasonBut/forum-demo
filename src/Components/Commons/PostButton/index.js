@@ -19,18 +19,24 @@ const mapDispatch = {
 @connect(mapState,mapDispatch)
 class PostButton extends Component{
     static propTypes = {
-        mode: PropTypes.string,
-        isPosting: PropTypes.bool,
-        isLogged: PropTypes.bool,
-        toggleEditing: PropTypes.func,
+        mode: PropTypes.string.isRequired,
+        isPosting: PropTypes.bool.isRequired,
+        isLogged: PropTypes.bool.isRequired,
+        toggleEditing: PropTypes.func.isRequired,
     };
 
     render() {
         const {toggleEditing, isPosting, isLogged, mode} = this.props;
+
+        const buttonValue = ( isPosting
+                ? "取消"
+                : (mode.toLowerCase() === "publish" ? "发帖" : "编辑帖子")
+        );
+
         return (
             <div className="button-area">
                 {
-                    /*登录后才渲染组件*/
+                    /*登录后才渲染按钮*/
                     isLogged && (
                         <Button
                             id="publish-button"
@@ -38,7 +44,7 @@ class PostButton extends Component{
                             onClick={() => toggleEditing(isPosting)}
                             ghost
                         >
-                            {mode.toLowerCase() === "publish" ? "发帖" : "编辑帖子"}
+                            {buttonValue}
                         </Button>
                     )
                 }

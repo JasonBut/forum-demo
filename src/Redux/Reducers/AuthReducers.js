@@ -4,7 +4,6 @@ const initialState = {
     isLogged : !!sessionStorage.getItem("isLogged") || false,
     authNickname : sessionStorage.getItem("authNickname") || "",
     authUserId : sessionStorage.getItem("authUserId") || "",
-    logErr: null,
 };
 
 
@@ -16,14 +15,12 @@ export default function AuthReducer (state = initialState, action) {
                 isLogged: true,
                 authUserId: action.authUserId,
                 authNickname: action.authNickname,
-                logErr: null,
             };
 
-        case Types.AUTH_LOGIN_FAILED :
+        case Types.REQUEST_FAILED :
             return {
                 ...state,
-                isLogged:false,
-                logErr: action.logErr,
+                isLogged : false,
             };
 
         case Types.AUTH_LOGOUT :
@@ -31,7 +28,6 @@ export default function AuthReducer (state = initialState, action) {
                 isLogged: false,
                 authUserId: "",
                 authNickname : "",
-                logErr: null,
             };
 
 

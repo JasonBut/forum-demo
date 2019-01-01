@@ -12,10 +12,9 @@ const initialState = {
 export default function UIReducer (state = initialState, action) {
     switch (action.type) {
 
-        case  Types.FETCH_FAILED :
+        case  Types.REQUEST_FAILED :
             console.log(action.err);
             return {
-                ...state,
                 err : action.err,
                 isSuccess : false,
                 isLoading : false,
@@ -23,14 +22,14 @@ export default function UIReducer (state = initialState, action) {
 
         case Types.FETCH_SUCCEEDED :
             return {
-                ...state,
+                err : null,
                 isLoading: false,
                 isSuccess: true,
             };
 
         case Types.FETCH_START :
             return {
-                ...state,
+                err : null,
                 isLoading: true,
                 isSuccess: false,
             };

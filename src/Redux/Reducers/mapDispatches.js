@@ -2,22 +2,15 @@ import Types from "../ActionsTypes";
 
 //Actions Creators
 //UI actions
-const fetchDataAction = function (filter) {
-    let action = {
-        type : Types.UI_FETCH_REQUESTED,
-    };
-    //如果filter有正确的返回信息,则将结果混入action中,否则直接发送action
-    if (filter !== undefined) {
-        return {
-            ...action,
-            params : filter,
-        }
-    }
-    return action;
+const fetchData = (filter) => {
+    let action = {type : Types.UI_FETCH_REQUESTED};
+
+    //如果filter返回有效信息, 将结果混入action中,否则直接发送action
+    return Object.assign(action, ( filter ? { params : filter } : null) );
 };
 
 //Form actions
-const formDataOnChange = function (event) {
+const formDataOnChange = (event) => {
     const {name,value} = event.target;
     return {
         type : Types.FORM_VALUE_ONCHANGE,
@@ -28,7 +21,7 @@ const formDataOnChange = function (event) {
     }
 };
 
-const formLoginSubmit = function (event) {
+const formLoginSubmit = (event) => {
     event.preventDefault();
     const {loginUsername, loginPassword} = event.target;
     return {
@@ -40,10 +33,20 @@ const formLoginSubmit = function (event) {
     }
 };
 
-const formToggleIsEditing = function (isPosting) {
+const formToggleIsEditing = (isPosting) => {
     return {
         type : Types.FORM_TOGGLE_POSTING,
         isPosting : !isPosting,
+    }
+};
+
+const formValuePublish = () => {
+    return {
+        type : Types.FORM_VALUE_PUBLISH_REQUESTED,
+        // payload : {
+        //     name,
+        //     value,
+        // }
     }
 };
 
@@ -57,9 +60,10 @@ const authLogout = function () {
 
 
 export default {
-    fetchDataAction,
+    fetchData,
     formDataOnChange,
     formToggleIsEditing,
     formLoginSubmit,
-    formLogout: authLogout,
+    authLogout,
+    formValuePublish,
 }

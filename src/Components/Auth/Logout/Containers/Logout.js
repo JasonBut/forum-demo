@@ -5,7 +5,7 @@ import LogoutUI from "../UI/LogoutUI";
 
 
 const mapDispatch = {
-    logout : mapDispatches.formLogout,
+    logout : mapDispatches.authLogout,
 };
 
 @connect(null,mapDispatch)

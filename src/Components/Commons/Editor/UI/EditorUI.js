@@ -2,24 +2,33 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Input,Form} from "antd";
 
-EditorUI.propTypes = {
-    mode : PropTypes.string.isRequired,
-    post : PropTypes.string.isRequired,
-    title : PropTypes.string.isRequired,
-    comment : PropTypes.string.isRequired,
+EditorUI.defaultProps = {
+    postElemName : "",
+    titleElemName : "",
+    title : "",
+    value : "",
     handleChange : PropTypes.func.isRequired,
-    isPosting : PropTypes.bool.isRequired,
+    isPostMode : PropTypes.bool.isRequired,
+}
+
+EditorUI.propTypes = {
+    postElemName : PropTypes.string.isRequired,
+    titleElemName : PropTypes.string.isRequired,
+    title : PropTypes.string.isRequired,
+    value : PropTypes.string.isRequired,
+    handleChange : PropTypes.func.isRequired,
+    isPostMode : PropTypes.bool.isRequired,
 }
 
 export default function EditorUI (props) {
-    const {mode,post,title,comment,handleChange,isPosting} = props;
-    const isPostMode = mode && mode.toLowerCase() === "post"
+    const {postElemName,titleElemName,title,value,handleChange, isPostMode} = props;
+
     return (
         <Form className="editor">
             {isPostMode ?
                 <Form.Item>
                     <Input
-                        name="postTitle"
+                        name={titleElemName}
                         type="text"
                         value={title}
                         onChange={handleChange}
@@ -30,8 +39,8 @@ export default function EditorUI (props) {
 
             <Form.Item>
                 <Input.TextArea
-                    name={isPostMode ? "postContent" : "commentContent"}
-                    value={isPosting ? post : comment}
+                    name={isPostMode ? postElemName : "commentContent"}
+                    value={value}
                     onChange={handleChange}
                     onPressEnter
                 />
