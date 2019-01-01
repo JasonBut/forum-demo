@@ -22,16 +22,14 @@ function PostListArea (props) {
                 dataSource={props.list}
                 bordered
                 renderItem={(postData) => {
-                    const {id,author} = postData;
-                    const postId = id.split("_")[1];
-                    const props = {...postData,author,postId};
+                    const postId = postData.id.split("_")[1];
+                    const props = {...postData,postId};
                     return (
                         <PostListItemUI {...props} />
                     )
                 }}
             />
         </div>
-
     )
 }
 

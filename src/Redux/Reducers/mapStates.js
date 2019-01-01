@@ -11,6 +11,7 @@ export default{
 
     getAuthIsLogged : (state) => state.Auth.isLogged,
     getAuthUserId : (state) => state.Auth.authUserId,
+    getAuthNickname : (state) => state.Auth.authNickname,
 
     getFormValue : (state,elemName) => state.Form[elemName],
     getFormIsPosting : (state) => state.Form.isPosting,

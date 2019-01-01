@@ -1,6 +1,5 @@
 import React from "react";
 import "./board.less";
-// import Board from "./Containers/Board";
 import {FetchDataHOC} from "../../Commons";
 import BoardView from "./UI/BoardUI";
 

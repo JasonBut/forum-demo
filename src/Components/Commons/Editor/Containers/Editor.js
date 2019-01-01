@@ -1,4 +1,5 @@
 import React,{Component} from "react";
+import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {mapStates,mapDispatches} from "../../../../Redux/Reducers";
 import EditorUI from "../UI/EditorUI";
@@ -20,6 +21,10 @@ const mapDispatch = {
 
 @connect(mapState,mapDispatch)
 class Editor extends Component {
+    static propTypes = {
+        amendTitle: PropTypes.string,
+        amendContent: PropTypes.string,
+    };
 
     amendData = (name,value) => {
         return { target : {name, value} }

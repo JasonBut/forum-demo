@@ -3,9 +3,10 @@ import Types from "../ActionsTypes"
 import {asyncGetData} from "../../Utils";
 
 
-function* authRequest(params) {
+function* authLoginRequest(params) {
     if (!params) {return new Error(`Invalid params`)}
 
+    // console.log(params);
     const {username,password} = params;
     try {
         yield put({type : Types.FETCH_START});
@@ -19,7 +20,15 @@ function* authRequest(params) {
         yield put({type : Types.FETCH_SUCCEEDED});
 
         if (userProfile.password === password) {
-            yield put({type : Types.AUTH_LOGIN_SUCCEEDED, authUserId : userProfile.id});
+            yield put({
+                type : Types.AUTH_LOGIN_SUCCEEDED,
+                authUserId : userProfile.id,
+                authNickname : userProfile.nickname,
+            });
+
+            setTimeout(() => {
+                window.history.go(-1);
+            },2000)
 
         } else {
             yield put({
@@ -33,7 +42,9 @@ function* authRequest(params) {
 }
 
 
-export function* watchAuthRequest () {
-    const {params} = yield take(Types.AUTH_LOGIN_REQUESTED);
-    yield fork(authRequest,params);
+export function* watchAuthLoginRequest () {
+    while (true) {
+        const {params} = yield take(Types.AUTH_LOGIN_REQUESTED);
+        yield fork(authLoginRequest,params);
+    }
 }

@@ -16,9 +16,14 @@ export default async ({type,rule}) => {
 
     const path = filters(rule).get(type.toLowerCase());
 
-    const response = await axios.get(`http://localhost:4000/${path}`);
-    if (response.status !== 200) {
-        return new Error(response.statusText);
+    try {
+        const response = await axios.get(`http://localhost:4000/${path}`);
+        if (response.status !== 200) {
+            return new Error(response.statusText);
+        }
+        return response.data;
+
+    } catch (err) {
+        throw new Error(err)
     }
-    return response.data;
 }

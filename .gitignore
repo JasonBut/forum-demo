@@ -35,3 +35,7 @@ src/Components/Commons/Rollback/rollback.css
 src/Components/Commons/Rollback/rollback.css.map
 src/Components/Footer/footer.css
 src/Components/Footer/footer.css.map
+src/Components/Auth/Login/login.css
+src/Components/Auth/Login/login.css.map
+*.css
+*.map

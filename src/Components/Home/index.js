@@ -9,7 +9,8 @@ const Board = lazy(() => import("./Board"));
 const PostList = lazy(() => import("./PostList"));
 const Post = lazy(() => import("./Post"));
 const Rollback = lazy(() => import("../Commons/Rollback"));
-const Login = lazy(() => import("../Commons/Login"));
+const Login = lazy(() => import("../Auth/Login"));
+const Logout = lazy(() => import("../Auth/Logout"));
 
 
 const {Content} = Layout;
@@ -20,6 +21,7 @@ export default () => (
         <Switch>
             <Route exact path="/" component={Board} />
             <Route path="/login" component={Login} />
+            <Route path="/logout" component={Logout} />
             <Route path="/board/:id"  component={PostList} />
             <Route path="/post/:id" component={Post} />
         </Switch>

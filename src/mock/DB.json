@@ -4,31 +4,31 @@
       "id": "user_1",
       "username": "Jason",
       "password": "aaaaaa",
-      "nickName": "Jason But"
+      "nickname": "Jason But"
     },
     {
       "id": "user_2",
       "username": "Jack",
       "password": "aaaaaa",
-      "nickName": "Jack Chan"
+      "nickname": "Jack Chan"
     },
     {
       "id": "user_3",
       "username": "John",
       "password": "aaaaaa",
-      "nickName": "John Chan"
+      "nickname": "John Chan"
     },
     {
       "id": "user_4",
       "username": "Jimmy",
       "password": "aaaaaa",
-      "nickName": "JimA"
+      "nickname": "JimA"
     },
     {
       "id": "user_5",
       "username": "Joey",
       "password": "aaaaaa",
-      "nickName": "Joey666"
+      "nickname": "Joey666"
     }
   ],
 

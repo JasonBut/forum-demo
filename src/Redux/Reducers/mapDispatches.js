@@ -3,7 +3,6 @@ import Types from "../ActionsTypes";
 //Actions Creator
 //UI actions
 const fetchDataAction = function (filter) {
-    //根据type类型获取相应的action类型
     let action = {
         type : Types.UI_FETCH_REQUESTED,
     };
@@ -41,10 +40,16 @@ const formLoginSubmit = function (event) {
     }
 };
 
-const formToggleIsEditing = function (isEditing) {
+const formToggleIsEditing = function (isPosting) {
     return {
         type : Types.FORM_TOGGLE_POSTING,
-        isPosting : !isEditing,
+        isPosting : !isPosting,
+    }
+};
+
+const authLogout = function () {
+    return {
+        type : Types.AUTH_LOGOUT
     }
 };
 
@@ -55,4 +60,5 @@ export default {
     formDataOnChange,
     formToggleIsEditing,
     formLoginSubmit,
+    formLogout: authLogout,
 }

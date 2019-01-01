@@ -18,10 +18,10 @@ const mapState = (state) => ({
 @connect(mapState)
 class PostArea extends Component {
     static propTypes = {
-        isPosting : PropTypes.bool,
-        isLogged : PropTypes.bool,
         post : PropTypes.object,
-        authUserId : PropTypes.string,
+        isPosting : PropTypes.bool.isRequired,
+        isLogged : PropTypes.bool.isRequired,
+        authUserId : PropTypes.string.isRequired,
     };
 
     render() {

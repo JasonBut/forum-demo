@@ -21,9 +21,9 @@ export default (WrappedUIComponent,type) => {
         static propTypes = {
             list : PropTypes.array,
             post : PropTypes.object,
-            fetchDataAction : PropTypes.func,
-            match : PropTypes.object,
-            isSuccess : PropTypes.bool,
+            fetchDataAction : PropTypes.func.isRequired,
+            match : PropTypes.object.isRequired,
+            isSuccess : PropTypes.bool.isRequired,
         };
 
         constructor(props) {

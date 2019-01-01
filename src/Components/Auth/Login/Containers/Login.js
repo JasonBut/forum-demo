@@ -1,11 +1,14 @@
 import React,{Component} from "react";
+import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import LoginUI from "../UI/LoginUI";
-import {mapStates,mapDispatches} from "../../../../Redux/Reducers/";
+import LoginSuccess from "../UI/LoginSuccess";
+import {mapStates,mapDispatches} from "../../../../Redux/Reducers";
 
 const mapState = (state) => ({
     username : mapStates.getFormValue(state,"loginUsername"),
     password : mapStates.getFormValue(state,"loginPassword"),
+    isLogged : mapStates.getAuthIsLogged(state),
 });
 
 const mapDispatch = {
@@ -15,9 +18,20 @@ const mapDispatch = {
 
 @connect(mapState,mapDispatch)
 class Login extends Component {
+
+    static propTypes = {
+        isLogged : PropTypes.bool,
+    };
+
     render() {
+        const {isLogged} = this.props;
         return (
-            <LoginUI {...this.props}/>
+            <div className="auth">
+                {isLogged
+                    ? <LoginSuccess />
+                    : <LoginUI {...this.props}/>
+                }
+            </div>
         )
     }
 }

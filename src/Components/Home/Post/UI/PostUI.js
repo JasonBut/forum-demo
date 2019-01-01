@@ -2,18 +2,18 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Divider } from "antd";
 
-PostUI.propTypes = {
-    title : PropTypes.string.isRequired,
-    content : PropTypes.string.isRequired,
-    postDate : PropTypes.string.isRequired,
-    author : PropTypes.string.isRequired,
-};
-
 PostUI.defaultProps = {
     title : "",
     content : "",
     postDate : "",
     author : "",
+};
+
+PostUI.propTypes = {
+    title : PropTypes.string.isRequired,
+    content : PropTypes.string.isRequired,
+    postDate : PropTypes.string.isRequired,
+    author : PropTypes.string.isRequired,
 };
 
 export default function PostUI (props) {

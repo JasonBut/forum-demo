@@ -2,14 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Input,Form} from "antd";
 
-
 EditorUI.propTypes = {
-    mode : PropTypes.string,
-    post : PropTypes.string,
-    title : PropTypes.string,
-    comment : PropTypes.string,
-    handleChange : PropTypes.func,
-    isPosting : PropTypes.bool,
+    mode : PropTypes.string.isRequired,
+    post : PropTypes.string.isRequired,
+    title : PropTypes.string.isRequired,
+    comment : PropTypes.string.isRequired,
+    handleChange : PropTypes.func.isRequired,
+    isPosting : PropTypes.bool.isRequired,
 }
 
 export default function EditorUI (props) {
