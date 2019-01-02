@@ -50,18 +50,22 @@ export default (WrappedUIComponent,type) => {
         render() {
             //根据帖子或列表的条件类型,在App确定获取数据成功时渲染组件
             const {list,post,isDone} = this.props;
-            if (type === "post") {
-                return (
-                    (isDone && post && typeof post === "object")
-                        ? <WrappedUIComponent {...post} />
-                        : null
-                );
+            if (isDone) {
+                if (type === "post") {
+                    return (
+                        (isDone && post && typeof post === "object")
+                            ? <WrappedUIComponent {...post} />
+                            : null
+                    );
+                } else {
+                    return (
+                        (isDone && Array.isArray(list) && list.length > 0)
+                            ? <WrappedUIComponent list={list} />
+                            : null
+                    )
+                }
             } else {
-                return (
-                    (isDone && Array.isArray(list) && list.length > 0)
-                        ? <WrappedUIComponent list={list} />
-                        : null
-                )
+                            return null;
             }
         }
     }

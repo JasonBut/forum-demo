@@ -27,6 +27,7 @@ const filters = (rule,mode) => {
             ["post_pool_id",`idPool/post`],
             ["user_pool_id",`idPool/user`],
             ["comment_pool_id",`idPool/comment`],
+            ["post",`posts/${rule}`],
         ]),
     };
     return pool[mode];
@@ -43,7 +44,7 @@ const filters = (rule,mode) => {
 //三个静态方法, 方便调用
 asyncFetch.get = ({type, rule}) => asyncFetch({mode : "GET",type,rule});
 asyncFetch.post = ({type, data}) => asyncFetch({mode : "POST",type,data});
-asyncFetch.put = ({type, data}) => asyncFetch({mode : "PUT",type,data});
+asyncFetch.put = ({type, rule, data}) => asyncFetch({mode : "PUT",type, rule, data});
 
 
 export default async function asyncFetch ({ mode, type, rule, data}) {

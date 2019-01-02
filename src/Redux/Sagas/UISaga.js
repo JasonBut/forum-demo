@@ -6,11 +6,6 @@ import {asyncFetch} from "../../Utils"
 const fetchData = function* (payload) {
     yield put({type : Types.FETCH_START}); //开始获取数据
 
-    //得到有效的数据才继续
-    if (!payload) {
-        return yield put({type : Types.REQUEST_FAILED, err : `Invalid path`});
-    }
-
     try {
         let author = null,      //用于稍后存放发布者名称
             newData = null;     //用于稍后存放返回给reducer的数据集合

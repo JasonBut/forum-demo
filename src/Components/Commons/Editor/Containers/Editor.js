@@ -16,7 +16,6 @@ const mapState = (state,ownProps) => ({
     mode : ownProps.mode,                                           //编辑器模式
     oldTitle : ownProps.title,                                      //父组件传入的已有帖子标题
     oldContent : ownProps.content,                                  //父组件传入的已有帖子内容
-
 });
 
 const mapDispatch = {
@@ -73,7 +72,6 @@ class Editor extends Component {
         */
         const {toggleIsPosting,isPosting} = this.props;
         isPosting && toggleIsPosting(isPosting);
-
     }
 
     //模拟发送给handleChange的对象结构
@@ -97,7 +95,7 @@ class Editor extends Component {
 
         let payload = {value, pathId, mode, authorId, isComment};
         payload = Object.assign( payload,( title ? {title} : {} ) );
-        this.props.handleSubmit(payload)
+        this.props.handleSubmit(payload);
     };
 
 

@@ -2,10 +2,22 @@ import Types from "../ActionsTypes";
 
 //Actions Creators
 //UI actions
-const getFetchData = (filter) => {
-    //如果filter返回有效信息, 将结果混入action中,否则直接发送action
-    let action = {type : Types.UI_FETCH_REQUESTED};
-    return Object.assign(action, ( filter ? { payload : filter } : {}) );
+
+//filter 结构
+// {
+//   type : type,
+//   rule : this.props.match.params.id,
+// }
+    const getFetchData = (filter) => {
+    //得到有效的数据才继续
+    if (!filter) {
+        return {type : Types.REQUEST_FAILED, err : `Invalid path filter`};
+    }
+
+    return {
+        type : Types.UI_FETCH_REQUESTED,
+        payload : filter,
+    };
 };
 
 //Form actions
@@ -39,39 +51,31 @@ const formToggleIsPosting = (isPosting) => ({
     isPosting : !isPosting,
 });
 
+
+//  payload 结构
 // {
-//     "id": "comment_2",
-//     "postId": "post_2",
-//     "userId": "user_4",
-//     "content": "fuck you asshole",
-//     "commentDate": "2019/1/2 下午1:40:24"
-// },
-// {
-//     "userId": "user_1",
-//     "boardId": "board_1",
-//     "id": "post_1",
-//     "title": "Post 1",
-//     "postDate": "2019/1/2 下午1:40:24",
-//     "content": "asdiashkdjklasjdkljaskl"
-// },
-
-
-
+//     authorId : "user_1"
+//     isComment: false
+//     mode : "post"
+//     pathId : "1"
+//     title : "a"
+//     value : "a"
+// }
 const formValuePublish = (payload) => {
-    console.log(payload);
-    const {title,value,isComment} = payload;
+    const {title, value: content, isComment,...props} = payload;
 
-    //校检内容, 评论模式下允许title为空
-    if ( (isComment && !value) || (!value || !title) ) {
+    //校检内容
+    if ( (isComment && !content) || (!isComment && (!content || !title)) ) {
         return {type : Types.REQUEST_FAILED, err : `内容不能为空，请输入内容`}
     }
-    
+
+    if ( (content && content.length < 15) || (title && title.length < 15) ) {
+        return {type : Types.REQUEST_FAILED, err : `字数少于15个字符`}
+    }
+
     return {
         type : Types.FORM_VALUE_PUBLISH_REQUESTED,
-        // payload : {
-        //     name,
-        //     value,
-        // }
+        payload : Object.assign({...props,content,isComment}, (title ? {title} : {}) )
     }
 };
 

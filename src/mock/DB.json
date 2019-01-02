@@ -55,12 +55,12 @@
   ],
   "posts": [
     {
-      "userId": "user_1",
-      "boardId": "board_1",
       "id": "post_1",
-      "title": "Post 1",
-      "postDate": "2019/1/2 下午1:40:24",
-      "content": "asdiashkdjklasjdkljaskl"
+      "boardId": "board_1",
+      "postDate": "2019/1/3 上午1:22:14",
+      "userId": "user_1",
+      "content": "Hello,this is a test. Hope it can pass",
+      "title": "Hello,this is a test. Hope it can pass"
     },
     {
       "userId": "user_5",
@@ -101,6 +101,22 @@
       "title": "post 6",
       "postDate": "2019/1/2 下午1:40:24",
       "content": "asdiashkdjklasjdkljaskl"
+    },
+    {
+      "id": "post_7",
+      "boardId": "board_1",
+      "postDate": "2019/1/3 上午1:04:21",
+      "userId": "user_1",
+      "content": "http://localhost:4000/idPool/post",
+      "title": "http://localhost:4000/idPool/post"
+    },
+    {
+      "id": "post_8",
+      "boardId": "board_1",
+      "postDate": "2019/1/3 上午1:10:52",
+      "userId": "user_1",
+      "content": "TestTestTestTestTestTestTestTestTestTest",
+      "title": "TestTestTestTestTestTestTestTestTestTest"
     }
   ],
   "comments": [
@@ -145,6 +161,20 @@
       "userId": "user_5",
       "content": "fuck you asshole",
       "commentDate": "2019/1/2 下午1:40:24"
+    },
+    {
+      "id": "comment_7",
+      "postId": "post_1",
+      "commentDate": "2019/1/3 上午1:06:08",
+      "userId": "user_1",
+      "content": "TestTestTestTestTestTestTestTestTestTestTest"
+    },
+    {
+      "id": "comment_8",
+      "postId": "post_1",
+      "commentDate": "2019/1/3 上午1:23:20",
+      "userId": "user_1",
+      "content": "Hello,this is a test. Hope it can pass"
     }
   ],
   "idPool": [
@@ -153,12 +183,12 @@
       "id": "user"
     },
     {
-      "id": "post",
-      "current": 6
+      "current": 8,
+      "id": "post"
     },
     {
-      "id": "comment",
-      "current": 6
+      "current": 8,
+      "id": "comment"
     }
   ]
 }

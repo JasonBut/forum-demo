@@ -7,7 +7,7 @@ const initialState = {
     postContent : "",
     commentContent : "",
     isPosting : false,
-    // isPublished : false,
+    isPublished : false,
 };
 
 export default function FormEventReducers (state = initialState, action) {
@@ -29,17 +29,17 @@ export default function FormEventReducers (state = initialState, action) {
                 commentContent : "",
             };
 
-        // case Types.FORM_VALUE_PUBLISH_REQUESTED :
-        //     return {
-        //         ...state,
-        //         isPublished : false,
-        //     };
-        //
-        // case Types.FORM_VALUE_PUBLISH_SUCCEEDED :
-        //     return {
-        //         ...state,
-        //         isPublished : true,
-        //     };
+        case Types.FORM_VALUE_PUBLISH_REQUESTED :
+            return {
+                ...state,
+                isPublished : false,
+            };
+
+        case Types.FORM_VALUE_PUBLISH_SUCCEEDED :
+            return {
+                ...state,
+                isPublished : true,
+            };
 
         case Types.AUTH_LOGIN_SUCCEEDED :
             return {
