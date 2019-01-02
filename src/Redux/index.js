@@ -7,9 +7,7 @@ const sagaMiddleware = createSagaMiddleware(); //创建saga中间件
 
 const stores = createStore(
     createRootReducers,
-    applyMiddleware(
-        sagaMiddleware,
-    )
+    applyMiddleware(sagaMiddleware),
 );
 
 sagaMiddleware.run(rootSagas); //运行rootSaga

@@ -1,6 +1,6 @@
 //States Interface
 export default{
-    getAppIsSuccess : (state) => state.App.isSuccess,                               //数据请求是否成功
+    getAppIsDone : (state) => state.App.isDone,                               //数据请求是否成功
     getErrorMessage : (state) => state.App.err && state.App.err.toString(),         //登录错误信息
 
     getList : (state) => state.UI.list,                                             //列表数据

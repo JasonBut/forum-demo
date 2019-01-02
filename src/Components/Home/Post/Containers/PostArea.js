@@ -40,7 +40,7 @@ class PostArea extends Component {
                 }
                 <div id="post">
                     { isPosting
-                        ? <Editor mode="post" title={title} content={content} />
+                        ? <Editor mode="amend" title={title} content={content} />
                         : <Post />
                     }
                     <CommentList />

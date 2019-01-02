@@ -3,23 +3,22 @@ import Types from "../ActionsTypes"
 import {asyncFetch} from "../../Utils"
 
 
-function* fetchData(params) {
+const fetchData = function* (payload) {
     yield put({type : Types.FETCH_START}); //开始获取数据
 
-    //得到有效的数据才继续,否则直接返回错误信息
-    if (!params) {
+    //得到有效的数据才继续
+    if (!payload) {
         return yield put({type : Types.REQUEST_FAILED, err : `Invalid path`});
     }
 
     try {
-        let author = null,
-            newData = null;
+        let author = null,      //用于稍后存放发布者名称
+            newData = null;     //用于稍后存放返回给reducer的数据集合
 
-        const data = yield call(asyncFetch,params);  //异步从数据库获取信息
+        const data = yield call(asyncFetch.get,payload);  //异步从数据库获取信息
 
         //封装一个通过id获取用户资料的函数
-        const getAuthor = (id) => asyncFetch({
-            mode: "GET",
+        const getAuthor = (id) => asyncFetch.get({
             type: "userId" ,
             rule : `${id}`
         });
@@ -63,11 +62,11 @@ function* fetchData(params) {
     } catch (err) {
         yield put({type : Types.REQUEST_FAILED,err}); //获取数据失败
     }
-}
+};
 
-export function* watchFetchData() {
+export const watchFetchData = function*() {
     while (true) {
-        const {params} = yield take(Types.UI_FETCH_REQUESTED);
-        yield fork(fetchData,params);
+        const {payload} = yield take(Types.UI_FETCH_REQUESTED);
+        yield fork(fetchData,payload);
     }
-}
+};

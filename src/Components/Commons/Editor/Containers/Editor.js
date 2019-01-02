@@ -1,78 +1,121 @@
 import React,{Component} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
+import {withRouter} from "react-router";
 import {mapStates,mapDispatches} from "../../../../Redux/Reducers";
 import EditorUI from "../UI/EditorUI";
 
 
 const mapState = (state,ownProps) => ({
-    postTitle: mapStates.getFormValue(state,"postTitle"),           //新帖标题
-    postContent: mapStates.getFormValue(state,"postContent"),       //新帖内容
-    amendTitle: mapStates.getFormValue(state,"amendTitle"),         //编辑已有帖子标题
-    amendContent: mapStates.getFormValue(state,"amendContent"),     //编辑已有帖子内容
+    title: mapStates.getFormValue(state,"postTitle"),               //新帖标题
+    post: mapStates.getFormValue(state,"postContent"),              //新帖内容
     comment: mapStates.getFormValue(state,"commentContent"),        //评论内容
     isPosting : mapStates.getFormIsPosting(state),                  //编辑状态
+    authorId : mapStates.getAuthUserId(state),                      //发布者id
+    err : mapStates.getErrorMessage(state),                         //发布者id
     mode : ownProps.mode,                                           //编辑器模式
-    oldTitle: ownProps.title,                                       //父组件传入的已有帖子标题
-    oldContent: ownProps.content,                                   //父组件传入的已有帖子内容
+    oldTitle : ownProps.title,                                      //父组件传入的已有帖子标题
+    oldContent : ownProps.content,                                  //父组件传入的已有帖子内容
+
 });
 
 const mapDispatch = {
     handleChange : mapDispatches.formDataOnChange,
+    handleSubmit : mapDispatches.formValuePublish,
+    toggleIsPosting : mapDispatches.formToggleIsPosting,
 };
 
+@withRouter
 @connect(mapState,mapDispatch)
 class Editor extends Component {
     static propTypes = {
         oldTitle: PropTypes.string,
         oldContent: PropTypes.string,
-        amendContent: PropTypes.string,
-        amendTitle: PropTypes.string,
         postContent: PropTypes.string,
         postTitle: PropTypes.string,
+        commentContent : PropTypes.string,
+        err : PropTypes.string,
         isPosting : PropTypes.bool.isRequired,
         mode : PropTypes.string.isRequired,
+        authorId : PropTypes.string.isRequired,
+        toggleIsPosting : PropTypes.func.isRequired,
+        location : PropTypes.shape({
+            pathname : PropTypes.string.isRequired,
+        }).isRequired,
     };
+
+    //判断是否评论模式
+    isComment = this.props.mode && this.props.mode.toLowerCase() === "comment";
 
     constructor(props) {
         super(props);
-
-        //如果编辑器当前是编辑已有帖子,则将父组件传入的帖子数据填入对应文本框中
-        let {
-            mode, isPosting, oldContent, postContent, amendContent,
-            oldTitle, postTitle, amendTitle, comment, handleChange,
-        } = props;
-
-        !!oldTitle && handleChange(this.amendData("amendTitle",oldTitle));
-        !!oldContent && handleChange(this.amendData("amendContent",oldContent));
-
-
-        this.amendProps = {
-            isPostMode : mode && mode.toLowerCase() === "post",   //判断当前模式
-
-            //根据父组件是否有传入已有帖子数据去选择store中相应的文本框内容状态
-            post : !!oldContent ? amendContent : postContent,
-            title : !!oldTitle ? amendTitle : postTitle,
-
-            //同上, 只是这两个变量用于保存元素name属性, 用于change事件传递数据
-            postElemName : !!oldContent ? "amendContent" : "postContent",
-            titleElemName : !!oldContent ? "amendTitle" : "postTitle",
-
-            //根据编辑状态去判断当前内容是文章内容还是评论内容
-            value : isPosting ? this.post : comment,
+        this.state = {
+            isActive : false,   //可用于存在多个编辑器时定位特定编辑器
         };
     }
 
 
-    //用于返回发送给handleChange的对象结构
+    componentDidMount() {
+        const {mode} = this.props;
+        const lowerCaseMode = mode && mode.toLowerCase();
+        //如果编辑器当前正在编辑已有帖子,则将父组件传入的帖子数据填入对应文本框中
+        if (lowerCaseMode === "amend") {
+            const {oldContent, oldTitle, handleChange} = this.props;
+            oldTitle && handleChange(this.amendData("postTitle",oldTitle));
+            oldContent && handleChange(this.amendData("postContent",oldContent));
+        }
+    };
+
+    componentWillUnmount() {
+        /*
+        * 避免在isPosting为true(即编辑器开启中)时
+        * 切换到帖子内容页面后编辑器依然打开的情况
+        */
+        const {toggleIsPosting,isPosting} = this.props;
+        isPosting && toggleIsPosting(isPosting);
+
+    }
+
+    //模拟发送给handleChange的对象结构
     amendData = (name,value) => {
         return { target : { name, value } }
     };
 
+    handleSubmit = (event) => {
+        event.preventDefault();
+        this.setState({
+            isActive : true,
+        });
+        const {postContent,postTitle,commentContent} = event.target;
+        const {location : { pathname }, mode, authorId} = this.props;
+        const isComment = this.isComment;
+        const pathId = pathname.split("/")[2];
+        const title = postTitle && postTitle.value;
+        const  value =  isComment
+            ? (commentContent && commentContent.value)
+            : (postContent && postContent.value);
+
+        let payload = {value, pathId, mode, authorId, isComment};
+        payload = Object.assign( payload,( title ? {title} : {} ) );
+        this.props.handleSubmit(payload)
+    };
+
+
+
     render() {
-        const {handleChange} = this.props;
-        console.log(this.amendProps);
-        const props = {...this.amendProps, handleChange};
+        //过滤并调整往UI组件传递的props
+        const {post, title, comment, err, handleChange} = this.props;
+        const props = {
+            isComment : this.isComment,
+            isActive : this.state.isActive,
+            handleSubmit : this.handleSubmit,
+            handleChange,
+            title,
+            post,
+            comment,
+            err,
+        };
+
         return (
             <EditorUI {...props} />
         );

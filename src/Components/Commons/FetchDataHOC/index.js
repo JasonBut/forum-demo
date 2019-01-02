@@ -8,11 +8,11 @@ export default (WrappedUIComponent,type) => {
     const mapState = (state) => ({
         list : mapStates.getList(state), //列表数据
         post : mapStates.getPost(state), //帖子数据
-        isSuccess : mapStates.getAppIsSuccess(state), //App数据获取成功状态
+        isDone : mapStates.getAppIsDone(state), //App数据获取成功状态
     });
 
     const mapDispatch = {
-        fetchData: mapDispatches.fetchData,
+        getFetchData: mapDispatches.getFetchData,
     };
 
     @withRouter
@@ -21,9 +21,9 @@ export default (WrappedUIComponent,type) => {
         static propTypes = {
             list : PropTypes.array,
             post : PropTypes.object,
-            fetchData : PropTypes.func.isRequired,
+            getFetchData : PropTypes.func.isRequired,
             match : PropTypes.object.isRequired,
-            isSuccess : PropTypes.bool.isRequired,
+            isDone : PropTypes.bool.isRequired,
         };
 
         constructor(props) {
@@ -37,10 +37,9 @@ export default (WrappedUIComponent,type) => {
         componentWillMount () {
             //第一次装载才发送获取数据请求
             if (this.state.firstMount) {
-                this.props.fetchData({
-                    mode : "GET",
+                this.props.getFetchData({
                     type : type,
-                    rule : this.props.match.params.id,
+                    rule : this.props.match.params.id,      //根据路径id作为条件去获取相应内容
                 });
 
                 this.setState({
@@ -50,16 +49,16 @@ export default (WrappedUIComponent,type) => {
         }
         render() {
             //根据帖子或列表的条件类型,在App确定获取数据成功时渲染组件
-            const {list,post,isSuccess} = this.props;
+            const {list,post,isDone} = this.props;
             if (type === "post") {
                 return (
-                    (isSuccess && post && typeof post === "object")
+                    (isDone && post && typeof post === "object")
                         ? <WrappedUIComponent {...post} />
                         : null
                 );
             } else {
                 return (
-                    (isSuccess && Array.isArray(list) && list.length > 0)
+                    (isDone && Array.isArray(list) && list.length > 0)
                         ? <WrappedUIComponent list={list} />
                         : null
                 )

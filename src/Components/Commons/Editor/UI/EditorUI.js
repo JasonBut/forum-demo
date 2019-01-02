@@ -3,53 +3,57 @@ import PropTypes from "prop-types";
 import {Input,Form} from "antd";
 
 EditorUI.defaultProps = {
-    postElemName : "",
-    titleElemName : "",
     title : "",
-    value : "",
-    handleChange : PropTypes.func.isRequired,
-    isPostMode : PropTypes.bool.isRequired,
+    post : "",
+    comment : "",
 }
 
 EditorUI.propTypes = {
-    postElemName : PropTypes.string.isRequired,
-    titleElemName : PropTypes.string.isRequired,
     title : PropTypes.string.isRequired,
-    value : PropTypes.string.isRequired,
+    post : PropTypes.string.isRequired,
+    comment : PropTypes.string.isRequired,
     handleChange : PropTypes.func.isRequired,
-    isPostMode : PropTypes.bool.isRequired,
+    handleSubmit : PropTypes.func.isRequired,
+    isComment : PropTypes.bool.isRequired,
+    err : PropTypes.string,
 }
 
 export default function EditorUI (props) {
-    const {postElemName,titleElemName,title,value,handleChange, isPostMode} = props;
-
+    const {title, comment, post, handleChange, handleSubmit, isComment, isActive, err} = props;
+    //根据编辑器模式渲染不同内容
+    const textareaClassName = isComment ? "commentContent" : "postContent";
+    const textareaValue = isComment ? comment : post ;
+    const buttonValue = isComment ? "发表评论" : "提交" ;
     return (
-        <Form className="editor">
-            {isPostMode ?
+        <Form
+            className="editor"
+            onSubmit={handleSubmit}
+        >
+            {!isComment &&
                 <Form.Item>
                     <Input
-                        name={titleElemName}
+                        name="postTitle"
                         type="text"
                         value={title}
                         onChange={handleChange}
                     />
                 </Form.Item>
-                :null
             }
 
             <Form.Item>
                 <Input.TextArea
-                    name={isPostMode ? postElemName : "commentContent"}
-                    value={value}
+                    name={textareaClassName}
+                    value={textareaValue}
                     onChange={handleChange}
                     onPressEnter
                 />
             </Form.Item>
 
+            { (isActive && err) && <p className="err-message">{err}</p> }
             <Form.Item>
                 <Input
                     type="submit"
-                    value={isPostMode ? "提交" : "发表评论"}
+                    value={buttonValue}
                 />
             </Form.Item>
         </Form>

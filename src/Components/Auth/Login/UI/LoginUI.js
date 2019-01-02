@@ -6,8 +6,8 @@ FormUI.propTypes = {
     username : PropTypes.string,
     password : PropTypes.string,
     logErr : PropTypes.string,
-    handleChange : PropTypes.func,
-    handleSubmit : PropTypes.func,
+    handleChange : PropTypes.func.isRequired,
+    handleSubmit : PropTypes.func.isRequired,
 }
 
 

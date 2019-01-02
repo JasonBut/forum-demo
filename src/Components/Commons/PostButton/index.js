@@ -13,16 +13,16 @@ const mapState = (state,ownProps) => ({
 });
 
 const mapDispatch = {
-    toggleEditing : mapDispatches.formToggleIsEditing,
+    toggleEditing : mapDispatches.formToggleIsPosting,
 };
 
 @connect(mapState,mapDispatch)
 class PostButton extends Component{
     static propTypes = {
         mode: PropTypes.string.isRequired,
-        isPosting: PropTypes.bool.isRequired,
-        isLogged: PropTypes.bool.isRequired,
-        toggleEditing: PropTypes.func.isRequired,
+        isPosting: PropTypes.bool,
+        isLogged: PropTypes.bool,
+        toggleEditing: PropTypes.func,
     };
 
     render() {

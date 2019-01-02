@@ -17,7 +17,7 @@ export default function AuthReducer (state = initialState, action) {
                 authNickname: action.authNickname,
             };
 
-        case Types.REQUEST_FAILED :
+        case Types.AUTH_LOGIN_FAILED :
             return {
                 ...state,
                 isLogged : false,

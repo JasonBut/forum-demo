@@ -2,22 +2,16 @@ import {take,put,fork,call} from "redux-saga/effects"
 import Types from "../ActionsTypes"
 import {asyncFetch} from "../../Utils";
 
-function* authLoginRequest(params) {
-    if (!params) {throw new Error(`Invalid params`)}
+const authLoginRequest = function* (payload) {
+    if (!payload) {throw new Error(`Invalid params`)}
 
-    const {username,password} = params;
-
-    //检查提交的用户名和密码是否存在
-    if (!username || !password) {
-        return yield put({type : Types.REQUEST_FAILED, err : `请输入用户名和密码`});
-    }
+    const {username,password} = payload;
 
     try {
         yield put({type : Types.FETCH_START}); //开始发送获取请求
 
         //根据账号获取用户信息
-        const response = yield call(asyncFetch,{
-            mode: "GET",
+        const response = yield call(asyncFetch.get,{
             type : "username",
             rule : username
         });
@@ -54,27 +48,28 @@ function* authLoginRequest(params) {
         }
     } catch (err) {
         yield put({type : Types.REQUEST_FAILED, err}); //获取数据失败
+        yield put({type : Types.AUTH_LOGIN_FAILED});   //登录失败失败
     }
-}
+};
 
 //注销时把session缓存清除
-function authLogoutRequest() {
+const authLogoutRequest = () => {
     sessionStorage.removeItem("isLogged");
     sessionStorage.removeItem("authUserId");
     sessionStorage.removeItem("authNickname");
-}
+};
 
 
-export function* watchAuthLoginRequest () {
+export const watchAuthLoginRequest = function* () {
     while (true) {
-        const {params} = yield take(Types.AUTH_LOGIN_REQUESTED);
-        yield fork(authLoginRequest,params);
+        const {payload} = yield take(Types.AUTH_LOGIN_REQUESTED);
+        yield fork(authLoginRequest,payload);
     }
-}
+};
 
-export function* watchAuthLogoutRequest () {
+export const watchAuthLogoutRequest = function* () {
     while (true) {
         yield take(Types.AUTH_LOGOUT);
         yield fork(authLogoutRequest);
     }
-}
+};
