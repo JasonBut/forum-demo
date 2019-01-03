@@ -46,7 +46,13 @@ const authRegRequest = function* (payload) {
         });
 
         yield put({type : Types.FETCH_SUCCEEDED});
-        yield put({type : Types.AUTH_LOGIN_SUCCEEDED});     //注册成功便立即登录
+
+        //注册成功便立即登录
+        yield put({
+            type : Types.AUTH_LOGIN_SUCCEEDED,
+            authUserId: newId,
+            authNickname: nickname,
+        });
 
         setTimeout(() => {
             window.history.go(-2); //返回到注册页面的上一页
