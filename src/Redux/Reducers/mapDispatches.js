@@ -84,8 +84,12 @@ const formValuePublish = (payload) => {
         return {type : Types.REQUEST_FAILED, err : `内容不能为空，请输入内容`}
     }
 
-    if ( (content && content.length < 15) || (title && title.length < 15) ) {
-        return {type : Types.REQUEST_FAILED, err : `字数少于15个字符`}
+    if (content && content.length < 15) {
+        return {type : Types.REQUEST_FAILED, err : `内容字数少于15个字符`}
+    }
+
+    if (title && (title.length < 6 || title.length > 20)) {
+        return {type : Types.REQUEST_FAILED, err : `标题字数必须介乎于6 - 20个字符之间`}
     }
 
     return {

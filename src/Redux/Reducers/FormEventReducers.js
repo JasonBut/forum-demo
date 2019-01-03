@@ -1,9 +1,9 @@
 import Types from "../ActionsTypes"
 
 const initialState = {
-    loginUsername : "jy1534",
+    loginUsername : "Jason",
     loginPassword : "aaaaaa",
-    regNickname : "But Chi Fai",
+    regNickname : "",
     postTitle : "",
     postContent : "",
     commentContent : "",
