@@ -1,13 +1,13 @@
 import Types from "../ActionsTypes"
 
 const initialState = {
-    loginUsername : "Jason",
+    loginUsername : "jy1534",
     loginPassword : "aaaaaa",
+    regNickname : "But Chi Fai",
     postTitle : "",
     postContent : "",
     commentContent : "",
     isPosting : false,
-    isPublished : false,
 };
 
 export default function FormEventReducers (state = initialState, action) {
@@ -29,16 +29,13 @@ export default function FormEventReducers (state = initialState, action) {
                 commentContent : "",
             };
 
-        case Types.FORM_VALUE_PUBLISH_REQUESTED :
-            return {
-                ...state,
-                isPublished : false,
-            };
-
         case Types.FORM_VALUE_PUBLISH_SUCCEEDED :
             return {
                 ...state,
-                isPublished : true,
+                postTitle : "",
+                postContent : "",
+                commentContent : "",
+                isPosting : false,
             };
 
         case Types.AUTH_LOGIN_SUCCEEDED :
@@ -46,12 +43,6 @@ export default function FormEventReducers (state = initialState, action) {
                 ...state,
                 loginUsername: "",
                 loginPassword: "",
-            };
-
-        case Types.REQUEST_FAILED :
-            return {
-                ...state,
-                isPublished : false,
             };
 
         default :

@@ -42,9 +42,8 @@ const postData = function* (payload) {
          * 并传回数据库进行更新
          */
             const currentId = yield call(asyncFetch.get,{type : `${dataType}_pool_id`});
-            const idCreator = idGenerator(dataType)(currentId.current);
+            submitId = idGenerator(dataType)(currentId.current).next().value;
             dataBelongsId = `${dataBelongs}_${pathId}`;
-            submitId = idCreator.next().value;
             asyncMethods = "post";
             //更新数据库id池信息
             yield call(asyncFetch.put,{
@@ -77,6 +76,7 @@ const postData = function* (payload) {
 
         yield put({type : Types.FETCH_SUCCEEDED});
         yield put({type : Types.FORM_VALUE_PUBLISH_SUCCEEDED});
+        window.history.go(0)
 
     } catch (err) {
         yield put({type : Types.REQUEST_FAILED, err});

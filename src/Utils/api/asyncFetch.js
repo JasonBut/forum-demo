@@ -18,6 +18,7 @@ const filters = (rule,mode) => {
             ["post",`posts/post_${rule}`],
             ["userid",`users/${rule}`],
             ["username",`users?username=${rule}`],
+            ["nickname",`users?nickname=${rule}`],
             ["post_pool_id",`idPool/post`],
             ["user_pool_id",`idPool/user`],
             ["comment_pool_id",`idPool/comment`],
@@ -28,6 +29,7 @@ const filters = (rule,mode) => {
             ["user_pool_id",`idPool/user`],
             ["comment_pool_id",`idPool/comment`],
             ["post",`posts/${rule}`],
+            ["user",`users/${rule}`],
         ]),
     };
     return pool[mode];

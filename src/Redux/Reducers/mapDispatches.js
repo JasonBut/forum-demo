@@ -31,18 +31,33 @@ const formDataOnChange = (event) => {
 
 const formLoginSubmit = (event) => {
     event.preventDefault();
-    const {loginUsername, loginPassword} = event.target;
-    const username = loginUsername.value;
-    const password = loginPassword.value;
+    const {loginUsername, loginPassword, regNickname} = event.target;
+    const username = loginUsername && loginUsername.value;
+    const password = loginUsername && loginPassword.value;
+    const nickname = regNickname && regNickname.value;
 
-    //检查提交的用户名和密码是否为空
-    if (!username || !password) {
-        return {type : Types.REQUEST_FAILED, err : `请输入用户名和密码`};
+    //校检信息
+    if (!username || !password || (regNickname && !nickname)) {
+        return {type : Types.REQUEST_FAILED, err : `用户信息不完整`};
+    }
+    if (username.length < 5 || (nickname && nickname.length < 5)) {
+        return {type : Types.REQUEST_FAILED, err : `账号或昵称必须不少于5字符`};
+    }
+    if (password.length < 6) {
+        return {type : Types.REQUEST_FAILED, err : `密码必须不少于6字符`};
     }
 
-    return {
-        type : Types.AUTH_LOGIN_REQUESTED,
-        payload : { username, password }
+    //区分是注册信息还是登录信息
+    if (!regNickname) {
+        return {
+            type : Types.AUTH_LOGIN_REQUESTED,
+            payload : { username, password },
+        }
+    } else {
+        return {
+            type : Types.AUTH_REGISTER_REQUESTED,
+            payload : { username, nickname, password },
+        }
     }
 };
 

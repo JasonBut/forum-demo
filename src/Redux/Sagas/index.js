@@ -1,7 +1,8 @@
 import {all, fork} from "redux-saga/effects";
 import {watchFetchData} from "./UISaga";
-import {watchAuthLoginRequest, watchAuthLogoutRequest} from "./AuthSaga";
+import {watchAuthLoginRequest, watchAuthLogoutRequest} from "./AuthLogSaga";
 import {watchPostData} from "./PublishSaga";
+import {watchAuthRegRequest} from "./AuthRegSaga";
 
 
 export default function* rootSagas () {
@@ -10,5 +11,6 @@ export default function* rootSagas () {
         fork(watchAuthLoginRequest),
         fork(watchAuthLogoutRequest),
         fork(watchPostData),
+        fork(watchAuthRegRequest),
     ])
 }

@@ -7,9 +7,9 @@ import {Layout} from "antd";
 import "antd/dist/antd.css"
 
 //组件按需加载
-const Header = lazy(() => import("./Components/Header"));
-const Footer = lazy(() => import("./Components/Footer"));
-const Home = lazy(() => import('./Components/Home/'));
+const Header = lazy(() => import("./Components/Commons/Header"));
+const Content = lazy(() => import('./Components/Content/'));
+const Footer = lazy(() => import("./Components/Commons/Footer"));
 
 
 export default () => (
@@ -17,7 +17,7 @@ export default () => (
         <Router>
             <Layout>
                 <Header />
-                <Home />
+                <Content />
                 <Footer />
             </Layout>
         </Router>

@@ -6,7 +6,6 @@ const initialState = {
     authUserId : sessionStorage.getItem("authUserId") || "",
 };
 
-
 export default function AuthReducer (state = initialState, action) {
     switch (action.type) {
 

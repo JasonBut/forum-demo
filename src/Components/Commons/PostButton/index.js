@@ -1,56 +1,47 @@
-import React,{Component} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import "./button.less";
 import {Button} from "antd";
 import {mapStates,mapDispatches} from "../../../Redux/Reducers";
 
-
-const mapState = (state,ownProps) => ({
+const mapState = (state) => ({
     isPosting : mapStates.getFormIsPosting(state),
     isLogged : mapStates.getAuthIsLogged(state),
-    mode : ownProps.mode,
 });
 
 const mapDispatch = {
     toggleEditing : mapDispatches.formToggleIsPosting,
 };
 
-@connect(mapState,mapDispatch)
-class PostButton extends Component{
-    static propTypes = {
-        mode: PropTypes.string.isRequired,
-        isPosting: PropTypes.bool,
-        isLogged: PropTypes.bool,
-        toggleEditing: PropTypes.func,
-    };
+const PostButton = (props) =>     {
+    const {toggleEditing, isPosting, isLogged, children} = props;
+    const buttonValue = ( isPosting ? "取消" : children);
 
-    render() {
-        const {toggleEditing, isPosting, isLogged, mode} = this.props;
+    return (
+        <div className="button-area">
+            {
+                /*登录后才渲染按钮*/
+                isLogged && (
+                    <Button
+                        id="publish-button"
+                        type="primary"
+                        onClick={() => toggleEditing(isPosting)}
+                        ghost
+                    >
+                        {buttonValue}
+                    </Button>
+                )
+            }
+        </div>
+    )
+};
 
-        const buttonValue = ( isPosting
-                ? "取消"
-                : (mode.toLowerCase() === "publish" ? "发帖" : "编辑帖子")
-        );
+PostButton.propTypes = {
+    isPosting: PropTypes.bool,
+    isLogged: PropTypes.bool,
+    toggleEditing: PropTypes.func,
+    children : PropTypes.string.isRequired,
+};
 
-        return (
-            <div className="button-area">
-                {
-                    /*登录后才渲染按钮*/
-                    isLogged && (
-                        <Button
-                            id="publish-button"
-                            type="primary"
-                            onClick={() => toggleEditing(isPosting)}
-                            ghost
-                        >
-                            {buttonValue}
-                        </Button>
-                    )
-                }
-            </div>
-        )
-    }
-}
-
-export default PostButton;
+export default connect(mapState,mapDispatch)(PostButton);

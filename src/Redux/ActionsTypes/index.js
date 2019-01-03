@@ -8,6 +8,7 @@ export default {
     UI_FETCH_POST_SUCCEEDED : "UI_FETCH_POST_SUCCEEDED",                        //文章获取成功
 
     AUTH_LOGIN_REQUESTED : "AUTH_LOGIN_REQUESTED",                              //发起登录请求 saga-only
+    AUTH_REGISTER_REQUESTED : "AUTH_REGISTER_REQUESTED",                        //发起登录请求 saga-only
     AUTH_LOGIN_SUCCEEDED : "AUTH_LOGIN_SUCCEEDED",                              //登录成功
     AUTH_LOGIN_FAILED : "AUTH_LOGIN_FAILED      ",                              //登录失败
     AUTH_LOGOUT : "AUTH_LOGOUT",                                                //注销
