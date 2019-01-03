@@ -22,8 +22,6 @@ const authLoginRequest = function* (payload) {
             throw new Error(`用户名不存在`);
         }
 
-        yield put({type : Types.FETCH_SUCCEEDED}); //只要获取到账号信息,就发送请求完成状态
-
         //校检密码
         if (userProfile && userProfile.password === password) {
             //本地缓存数据

@@ -9,6 +9,7 @@ const PostList = lazy(() => import("./PostList"));
 const Post = lazy(() => import("./Post"));
 const Auth = lazy(() => import("../Auth"));
 const Rollback = lazy(() => import("../Commons/Rollback"));
+const NotFound = lazy(() => import("../Commons/NotFound"));
 
 const {Content} = Layout;
 
@@ -20,6 +21,7 @@ export default () => (
             <Route path="/board/:id"  component={PostList} />
             <Route path="/post/:id" component={Post} />
             <Auth />
+            <Route component={NotFound}/>
         </Switch>
     </Content>
 )

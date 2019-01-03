@@ -119,7 +119,7 @@
     {
       "id": "post_8",
       "boardId": "board_1",
-      "postDate": "2019/1/3 下午6:43:52",
+      "postDate": "2019/1/3 下午8:40:05",
       "userId": "user_1",
       "content": "    这是一个简易的论坛demo，基于react，是本人学习完react相关知识后做的一个demo。\n\n    这个demo主要用到了如下的工具及库：\n      react,\n      redux,\n      react-redux,\n      redux-saga,\n      react-router,\n      react-loadable,\n      antd,\n      less,\n      axios,\n\n    Demo做得比较简陋，后台只是简单的用json-server搭建的，主要用于演示功能如发帖、评论、编辑帖子、注册、登录等。\n\n    如需联系方式请查询页脚处，谢谢！！",
       "title": "这个一个简易论坛demo"
@@ -143,7 +143,7 @@
     {
       "id": "post_12",
       "boardId": "board_1",
-      "postDate": "2019/1/3 下午6:42:07",
+      "postDate": "2019/1/3 下午8:41:00",
       "userId": "user_1",
       "content": "账号：\n    Jason\n    Jack\n    John\n    Jimmy\n    Joey\n    Joanna\n\n密码统一 aaaaaa",
       "title": "预设账号一览表"
@@ -232,6 +232,10 @@
     {
       "current": 6,
       "id": "user"
+    },
+    {
+      "current": 4,
+      "id": "board"
     },
     {
       "current": 12,

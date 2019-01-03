@@ -4,10 +4,10 @@ import {connect} from "react-redux";
 import {withRouter} from "react-router";
 import {mapDispatches, mapStates} from "../../../Redux/Reducers";
 
+
 const mapState = (state) => ({
-    list : mapStates.getList(state), //列表数据
-    post : mapStates.getPost(state), //帖子数据
-    isDone : mapStates.getAppIsDone(state), //App数据获取成功状态
+    list : mapStates.getList(state),        //列表数据
+    post : mapStates.getPost(state),        //帖子数据
 });
 
 const mapDispatch = {
@@ -21,9 +21,10 @@ export default (WrappedUIComponent,type) => {
         static propTypes = {
             list : PropTypes.array,
             post : PropTypes.object,
+            noMatch : PropTypes.bool,
             getFetchData : PropTypes.func.isRequired,
             match : PropTypes.object.isRequired,
-            isDone : PropTypes.bool.isRequired,
+
         };
 
         constructor(props) {
@@ -33,41 +34,33 @@ export default (WrappedUIComponent,type) => {
             }
         }
 
-        componentWillMount () {
-            //第一次装载才发送获取数据请求
-            if (this.state.firstMount) {
-                this.props.getFetchData({
-                    type : type,
-                    rule : this.props.match.params.id,      //根据路径id作为条件去获取相应内容
-                });
-
-                this.setState({
-                    firstMount : false,
-                })
-            }
+        componentDidMount () {
+            this.props.getFetchData({
+                type : type,
+                rule : this.props.match.params.id,      //根据路径id作为条件去获取相应内容
+            });
         };
 
         render() {
             //根据帖子或列表的条件类型,在App确定获取数据成功时渲染组件
-            const {list,post,isDone} = this.props;
-            if (isDone) {
-                if (type === "post") {
-                    return (
-                        (post && typeof post === "object")
-                            ? <WrappedUIComponent {...post} />
-                            : null
-                    );
-                } else {
-                    return (
-                        (Array.isArray(list) && list.length > 0)
-                            ? <WrappedUIComponent list={list} />
-                            : null
-                    )
-                }
+            const {list,post} = this.props;
+
+            if (type === "post") {
+                return (
+                    (post && typeof post === "object")
+                        ? <WrappedUIComponent {...post} />
+                        : null
+                );
 
             } else {
-                    return null;
+                return (
+                    (Array.isArray(list))
+                        ? <WrappedUIComponent list={list} />
+                        : null
+                )
             }
+
+
         }
     }
 

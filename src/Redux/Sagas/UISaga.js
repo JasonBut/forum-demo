@@ -7,8 +7,17 @@ const fetchData = function* (payload) {
     yield put({type : Types.FETCH_START}); //开始获取数据
 
     try {
+        const {type,rule} = payload;
         let author = null,      //用于稍后存放发布者名称
             newData = null;     //用于稍后存放返回给reducer的数据集合
+
+        // 先根据id池判断请求列表数据的板块是否存在
+        if (type.toLowerCase() === "posts") {
+            const checkCurrentId = yield call(asyncFetch.get,{type : `board_pool_id`});
+            if (rule > checkCurrentId.current) {
+                throw new Error(`Board is not exists.`)
+            }
+        }
 
         const data = yield call(asyncFetch.get,payload);  //异步从数据库获取信息
 
@@ -18,20 +27,19 @@ const fetchData = function* (payload) {
             rule : `${id}`
         });
 
-        //从数据库返回的数据必须是对象或数组类型之一
         if (typeof data !== "object") {
-            throw new Error(`Typeof data which got should be "object" or "array`);
+            //从数据库返回的数据必须是对象或数组类型之一
+            throw new Error(`Type of data which got should be "object" or "array`);
         }
 
         //数组代表列表数据
         if (Array.isArray(data)) {
             newData = [];
 
-
             //根据列表中每个条目的userId去计算发布者昵称
-            //如没有userId,则表示这是板块列表,直接返回
+            //如没有userId但有boardName,则表示这是板块列表,直接返回
             for (let item of data) {
-                if (!item.userId){
+                if (!item.userId || item.boardName){
                     newData = [...data];
                     break
 
@@ -48,14 +56,19 @@ const fetchData = function* (payload) {
         //对象代表帖子数据
         } else {
             author = yield call(getAuthor,data.userId);
-            newData = {...data, author :author.nickname, userId : data.userId};
+
+            newData = {
+                ...data,
+                author :author.nickname,
+                userId : data.userId
+            };
+
             yield put({type : Types.UI_FETCH_POST_SUCCEEDED, data : newData})
         }
 
-        yield put({type: Types.FETCH_SUCCEEDED}); //获取数据成功
-
     } catch (err) {
-        yield put({type : Types.REQUEST_FAILED,err}); //获取数据失败
+        yield put({type : Types.REQUEST_FAILED, err}); //获取数据失败
+        yield put({type : Types.FETCH_NO_MATCH});
     }
 };
 

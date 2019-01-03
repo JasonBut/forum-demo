@@ -74,7 +74,6 @@ const postData = function* (payload) {
             data,
         });
 
-        yield put({type : Types.FETCH_SUCCEEDED});
         yield put({type : Types.FORM_VALUE_PUBLISH_SUCCEEDED});
         window.history.go(0)
 

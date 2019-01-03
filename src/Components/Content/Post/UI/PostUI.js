@@ -21,7 +21,7 @@ export default function PostUI (props) {
     return (
         <div className="post-value">
             <Divider orientation="left"><h1>{title}</h1></Divider>
-            <p>{content}</p>
+            <div dangerouslySetInnerHTML={{__html : content}} />
             <Divider orientation="right"><h3>{author}</h3></Divider>
             <p>{postDate}</p>
         </div>

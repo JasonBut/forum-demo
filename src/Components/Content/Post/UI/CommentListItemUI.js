@@ -28,7 +28,7 @@ export default function CommentListItemUI (props) {
             <div>
                 <Divider orientation="left">{author}</Divider>
 
-                <p>{content}</p>
+                <div dangerouslySetInnerHTML={{__html : content}} />
 
                 <Divider
                     className="comment-date"

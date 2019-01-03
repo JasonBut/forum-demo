@@ -22,6 +22,7 @@ const filters = (rule,mode) => {
             ["post_pool_id",`idPool/post`],
             ["user_pool_id",`idPool/user`],
             ["comment_pool_id",`idPool/comment`],
+            ["board_pool_id",`idPool/board`],
         ]),
 
         put : new Map([

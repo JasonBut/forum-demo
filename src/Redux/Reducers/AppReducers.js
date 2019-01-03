@@ -2,8 +2,7 @@ import Types from "../ActionsTypes"
 
 //初始State
 const initialState = {
-    isLoading : false,
-    isDone : false,
+    noMatch : false,
     err : null,
 };
 
@@ -16,22 +15,18 @@ export default function UIReducer (state = initialState, action) {
             console.log(action.err);
             return {
                 err : action.err,
-                isDone : true,
-                isLoading : false,
-            };
-
-        case Types.FETCH_SUCCEEDED :
-            return {
-                err : null,
-                isLoading: false,
-                isDone: true,
             };
 
         case Types.FETCH_START :
             return {
                 err : null,
-                isLoading: true,
-                isDone: false,
+                noMatch : false,
+            };
+
+        case Types.FETCH_NO_MATCH :
+            return {
+                ...state,
+                noMatch : true,
             };
 
         default :

@@ -1,7 +1,8 @@
 export default {
-    FETCH_START : 'FETCH_START',                                                //获取数据请求开始
     REQUEST_FAILED : "REQUEST_FAILED",                                          //获取数据失败
-    FETCH_SUCCEEDED : 'FETCH_SUCCEEDED',                                        //获取数据成功
+
+    FETCH_START : 'FETCH_START',                                                //获取数据请求开始
+    FETCH_NO_MATCH : 'FETCH_NO_MATCH',                                          //获取数据成功
 
     UI_FETCH_REQUESTED : "UI_FETCH_REQUESTED",                                  //发起UI数据请求 saga-only
     UI_FETCH_LIST_SUCCEEDED : "UI_FETCH_LIST_SUCCEEDED",                        //列表获取成功

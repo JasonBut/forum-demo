@@ -45,8 +45,6 @@ const authRegRequest = function* (payload) {
             }
         });
 
-        yield put({type : Types.FETCH_SUCCEEDED});
-
         //注册成功便立即登录
         yield put({
             type : Types.AUTH_LOGIN_SUCCEEDED,
