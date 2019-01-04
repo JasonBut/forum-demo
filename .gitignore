@@ -35,3 +35,11 @@ src/Components/Footer/footer.css.map
 src/Components/Auth/Login/login.css
 src/Components/Auth/Login/login.css.map
 *.map
+src/Components/Content/Board/board.css
+src/Components/Auth/auth.css
+src/Components/Commons/Footer/footer.css
+src/Components/Commons/Header/header.css
+src/Components/Commons/NotFound/404.css
+src/Components/Content/home.css
+src/Components/Content/Post/post.css
+src/Components/Editor/editor.css
