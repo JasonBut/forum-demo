@@ -34,5 +34,4 @@ src/Components/Footer/footer.css
 src/Components/Footer/footer.css.map
 src/Components/Auth/Login/login.css
 src/Components/Auth/Login/login.css.map
-*.css
 *.map
