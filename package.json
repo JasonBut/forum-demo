@@ -1,5 +1,6 @@
 {
   "name": "react-redux-demo",
+  "homepage" : "https://jasonbut.github.io/forum-demo/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
