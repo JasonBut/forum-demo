@@ -1,7 +1,7 @@
 import React from 'react';
 import "@babel/polyfill"
 import {Provider} from "react-redux"
-import {BrowserRouter as Router} from "react-router-dom";
+import {HashRouter as Router} from "react-router-dom";
 import {lazy} from "./Utils/"; //按需导入功能API
 import Stores from "./Redux"
 import {Layout} from "antd";
