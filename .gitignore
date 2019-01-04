@@ -43,3 +43,6 @@ src/Components/Commons/NotFound/404.css
 src/Components/Content/home.css
 src/Components/Content/Post/post.css
 src/Components/Editor/editor.css
+src/Components/Commons/Loading/loading.css
+src/Components/Commons/PostButton/button.css
+src/Components/Content/PostList/postlist.css
