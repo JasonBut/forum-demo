@@ -6,6 +6,7 @@ import {lazy} from "./Utils/"; //按需导入功能API
 import Stores from "./Redux"
 import {Layout} from "antd";
 import "antd/dist/antd.css";
+import "animate.css";
 
 
 //组件按需加载
@@ -20,7 +21,6 @@ export default () => (
             <Layout>
                 <Header />
                 <Content />
-
                 <Footer />
             </Layout>
         </Router>

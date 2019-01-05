@@ -23,12 +23,12 @@ export default function CommentListItemUI (props) {
     return(
         <List.Item
             key={id}
-            className="comment-list-item"
+            className="comment-list-item animated fadeInUp"
         >
             <div>
                 <Divider orientation="left">{author}</Divider>
 
-                <div dangerouslySetInnerHTML={{__html : content}} />
+                <div>{content}</div>
 
                 <Divider
                     className="comment-date"

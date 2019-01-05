@@ -26,7 +26,7 @@ export default function EditorUI (props) {
     const buttonValue = isComment ? "发表评论" : "提交" ;
     return (
         <Form
-            className="editor animated fadeIn"
+            className="editor animated zoomInUp"
             onSubmit={handleSubmit}
         >
             {!isComment &&

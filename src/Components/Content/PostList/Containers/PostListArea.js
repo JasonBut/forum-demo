@@ -17,7 +17,7 @@ function PostListArea (props) {
     return (
         <div id="postList">
             <List
-                className="post-list animated fadeIn "
+                className="post-list animated fadeIn"
                 dataSource={props.list}
                 bordered
                 renderItem={(postData) => {

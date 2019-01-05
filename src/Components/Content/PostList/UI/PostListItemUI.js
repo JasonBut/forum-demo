@@ -26,7 +26,7 @@ export default function PostListItemUI (props) {
         id &&
         <List.Item
             key={id}
-            className="post-list-item"
+            className="post-list-item animated fadeIn slow"
         >
             <h3><Link to={`/post/${postId}`}>{title}</Link></h3>
             <div>

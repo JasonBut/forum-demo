@@ -19,9 +19,9 @@ PostUI.propTypes = {
 export default function PostUI (props) {
     const {title,content,author,postDate} = props;
     return (
-        <div key="Post" className="animated fadeIn post-value">
+        <div key="Post" className="post-value animated fadeInUp slow">
             <Divider orientation="left"><h1>{title}</h1></Divider>
-            <div dangerouslySetInnerHTML={{__html : content}} />
+            <div>{content}</div>
             <Divider orientation="right"><h3>{author}</h3></Divider>
             <p>{postDate}</p>
         </div>

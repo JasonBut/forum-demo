@@ -6,10 +6,10 @@ import CommentListItemUI from "../UI/CommentListItemUI"
 
 const CommentListUI = (props) => {
     return (
-        <div id="commentList">
-            <Divider>Comments</Divider>
+        <div id="commentList" >
+            <Divider className="animated fadeInUp slower">Comments</Divider>
             <List
-                className="comment-list animated fadeIn"
+                className="comment-list animated fadeInUp slow"
                 dataSource={props.list}
                 bordered
                 renderItem={(item) => {

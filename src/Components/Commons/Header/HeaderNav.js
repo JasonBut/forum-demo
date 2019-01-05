@@ -38,11 +38,11 @@ const HeaderNav = (props) => {
     const {isLogged, userNickname, location : {pathname}} = props;
     const loginButton = (
         isLogged
-            ? <Menu.Item key="3">
+            ? <Menu.Item key="3" className="animated fadeIn">
                 <Link to={"/logout"}>注销</Link>
             </Menu.Item>
 
-            : <Menu.Item key="2">
+            : <Menu.Item key="2" className="animated fadeIn">
                 <Link to={"/login"}>登录</Link>
             </Menu.Item>
     );
@@ -64,7 +64,7 @@ const HeaderNav = (props) => {
                 mode="horizontal"
                 style={{lineHeight : '64px'}}
             >
-                <Menu.Item key="1">
+                <Menu.Item key="1" className="animated fadeIn">
                     <Link to={"/"} >首页</Link>
                 </Menu.Item>
                 {loginButton}
