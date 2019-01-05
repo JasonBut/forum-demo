@@ -49,3 +49,6 @@ src/Components/Editor/editor.css
 src/Components/Commons/Loading/loading.css
 src/Components/Commons/PostButton/button.css
 src/Components/Content/PostList/postlist.css
+build/asset-manifest.json
+build/index.html
+build/service-worker.js
