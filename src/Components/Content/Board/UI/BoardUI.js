@@ -16,14 +16,14 @@ BoardUI.propTypes = {
 
 export default function BoardUI (props) {
     return (
-        <div id="board">
+        <div id="board" key="Board" className="animated fadeIn">
             <div>
                 {
                     props.list.map((item) => {
                         const boardId = item.id.split("_")[1];
                         return(
                             <Card key={item.id}
-                                  className={"board-card"}
+                                  className="board-card"
                                   title={item.boardName}
                                   hoverable={true}
                                   extra={<Link to={`/board/${boardId}`}>More</Link>}

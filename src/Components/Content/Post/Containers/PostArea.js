@@ -49,7 +49,7 @@ class PostArea extends Component {
                         : <Post />
                     }
                     <CommentList />
-                    <Editor mode="comment" />
+                    {isLogged && <Editor mode="comment" />}
                 </div>
             </>
         );

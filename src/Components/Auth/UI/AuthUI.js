@@ -16,7 +16,7 @@ export default function FormUI (props) {
     return (
         <Form
             layout="horizontal"
-            className="login-form"
+            className="login-form animated fadeIn"
             onSubmit={handleSubmit}
         >
 

@@ -9,7 +9,7 @@ const CommentListUI = (props) => {
         <div id="commentList">
             <Divider>Comments</Divider>
             <List
-                className="comment-list"
+                className="comment-list animated fadeIn"
                 dataSource={props.list}
                 bordered
                 renderItem={(item) => {
