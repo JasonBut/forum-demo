@@ -40,8 +40,8 @@ const formLoginSubmit = (event) => {
     if (!username || !password || (regNickname && !nickname)) {
         return {type : Types.REQUEST_FAILED, err : `用户信息不完整`};
     }
-    if (username.length < 5 || (nickname && nickname.length < 5)) {
-        return {type : Types.REQUEST_FAILED, err : `账号或昵称必须不少于5字符`};
+    if (username.length < 5 || (nickname && nickname.length < 4)) {
+        return {type : Types.REQUEST_FAILED, err : `账号或昵称必须不少于4字符`};
     }
     if (password.length < 6) {
         return {type : Types.REQUEST_FAILED, err : `密码必须不少于6字符`};
@@ -88,8 +88,8 @@ const formValuePublish = (payload) => {
         return {type : Types.REQUEST_FAILED, err : `内容字数少于15个字符`}
     }
 
-    if (title && (title.length < 6 || title.length > 20)) {
-        return {type : Types.REQUEST_FAILED, err : `标题字数必须介乎于6 - 20个字符之间`}
+    if (title && (title.length < 5 || title.length > 20)) {
+        return {type : Types.REQUEST_FAILED, err : `标题字数必须介乎于5 - 20个字符之间`}
     }
 
     return {
