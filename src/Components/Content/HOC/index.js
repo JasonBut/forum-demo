@@ -27,13 +27,6 @@ export default (WrappedUIComponent,type) => {
 
         };
 
-        constructor(props) {
-            super(props);
-            this.state = {
-                firstMount : true
-            }
-        }
-
         componentDidMount () {
             this.props.getFetchData({
                 type : type,

@@ -1,5 +1,7 @@
 import axios from "axios";
 
+const URL = `http://localhost:4000/`;
+
 //过滤条件
 const filters = (rule,mode) => {
     //根据请求类型mode区分返回给asyncFetch函数的条件池
@@ -19,6 +21,7 @@ const filters = (rule,mode) => {
             ["userid",`users/${rule}`],
             ["username",`users?username=${rule}`],
             ["nickname",`users?nickname=${rule}`],
+            ["board",`boards/${rule}`],
             ["post_pool_id",`idPool/post`],
             ["user_pool_id",`idPool/user`],
             ["comment_pool_id",`idPool/comment`],
@@ -69,7 +72,7 @@ export default async function asyncFetch ({ mode, type, rule, data}) {
 
     try {
         //这句代码是根据传入的参数去调整axios的get/post/put方法,并填入对应路径及数据
-        const response = await axios[lowerCaseMode](`http://localhost:4000/${path}`, data);
+        const response = await axios[lowerCaseMode](`${URL}${path}`, data);
         path = null;    //解除filters引用
 
         if (!( response.status >= 200 && response.status < 300 )) {

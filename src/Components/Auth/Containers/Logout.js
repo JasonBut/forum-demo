@@ -9,6 +9,7 @@ const mapDispatch = {
 
 export default connect(null,mapDispatch)((props) => {
     props.logout();
+    document.title = "注销";
     return (
         <AuthSuccessUI>注销</AuthSuccessUI>
     );

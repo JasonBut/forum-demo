@@ -36,18 +36,26 @@ const fetchData = function* (payload) {
         if (Array.isArray(data)) {
             newData = [];
 
+            const [first] = data;
+            if (first && first.boardId) {
+                const board = yield call(asyncFetch.get,{type : "board", rule : first.boardId});
+                document.title = board.boardName;
+            }
+
             //根据列表中每个条目的userId去计算发布者昵称
             //如没有userId但有boardName,则表示这是板块列表,直接返回
-            for (let item of data) {
+            for (const item of data) {
                 if (!item.userId || item.boardName){
                     newData = [...data];
                     break
 
                 } else {
                     author = yield call(getAuthor,item.userId);
-
                     //有postDate表示这是帖子列表,倒序排列
-                    newData[ item.postDate ? "unshift" : "push"]({...item, author : author.nickname});
+                    newData[ item.postDate ? "unshift" : "push"]({
+                        ...item,
+                        author : author.nickname,
+                    });
                 }
             }
 
@@ -62,7 +70,7 @@ const fetchData = function* (payload) {
                 author :author.nickname,
                 userId : data.userId
             };
-
+            document.title = data.title;
             yield put({type : Types.UI_FETCH_POST_SUCCEEDED, data : newData})
         }
 
