@@ -74,6 +74,7 @@ export default async function asyncFetch ({ mode, type, rule, data}) {
         //这句代码是根据传入的参数去调整axios的get/post/put方法,并填入对应路径及数据
         const response = await axios[lowerCaseMode](`${URL}${path}`, data);
         path = null;    //解除filters引用
+        lowerCaseMode = null;
 
         if (!( response.status >= 200 && response.status < 300 )) {
             throw new Error(response.statusText);

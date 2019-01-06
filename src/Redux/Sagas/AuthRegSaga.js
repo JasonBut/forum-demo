@@ -52,6 +52,10 @@ const authRegRequest = function* (payload) {
             authNickname: nickname,
         });
 
+        sessionStorage.setItem("isLogged","true");
+        sessionStorage.setItem("authUserId",`${newId}`);
+        sessionStorage.setItem("authNickname",`${nickname}`);
+
         setTimeout(() => {
             window.history.go(-2); //返回到注册页面的上一页
         },2000)

@@ -19,7 +19,7 @@ const fetchData = function* (payload) {
             }
         }
 
-        const data = yield call(asyncFetch.get,payload);  //异步从数据库获取信息
+        let data = yield call(asyncFetch.get,payload);  //异步从数据库获取信息
 
         //封装一个通过id获取用户资料的函数
         const getAuthor = (id) => asyncFetch.get({
@@ -59,7 +59,7 @@ const fetchData = function* (payload) {
                 }
             }
 
-            yield put({type : Types.UI_FETCH_LIST_SUCCEEDED, data : newData})
+            yield put({type : Types.UI_FETCH_LIST_SUCCEEDED, data : newData});
 
         //对象代表帖子数据
         } else {
@@ -71,8 +71,12 @@ const fetchData = function* (payload) {
                 userId : data.userId
             };
             document.title = data.title;
-            yield put({type : Types.UI_FETCH_POST_SUCCEEDED, data : newData})
+            yield put({type : Types.UI_FETCH_POST_SUCCEEDED, data : newData});
         }
+
+        data = null;
+        author = null;
+        newData = null;
 
     } catch (err) {
         yield put({type : Types.REQUEST_FAILED, err}); //获取数据失败
