@@ -1,12 +1,13 @@
 import Types from "../ActionsTypes"
+import BraftEditor from "braft-editor";
 
 const initialState = {
     loginUsername : "Jason",
     loginPassword : "aaaaaa",
     regNickname : "",
     postTitle : "",
-    postContent : "",
-    commentContent : "",
+    postContent : BraftEditor.createEditorState(null),
+    commentContent : BraftEditor.createEditorState(null),
     isPosting : false,
 };
 

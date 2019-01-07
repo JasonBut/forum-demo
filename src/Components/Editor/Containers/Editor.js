@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {withRouter} from "react-router";
 import {mapStates,mapDispatches} from "../../../Redux/Reducers";
 import EditorUI from "../UI/EditorUI";
+import BraftEditor from "braft-editor";
 
 const mapState = (state,ownProps) => ({
     title: mapStates.getFormValue(state,"postTitle"),               //新帖标题
@@ -23,21 +24,12 @@ const mapDispatch = {
     toggleIsPosting : mapDispatches.formToggleIsPosting,
 };
 
-//模拟发送给handleChange的对象结构
-const amendData = (name,value) => {
-        return { target : { name, value } }
-};
-
 @withRouter
 @connect(mapState,mapDispatch)
 class Editor extends Component {
     static propTypes = {
         oldTitle: PropTypes.string,
         oldContent: PropTypes.string,
-        postContent: PropTypes.string,
-        postTitle: PropTypes.string,
-        commentContent : PropTypes.string,
-        err : PropTypes.string,
         isPosting : PropTypes.bool.isRequired,
         mode : PropTypes.string.isRequired,
         authorId : PropTypes.string.isRequired,
@@ -61,9 +53,9 @@ class Editor extends Component {
         const lowerCaseMode = mode && mode.toLowerCase();
         //如果编辑器当前正在编辑已有帖子,则将父组件传入的帖子数据填入对应文本框中
         if (lowerCaseMode === "amend") {
-            const {oldContent, oldTitle, handleChange} = this.props;
-            oldTitle && handleChange(amendData("postTitle",oldTitle));
-            oldContent && handleChange(amendData("postContent",oldContent));
+            const {oldContent, oldTitle} = this.props;
+            oldTitle && this.handleChange("postTitle")(oldTitle);
+            oldContent && this.handleChange("postContent")(BraftEditor.createEditorState(oldContent));
         }
     };
 
@@ -76,35 +68,36 @@ class Editor extends Component {
         isPosting && toggleIsPosting(isPosting);
     }
 
+    handleChange = (name) => (newValue) => {
+        const value = (newValue.target ? newValue.target.value : newValue );
+        this.props.handleChange({name,value})
+    };
+
     handleSubmit = (event) => {
         event.preventDefault();
         this.setState({
             isActive : true,
         });
-        const {postContent,postTitle,commentContent} = event.target;
-        const {location : { pathname }, mode, authorId} = this.props;
+        const {postTitle} = event.target;
+        const {location : { pathname }, mode, authorId, post, comment} = this.props;
         const isComment = this.isComment;
         const pathId = pathname.split("/")[2];
         const title = postTitle && postTitle.value;
-        const  value =  isComment
-            ? (commentContent && commentContent.value)
-            : (postContent && postContent.value);
+        const content =  (isComment ? comment : post).toHTML();
 
-        let payload = {value, pathId, mode, authorId, isComment};
+        let payload = {content, pathId, mode, authorId, isComment};
         payload = Object.assign( payload,( title ? {title} : {} ) );
         this.props.handleSubmit(payload);
     };
 
-
-
     render() {
         //过滤并调整往UI组件传递的props
-        const {post, title, comment, err, handleChange} = this.props;
+        const {post, title, comment, err} = this.props;
         const props = {
             isComment : this.isComment,
             isActive : this.state.isActive,
             handleSubmit : this.handleSubmit,
-            handleChange,
+            handleChange : this.handleChange,
             title,
             post,
             comment,

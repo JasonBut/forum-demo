@@ -2,13 +2,7 @@ import Types from "../ActionsTypes";
 
 //Actions Creators
 //UI actions
-
-//filter 结构
-// {
-//   type : type,
-//   rule : this.props.match.params.id,
-// }
-    const getFetchData = (filter) => {
+const getFetchData = (filter) => {
     //得到有效的数据才继续
     if (!filter) {
         return {type : Types.REQUEST_FAILED, err : `Invalid path filter`};
@@ -21,11 +15,10 @@ import Types from "../ActionsTypes";
 };
 
 //Form actions
-const formDataOnChange = (event) => {
-    const { name,value } = event.target;
+const formDataOnChange = (payload) => {
     return {
         type : Types.FORM_VALUE_ONCHANGE,
-        payload : { name, value,}
+        payload,
     }
 };
 
@@ -66,18 +59,8 @@ const formToggleIsPosting = (isPosting) => ({
     isPosting : !isPosting,
 });
 
-
-//  payload 结构
-// {
-//     authorId : "user_1"
-//     isComment: false
-//     mode : "post"
-//     pathId : "1"
-//     title : "a"
-//     value : "a"
-// }
 const formValuePublish = (payload) => {
-    const {title, value: content, isComment,...props} = payload;
+    const {title, content, isComment,...props} = payload;
 
     //校检内容
     if ( (isComment && !content) || (!isComment && (!content || !title)) ) {
@@ -112,4 +95,5 @@ export default {
     formLoginSubmit,
     authLogout,
     formValuePublish,
+    // richDataOnChange
 }

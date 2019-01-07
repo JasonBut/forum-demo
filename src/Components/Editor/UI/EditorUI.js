@@ -1,60 +1,78 @@
-import React from "react";
-import PropTypes from "prop-types";
-import {Input,Form} from "antd";
+import React,{Component} from "react";
+// import PropTypes from "prop-types";
+import {Input} from "antd";
+import BraftEditor from "braft-editor";
+import "braft-editor/dist/index.css";
+//
+// EditorUI.defaultProps = {
+//     title : "",
+//     post : "",
+//     comment : "",
+// };
+//
+// EditorUI.propTypes = {
+//     title : PropTypes.string.isRequired,
+//     post : PropTypes.string.isRequired,
+//     comment : PropTypes.string.isRequired,
+//     handleChange : PropTypes.func.isRequired,
+//     handleSubmit : PropTypes.func.isRequired,
+//     isComment : PropTypes.bool.isRequired,
+//     err : PropTypes.string,
+// };
 
-EditorUI.defaultProps = {
-    title : "",
-    post : "",
-    comment : "",
-}
+class EditorUI extends Component {
+    render(){
+        const {
+            title, comment, post, handleChange, handleSubmit, isComment, isActive, err,
+        } = this.props;
 
-EditorUI.propTypes = {
-    title : PropTypes.string.isRequired,
-    post : PropTypes.string.isRequired,
-    comment : PropTypes.string.isRequired,
-    handleChange : PropTypes.func.isRequired,
-    handleSubmit : PropTypes.func.isRequired,
-    isComment : PropTypes.bool.isRequired,
-    err : PropTypes.string,
-}
+        //根据编辑器模式渲染不同内容
+        const textareaType = isComment ? "commentContent" : "postContent";
+        const textareaValue = isComment ? comment : post ;
+        const buttonValue = isComment ? "发表评论" : "提交" ;
+        const controls = isComment
+            ? ["undo", "redo", "line-height", "superscript", "subscript",
+                "text-indent", "headings", "hr", "media", "blockquote"]
+            : ["media","blockquote"];
 
-export default function EditorUI (props) {
-    const {title, comment, post, handleChange, handleSubmit, isComment, isActive, err} = props;
-    //根据编辑器模式渲染不同内容
-    const textareaClassName = isComment ? "commentContent" : "postContent";
-    const textareaValue = isComment ? comment : post ;
-    const buttonValue = isComment ? "发表评论" : "提交" ;
-    return (
-        <Form
-            className="editor animated zoomInUp"
-            onSubmit={handleSubmit}
-        >
-            {!isComment &&
-                <Form.Item>
+        return (
+            <form
+                className="editor animated zoomInUp"
+                onSubmit={handleSubmit}
+            >
+                {!isComment &&
+                <label htmlFor="postTitle">
                     <Input
                         name="postTitle"
                         type="text"
                         value={title}
-                        onChange={handleChange}
+                        onChange={handleChange("postTitle")}
+                        placeholder="请输入标题"
                     />
-                </Form.Item>
-            }
+                </label>
+                }
 
-            <Form.Item>
-                <Input.TextArea
-                    name={textareaClassName}
+                <BraftEditor
+                    contentClassName={textareaType}
+                    excludeControls={controls}
                     value={textareaValue}
-                    onChange={handleChange}
+                    onChange={handleChange(textareaType)}
+                    placeholder="请输入内容"
                 />
-            </Form.Item>
 
-            { (isActive && err) && <p className="err-message">{err}</p> }
-            <Form.Item>
-                <Input
-                    type="submit"
-                    value={buttonValue}
-                />
-            </Form.Item>
-        </Form>
-    )
+                { (isActive && err) && <p className="err-message">{err}</p> }
+
+                <label htmlFor="submitButton">
+                    <Input
+                        type="submit"
+                        id="submitButton"
+                        value={buttonValue}
+                    />
+                </label>
+            </form>
+        )
+    }
+
 }
+
+export default EditorUI;

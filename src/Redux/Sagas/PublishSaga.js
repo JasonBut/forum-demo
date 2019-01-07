@@ -9,7 +9,7 @@ const postData = function* (payload) {
         return yield put({type : Types.REQUEST_FAILED},`Invalid payload.`);
     }
 
-    const {authorId : userId,mode,pathId,title,content,isComment} = payload;
+    const {authorId : userId, mode, pathId, title, content, isComment} = payload;
     const isAmend = (mode && mode.toLowerCase()) === "amend";       //判断是否编辑模式
 
     try {
@@ -27,23 +27,23 @@ const postData = function* (payload) {
 
         /*
         * 编辑模式下根据帖子路径id从数据库获取帖子信息,提取boardId
-        * 需要提交上去的id只需要根据原帖子的pathId拼凑而成
+        * 提交上去的id根据原帖子的pathId拼凑而成
         * 并将asyncFetch请求方式调整为put
         */
         if (isAmend) {
-            submitId = `post_${pathId}`;
-            dataBelongsId = yield call(asyncFetch.get,{type : "post", rule : pathId});
-            dataBelongsId = dataBelongsId && dataBelongsId.boardId;
+            submitId = `post_${pathId}`;                                                    //帖子原id
+            dataBelongsId = yield call(asyncFetch.get,{type : "post", rule : pathId});      //获取帖子信息
+            dataBelongsId = dataBelongsId && dataBelongsId.boardId;                         //得到帖子所属板块id
             asyncMethods = "put";
         } else {
          /*
          * 发布模式则只需将传入的数据拼凑出归属id
          * 但需同步数据库获取最新帖子/评论id,传入计算器计算新的id
-         * 并传回数据库进行更新
+         * 并将新id传回数据库进行更新
          */
-            const currentId = yield call(asyncFetch.get,{type : `${dataType}_pool_id`});
-            submitId = idGenerator(dataType)(currentId.current).next().value;
-            dataBelongsId = `${dataBelongs}_${pathId}`;
+            const currentId = yield call(asyncFetch.get,{type : `${dataType}_pool_id`});    //从id池中获取最新id
+            submitId = idGenerator(dataType)(currentId.current).next().value;               //生成新id
+            dataBelongsId = `${dataBelongs}_${pathId}`;                                     //根据路径拼凑板块或帖子id
             asyncMethods = "post";
             //更新数据库id池信息
             yield call(asyncFetch.put,{

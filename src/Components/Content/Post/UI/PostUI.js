@@ -21,7 +21,7 @@ export default function PostUI (props) {
     return (
         <div key="Post" className="post-value animated fadeInUp slow">
             <Divider orientation="left"><h1>{title}</h1></Divider>
-            <div>{content}</div>
+            <div dangerouslySetInnerHTML={{__html : content}} />
             <Divider orientation="right"><h3>{author}</h3></Divider>
             <p>{postDate}</p>
         </div>
