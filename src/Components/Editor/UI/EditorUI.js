@@ -1,24 +1,24 @@
 import React,{Component} from "react";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import {Input} from "antd";
 import BraftEditor from "braft-editor";
 import "braft-editor/dist/index.css";
-//
-// EditorUI.defaultProps = {
-//     title : "",
-//     post : "",
-//     comment : "",
-// };
-//
-// EditorUI.propTypes = {
-//     title : PropTypes.string.isRequired,
-//     post : PropTypes.string.isRequired,
-//     comment : PropTypes.string.isRequired,
-//     handleChange : PropTypes.func.isRequired,
-//     handleSubmit : PropTypes.func.isRequired,
-//     isComment : PropTypes.bool.isRequired,
-//     err : PropTypes.string,
-// };
+
+EditorUI.defaultProps = {
+    title : "",
+    post : "",
+    comment : "",
+};
+
+EditorUI.propTypes = {
+    title : PropTypes.string.isRequired,
+    post : PropTypes.string.isRequired,
+    comment : PropTypes.string.isRequired,
+    handleChange : PropTypes.func.isRequired,
+    handleSubmit : PropTypes.func.isRequired,
+    isComment : PropTypes.bool.isRequired,
+    err : PropTypes.string,
+};
 
 class EditorUI extends Component {
     render(){
