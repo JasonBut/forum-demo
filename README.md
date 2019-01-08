@@ -14,16 +14,17 @@ QQ    : 153436677
     
     
 主要用到：
-* react
-* redux
-* react-redux
-* redux-saga
-* react-router
-* react-loadable
-* reselect
-* antd
-* less
-* axios
+* React
+* Redux
+* React-redux
+* Redux-saga
+* React-router
+* React-loadable
+* Reselect
+* Braft-editor
+* Antd
+* Less
+* Axios
 
 
 [挖坑自踩日常](./UPDATE.md)
