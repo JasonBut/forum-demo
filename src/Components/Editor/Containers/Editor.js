@@ -26,9 +26,7 @@ const mapDispatch = {
     toggleIsPosting : mapDispatches.formToggleIsPosting,
 };
 
-@withRouter
-@connect(mapState,mapDispatch)
-@Form.create({
+const formProps = {
     name : "Editor",
     mapPropsToFields (props) {
         return {
@@ -40,7 +38,11 @@ const mapDispatch = {
     onFieldsChange (props,changedFields) {
         props.handleChange(changedFields);
     },
-})
+};
+
+@withRouter
+@connect(mapState,mapDispatch)
+@Form.create(formProps)
 class Editor extends Component {
     static propTypes = {
         oldTitle: PropTypes.string,

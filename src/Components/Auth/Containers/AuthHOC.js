@@ -20,6 +20,20 @@ const mapDispatch = {
     logout : mapDispatches.authLogout,
 };
 
+const formProps = {
+    name : "Auth",
+    mapPropsToFields(props) {
+        return {
+            loginUsername : Form.createFormField(props.loginUsername),
+            regNickname : Form.createFormField(props.regNickname),
+            loginPassword : Form.createFormField(props.loginPassword),
+        };
+    },
+    onFieldsChange(props, changedFields) {
+        props.handleChange(changedFields);
+    }
+};
+
 export default (type) => {
     const lowerCaseType = type.toLowerCase();
     const isLogin = type.toLowerCase() === "login";
@@ -28,19 +42,7 @@ export default (type) => {
     }
 
     @connect(mapState,mapDispatch)
-    @Form.create({
-        name : "Auth",
-        mapPropsToFields(props) {
-            return {
-                loginUsername : Form.createFormField(props.loginUsername),
-                regNickname : Form.createFormField(props.regNickname),
-                loginPassword : Form.createFormField(props.loginPassword),
-            };
-        },
-        onFieldsChange(props, changedFields) {
-            props.handleChange(changedFields);
-        }
-    })
+    @Form.create(formProps)
     class Login extends Component {
         static propTypes = {
             isLogged : PropTypes.bool,
