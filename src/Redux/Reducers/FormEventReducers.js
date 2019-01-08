@@ -2,12 +2,22 @@ import Types from "../ActionsTypes"
 import BraftEditor from "braft-editor";
 
 const initialState = {
-    loginUsername : "Jason",
-    loginPassword : "aaaaaa",
+    loginUsername : {
+        value : "Jason",
+    },
+    loginPassword : {
+        value : "aaaaaa",
+    },
     regNickname : "",
-    postTitle : "",
-    postContent : BraftEditor.createEditorState(null),
-    commentContent : BraftEditor.createEditorState(null),
+    title : {
+        value : "",
+    },
+    postContent : {
+        value : BraftEditor.createEditorState(null),
+    },
+    commentContent : {
+        value : BraftEditor.createEditorState(null),
+    },
     isPosting : false,
 };
 
@@ -15,35 +25,46 @@ export default function FormEventReducers (state = initialState, action) {
     switch (action.type) {
 
         case Types.FORM_VALUE_ONCHANGE :
-            const {name,value} = action.payload;
             return {
                 ...state,
-                [name] : value,
+                ...action.payload
             };
 
         case Types.FORM_TOGGLE_POSTING :
             return {
                 ...state,
                 isPosting : action.isPosting,
-                postTitle : "",
-                postContent : "",
-                commentContent : "",
+                title : {
+                    value : "",
+                },
+                postContent : {
+                    value : "",
+                },
+                commentContent : {
+                    value : "",
+                },
             };
 
         case Types.FORM_VALUE_PUBLISH_SUCCEEDED :
             return {
                 ...state,
-                postTitle : "",
-                postContent : "",
-                commentContent : "",
+                title : {
+                    value : "",
+                },
+                postContent : {
+                    value : "",
+                },
+                commentContent : {
+                    value : "",
+                },
                 isPosting : false,
             };
 
         case Types.AUTH_LOGIN_SUCCEEDED :
             return {
                 ...state,
-                loginUsername: "",
-                loginPassword: "",
+                loginUsername: {value : ""},
+                loginPassword: {value : ""},
             };
 
         default :

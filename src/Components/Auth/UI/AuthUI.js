@@ -1,18 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Icon,Form, Input} from "antd";
-
-FormUI.propTypes = {
-    username : PropTypes.string,
-    password : PropTypes.string,
-    logErr : PropTypes.string,
-    handleChange : PropTypes.func.isRequired,
-    handleSubmit : PropTypes.func.isRequired,
-}
+//
+// FormUI.propTypes = {
+//     username : PropTypes.string,
+//     password : PropTypes.string,
+//     logErr : PropTypes.string,
+//     handleChange : PropTypes.func.isRequired,
+//     handleSubmit : PropTypes.func.isRequired,
+// }
 
 
 export default function FormUI (props) {
-    const {isLogin, username,nickname, password, handleChange, handleSubmit, logErr} = props;
+    const {isLogin, handleSubmit, logErr, form : {getFieldDecorator}} = props;
     return (
         <Form
             layout="horizontal"
@@ -21,13 +21,17 @@ export default function FormUI (props) {
         >
 
             <Form.Item>
-                <Input
-                    name="loginUsername"
-                    prefix={<Icon type="user" />}
-                    placeholder={"请输入账号"}
-                    value={username}
-                    onChange={handleChange}
-                />
+                {getFieldDecorator("loginUsername",{
+                    rules : [{
+                        required : true,
+                        message : "请输入用户忙"
+                    }]
+                })(
+                    <Input
+                        prefix={<Icon type="user" />}
+                        placeholder={"请输入账号"}
+                    />
+                )}
             </Form.Item>
 
             {
@@ -35,26 +39,34 @@ export default function FormUI (props) {
                     ? null
                     : (
                         <Form.Item>
-                            <Input
-                                name="regNickname"
-                                prefix={<Icon type="solution" />}
-                                placeholder={"请输入昵称"}
-                                value={nickname}
-                                onChange={handleChange}
-                            />
+                            {getFieldDecorator("regNickname",{
+                                rules : [{
+                                    required : true,
+                                    message : "请输入昵称"
+                                }]
+                            })(
+                                <Input
+                                    prefix={<Icon type="solution" />}
+                                    placeholder={"请输入昵称"}
+                                />
+                            )}
                         </Form.Item>
                     )
             }
 
             <Form.Item>
-                <Input
-                    name="loginPassword"
-                    type="password"
-                    prefix={<Icon type="lock" />}
-                    placeholder={"请输入密码"}
-                    value={password}
-                    onChange={handleChange}
-                />
+                {getFieldDecorator("loginPassword",{
+                    rules : [{
+                        required : true,
+                        message : "请输入密码",
+                    }]
+                })(
+                    <Input
+                        type="password"
+                        prefix={<Icon type="lock" />}
+                        placeholder={"请输入密码"}
+                    />
+                )}
             </Form.Item>
 
             { logErr && <p className="err-message">{logErr}</p> } {/*登录错误信息*/}

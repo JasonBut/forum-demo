@@ -41,6 +41,12 @@
       "username": "Jacky",
       "password": "aaaaaa",
       "nickname": "Jacky Chan"
+    },
+    {
+      "id": "user_8",
+      "username": "Kim1111",
+      "password": "AAAAAA",
+      "nickname": "Kim Lee"
     }
   ],
   "boards": [
@@ -381,6 +387,14 @@
       "userId": "user_1",
       "content": "<p style=\"text-align:start;text-indent:2em;\"><span style=\"color:#000000\"><strong>账号：</strong></span></p><ul><li><span style=\"color:#000000\"><strong>Jason</strong></span></li><li><strong><span style=\"font-size:16px\"><span style=\"background-color:#f0f2f5\"><span style=\"color:#000000\">Jack</span></span></span></strong></li><li><strong><span style=\"font-size:16px\"><span style=\"background-color:#f0f2f5\"><span style=\"color:#000000\">John</span></span></span></strong></li><li><strong><span style=\"font-size:16px\"><span style=\"background-color:#f0f2f5\"><span style=\"color:#000000\">Jimmy</span></span></span></strong></li><li><strong><span style=\"font-size:16px\"><span style=\"background-color:#f0f2f5\"><span style=\"color:#000000\">Joey</span></span></span></strong></li><li><strong><span style=\"font-size:16px\"><span style=\"background-color:#f0f2f5\"><span style=\"color:#000000\">Joanna</span></span></span></strong></li></ul><p style=\"text-align:start;text-indent:2em;\"></p><p style=\"text-align:start;text-indent:2em;\"><span style=\"color:#000000\"><strong>密码：</strong></span></p><ul><li><span style=\"color:#000000\"><span style=\"font-size:16px\"><span style=\"background-color:#f0f2f5\"><strong>aaaaaa</strong></span></span></span></li></ul>",
       "title": "预设账号一览表"
+    },
+    {
+      "id": "post_39",
+      "boardId": "board_3",
+      "postDate": "2019/1/8 下午9:32:35",
+      "userId": "user_1",
+      "content": "<p><strong>这是一个简易的论坛demo，基于react，是本人学习完react相关知识后做的一个demo。</strong><br/><strong>这个demo主要用到了如下的工具及库：</strong><br/></p><ul><li><strong><span style=\"background-color:#f1f2f3\"><span style=\"color:#003ba5\"><span style=\"line-height:1\"><span style=\"font-size:12px\">React</span></span></span></span></strong></li><li><span style=\"background-color:#f1f2f3\"><strong><span style=\"font-size:12px\"><span style=\"color:#003ba5\"><span style=\"line-height:1\">Redux</span></span></span></strong></span></li><li><span style=\"background-color:#f1f2f3\"><strong><span style=\"color:#003ba5\"><span style=\"font-size:12px\"><span style=\"line-height:1\">React-redux</span></span></span></strong></span></li><li><span style=\"line-height:1\"><span style=\"color:#003ba5\"><span style=\"font-size:12px\"><strong><span style=\"background-color:#f1f2f3\">Redux-saga</span></strong></span></span></span></li><li><span style=\"font-size:12px\"><span style=\"background-color:#f1f2f3\"><strong><span style=\"line-height:1\"><span style=\"color:#003ba5\">React-router</span></span></strong></span></span></li><li><span style=\"line-height:1\"><span style=\"color:#003ba5\"><span style=\"font-size:12px\"><span style=\"background-color:#f1f2f3\"><strong>React-loadable</strong></span></span></span></span></li><li><span style=\"font-size:12px\"><span style=\"line-height:1\"><strong><span style=\"color:#003ba5\"><span style=\"background-color:#f1f2f3\">Braft-editor</span></span></strong></span></span></li><li><span style=\"line-height:1\"><span style=\"background-color:#f1f2f3\"><span style=\"font-size:12px\"><strong><span style=\"color:#003ba5\">Antd</span></strong></span></span></span></li><li><span style=\"background-color:#f1f2f3\"><span style=\"color:#003ba5\"><span style=\"line-height:1\"><strong><span style=\"font-size:12px\">Less</span></strong></span></span></span></li><li><span style=\"line-height:1\"><strong><span style=\"background-color:#f1f2f3\"><span style=\"font-size:12px\"><span style=\"color:#003ba5\">Axios</span></span></span></strong></span></li></ul><p><span style=\"color:#666666\"><span style=\"background-color:#f1f2f3\"><strong>Demo做得比较简陋，有些逻辑比较复杂，之后会尝试继续优化。数据库只是简单的一个JSON文件，用json-server搭建的，主要用于演示功能。</strong></span></span><br/><strong>暂时实现的功能有如下几个：发帖、评论、编辑帖子、注册、登录等。</strong><br/><strong>如需联系方式烦请查询页脚处，谢谢！！</strong></p>",
+      "title": "这个一个简易论坛demo"
     }
   ],
   "comments": [
@@ -677,11 +691,18 @@
       "commentDate": "2019/1/8 上午12:50:17",
       "userId": "user_1",
       "content": "<p style=\"text-align:start;text-indent:2em;\"><strong>这是一个简易的论坛demo，基于react，是本人学习完react相关知识后做的一个demo。</strong></p><p style=\"text-align:start;text-indent:2em;\"><strong>这个demo主要用到了如下的工具及库：</strong></p><ul><li><strong><span style=\"background-color:#f1f2f3\"><span style=\"color:#003ba5\"><span style=\"line-height:1\"><span style=\"font-size:12px\">React</span></span></span></span></strong></li><li><span style=\"background-color:#f1f2f3\"><strong><span style=\"font-size:12px\"><span style=\"color:#003ba5\"><span style=\"line-height:1\">Redux</span></span></span></strong></span></li><li><span style=\"background-color:#f1f2f3\"><strong><span style=\"color:#003ba5\"><span style=\"font-size:12px\"><span style=\"line-height:1\">React-redux</span></span></span></strong></span></li><li><span style=\"line-height:1\"><span style=\"color:#003ba5\"><span style=\"font-size:12px\"><strong><span style=\"background-color:#f1f2f3\">Redux-saga</span></strong></span></span></span></li><li><span style=\"font-size:12px\"><span style=\"background-color:#f1f2f3\"><strong><span style=\"line-height:1\"><span style=\"color:#003ba5\">React-router</span></span></strong></span></span></li><li><span style=\"line-height:1\"><span style=\"color:#003ba5\"><span style=\"font-size:12px\"><span style=\"background-color:#f1f2f3\"><strong>React-loadable</strong></span></span></span></span></li><li><span style=\"font-size:12px\"><span style=\"line-height:1\"><strong><span style=\"color:#003ba5\"><span style=\"background-color:#f1f2f3\">Braft-editor</span></span></strong></span></span></li><li><span style=\"line-height:1\"><span style=\"background-color:#f1f2f3\"><span style=\"font-size:12px\"><strong><span style=\"color:#003ba5\">Antd</span></strong></span></span></span></li><li><span style=\"background-color:#f1f2f3\"><span style=\"color:#003ba5\"><span style=\"line-height:1\"><strong><span style=\"font-size:12px\">Less</span></strong></span></span></span></li><li><span style=\"line-height:1\"><strong><span style=\"background-color:#f1f2f3\"><span style=\"font-size:12px\"><span style=\"color:#003ba5\">Axios</span></span></span></strong></span></li></ul><p style=\"text-align:start;text-indent:2em;\"><span style=\"color:#666666\"><span style=\"background-color:#f1f2f3\"><strong>Demo做得比较简陋，有些逻辑比较复杂，之后会尝试继续优化。数据库只是简单的一个JSON文件，用json-server搭建的，主要用于演示功能。</strong></span></span></p><p style=\"text-align:start;text-indent:2em;\"><strong>暂时实现的功能有如下几个：发帖、评论、编辑帖子、注册、登录等。</strong></p><p style=\"text-align:start;text-indent:2em;\"><strong>如需联系方式烦请查询页脚处，谢谢！！</strong></p>"
+    },
+    {
+      "id": "comment_44",
+      "postId": "post_39",
+      "commentDate": "2019/1/8 下午9:32:46",
+      "userId": "user_1",
+      "content": "<p style=\"text-align:start;text-indent:2em;\"><strong>这是一个简易的论坛demo，基于react，是本人学习完react相关知识后做的一个demo。</strong><br/><strong>这个demo主要用到了如下的工具及库：</strong><br/></p><ul><li><strong><span style=\"background-color:#f1f2f3\"><span style=\"color:#003ba5\"><span style=\"line-height:1\"><span style=\"font-size:12px\">React</span></span></span></span></strong></li><li><span style=\"background-color:#f1f2f3\"><strong><span style=\"font-size:12px\"><span style=\"color:#003ba5\"><span style=\"line-height:1\">Redux</span></span></span></strong></span></li><li><span style=\"background-color:#f1f2f3\"><strong><span style=\"color:#003ba5\"><span style=\"font-size:12px\"><span style=\"line-height:1\">React-redux</span></span></span></strong></span></li><li><span style=\"line-height:1\"><span style=\"color:#003ba5\"><span style=\"font-size:12px\"><strong><span style=\"background-color:#f1f2f3\">Redux-saga</span></strong></span></span></span></li><li><span style=\"font-size:12px\"><span style=\"background-color:#f1f2f3\"><strong><span style=\"line-height:1\"><span style=\"color:#003ba5\">React-router</span></span></strong></span></span></li><li><span style=\"line-height:1\"><span style=\"color:#003ba5\"><span style=\"font-size:12px\"><span style=\"background-color:#f1f2f3\"><strong>React-loadable</strong></span></span></span></span></li><li><span style=\"font-size:12px\"><span style=\"line-height:1\"><strong><span style=\"color:#003ba5\"><span style=\"background-color:#f1f2f3\">Braft-editor</span></span></strong></span></span></li><li><span style=\"line-height:1\"><span style=\"background-color:#f1f2f3\"><span style=\"font-size:12px\"><strong><span style=\"color:#003ba5\">Antd</span></strong></span></span></span></li><li><span style=\"background-color:#f1f2f3\"><span style=\"color:#003ba5\"><span style=\"line-height:1\"><strong><span style=\"font-size:12px\">Less</span></strong></span></span></span></li><li><span style=\"line-height:1\"><strong><span style=\"background-color:#f1f2f3\"><span style=\"font-size:12px\"><span style=\"color:#003ba5\">Axios</span></span></span></strong></span></li></ul><p style=\"text-align:start;text-indent:2em;\"><span style=\"color:#666666\"><span style=\"background-color:#f1f2f3\"><strong>Demo做得比较简陋，有些逻辑比较复杂，之后会尝试继续优化。数据库只是简单的一个JSON文件，用json-server搭建的，主要用于演示功能。</strong></span></span><br/><strong>暂时实现的功能有如下几个：发帖、评论、编辑帖子、注册、登录等。</strong><br/><strong>如需联系方式烦请查询页脚处，谢谢！！</strong></p>"
     }
   ],
   "idPool": [
     {
-      "current": 7,
+      "current": 8,
       "id": "user"
     },
     {
@@ -689,11 +710,11 @@
       "id": "board"
     },
     {
-      "current": 38,
+      "current": 39,
       "id": "post"
     },
     {
-      "current": 43,
+      "current": 44,
       "id": "comment"
     }
   ]

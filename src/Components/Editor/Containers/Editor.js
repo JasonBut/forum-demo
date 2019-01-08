@@ -5,17 +5,19 @@ import {withRouter} from "react-router";
 import {mapStates,mapDispatches} from "../../../Redux/Reducers";
 import EditorUI from "../UI/EditorUI";
 import BraftEditor from "braft-editor";
+import {Form} from "antd";
+
 
 const mapState = (state,ownProps) => ({
-    title: mapStates.getFormValue(state,"postTitle"),               //新帖标题
-    post: mapStates.getFormValue(state,"postContent"),              //新帖内容
-    comment: mapStates.getFormValue(state,"commentContent"),        //评论内容
-    isPosting : mapStates.getFormIsPosting(state),                  //编辑状态
-    authorId : mapStates.getAuthUserId(state),                      //发布者id
-    err : mapStates.getErrorMessage(state),                         //发布者id
-    mode : ownProps.mode,                                           //编辑器模式
-    oldTitle : ownProps.title,                                      //父组件传入的已有帖子标题
-    oldContent : ownProps.content,                                  //父组件传入的已有帖子内容
+    title: mapStates.getFormValue(state,"title"),                           //新帖标题
+    postContent: mapStates.getFormValue(state,"postContent"),               //新帖内容
+    commentContent: mapStates.getFormValue(state,"commentContent"),         //评论内容
+    isPosting : mapStates.getFormIsPosting(state),                          //编辑状态
+    authorId : mapStates.getAuthUserId(state),                              //发布者id
+    err : mapStates.getErrorMessage(state),                                 //发布者id
+    mode : ownProps.mode,                                                   //编辑器模式
+    oldTitle : ownProps.title,                                              //父组件传入的已有帖子标题
+    oldContent : ownProps.content,                                          //父组件传入的已有帖子内容
 });
 
 const mapDispatch = {
@@ -26,6 +28,19 @@ const mapDispatch = {
 
 @withRouter
 @connect(mapState,mapDispatch)
+@Form.create({
+    name : "Editor",
+    mapPropsToFields (props) {
+        return {
+            title : Form.createFormField(props.title),
+            commentContent : Form.createFormField(props.commentContent),
+            postContent : Form.createFormField(props.postContent),
+        }
+    },
+    onFieldsChange (props,changedFields) {
+        props.handleChange(changedFields);
+    },
+})
 class Editor extends Component {
     static propTypes = {
         oldTitle: PropTypes.string,
@@ -41,6 +56,11 @@ class Editor extends Component {
 
     //判断是否评论模式
     isComment = this.props.mode && this.props.mode.toLowerCase() === "comment";
+    textareaType = this.isComment ? "commentContent" : "postContent";
+    controls = this.isComment
+        ? ["undo", "redo", "line-height", "superscript", "subscript",
+            "text-indent", "headings", "hr", "media", "blockquote"]
+        : ["media","blockquote"];
 
     constructor(props) {
         super(props);
@@ -48,14 +68,15 @@ class Editor extends Component {
             isActive : false,   //可用于存在多个编辑器时定位特定编辑器
         };
     }
+
     componentDidMount() {
         const {mode} = this.props;
         const lowerCaseMode = mode && mode.toLowerCase();
-        //如果编辑器当前正在编辑已有帖子,则将父组件传入的帖子数据填入对应文本框中
+        // 如果编辑器当前正在编辑已有帖子,则将父组件传入的帖子数据填入对应文本框中
         if (lowerCaseMode === "amend") {
-            const {oldContent, oldTitle} = this.props;
-            oldTitle && this.handleChange("postTitle")(oldTitle);
-            oldContent && this.handleChange("postContent")(BraftEditor.createEditorState(oldContent));
+            const {oldContent, oldTitle, handleChange} = this.props;
+            oldTitle && handleChange({title : {value : oldTitle}});
+            oldContent && handleChange({postContent : {value : BraftEditor.createEditorState(oldContent)}});
         }
     };
 
@@ -68,45 +89,53 @@ class Editor extends Component {
         isPosting && toggleIsPosting(isPosting);
     }
 
-    handleChange = (name) => (newValue) => {
-        const value = (newValue.target ? newValue.target.value : newValue );
-        this.props.handleChange({name,value})
-    };
-
     handleSubmit = (event) => {
         event.preventDefault();
         this.setState({
             isActive : true,
         });
-        const {postTitle} = event.target;
-        const {location : { pathname }, mode, authorId, post, comment} = this.props;
+
+        const {location : { pathname }, mode, authorId} = this.props;
         const isComment = this.isComment;
         const pathId = pathname.split("/")[2];
-        const title = postTitle && postTitle.value;
-        const content =  (isComment ? comment : post).toHTML();
 
-        let payload = {content, pathId, mode, authorId, isComment};
-        payload = Object.assign( payload,( title ? {title} : {} ) );
-        this.props.handleSubmit(payload);
+        this.props.form.validateFields((error,values) => {
+            if (!error) {
+                const {title, postContent, commentContent} = values;
+                let payload = {
+                    content : (postContent || commentContent).toHTML(),
+                    title,
+                    pathId,
+                    mode,
+                    authorId,
+                    isComment,
+                };
+                this.props.handleSubmit(payload);
+            }
+        });
     };
 
-    render() {
-        //过滤并调整往UI组件传递的props
-        const {post, title, comment, err} = this.props;
+    render(){
+        const {err, form : {getFieldDecorator}} = this.props;
+        const {isActive} = this.state;
+        const {isComment, controls, textareaType, handleSubmit} = this;
+        //根据编辑器模式渲染不同内容
+        const buttonValue = isComment ? "发表评论" : "提交" ;
+
         const props = {
-            isComment : this.isComment,
-            isActive : this.state.isActive,
-            handleSubmit : this.handleSubmit,
-            handleChange : this.handleChange,
-            title,
-            post,
-            comment,
-            err,
+            buttonValue,
+            isActive,
+            isComment,
+            controls,
+            textareaType,
+            getFieldDecorator,
+            handleSubmit,
+            err
         };
 
         return (
             <EditorUI {...props} />
-        );
+        )
     }
 }
 

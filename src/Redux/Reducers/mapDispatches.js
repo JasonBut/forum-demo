@@ -22,17 +22,14 @@ const formDataOnChange = (payload) => {
     }
 };
 
-const formLoginSubmit = (event) => {
-    event.preventDefault();
-    const {loginUsername, loginPassword, regNickname} = event.target;
-    const username = loginUsername && loginUsername.value;
-    const password = loginUsername && loginPassword.value;
-    const nickname = regNickname && regNickname.value;
+const formLoginSubmit = (payload) => {
+    const {
+        loginUsername : username,
+        loginPassword : password,
+        regNickname : nickname,
+    } = payload;
 
     //校检信息
-    if (!username || !password || (regNickname && !nickname)) {
-        return {type : Types.REQUEST_FAILED, err : `用户信息不完整`};
-    }
     if (username.length < 5 || (nickname && nickname.length < 4)) {
         return {type : Types.REQUEST_FAILED, err : `账号或昵称必须不少于4字符`};
     }
@@ -41,7 +38,7 @@ const formLoginSubmit = (event) => {
     }
 
     //区分是注册信息还是登录信息
-    if (!regNickname) {
+    if (!nickname) {
         return {
             type : Types.AUTH_LOGIN_REQUESTED,
             payload : { username, password },
@@ -77,7 +74,7 @@ const formValuePublish = (payload) => {
 
     return {
         type : Types.FORM_VALUE_PUBLISH_REQUESTED,
-        payload : Object.assign({...props,content,isComment}, (title ? {title} : {}) )
+        payload : Object.assign({...props,content,isComment}, (title ? {title} : {}) ),
     }
 };
 
