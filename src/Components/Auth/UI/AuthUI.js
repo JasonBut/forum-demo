@@ -1,14 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Icon,Form, Input} from "antd";
-//
-// FormUI.propTypes = {
-//     username : PropTypes.string,
-//     password : PropTypes.string,
-//     logErr : PropTypes.string,
-//     handleChange : PropTypes.func.isRequired,
-//     handleSubmit : PropTypes.func.isRequired,
-// }
+
+FormUI.propTypes = {
+    isLogin : PropTypes.bool.isRequired,
+    handleSubmit : PropTypes.func.isRequired,
+    getFieldDecorator : PropTypes.func.isRequired,
+    logErr : PropTypes.string,
+}
 
 
 export default function FormUI (props) {
