@@ -19,6 +19,12 @@ function PostListArea (props) {
             <List
                 className="post-list animated fadeIn"
                 dataSource={props.list}
+                pagination={{
+                    pageSize: 8,
+                    size: "small",
+                    simple: true,
+                    hideOnSinglePage : true,
+                }}
                 bordered
                 renderItem={(postData) => {
                     const postId = postData.id.split("_")[1];

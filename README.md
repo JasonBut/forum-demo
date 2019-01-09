@@ -10,20 +10,21 @@ QQ    : 153436677
 
 
 简介：
->   这是一个基于react的功能比较简单的论坛demo，是一个本人学习完react后的一个练手项目。功能比较简单，只有发帖、评论、注册、登录，四个功能，细节方面尽量做好做齐，但水平有限，如有问题还望见谅。
-    
+>   这是一个简易的论坛demo，基于react，是本人学习完react相关知识后做的一个demo。Demo做得比较简陋，有些逻辑比较复杂，之后会尝试继续优化。数据库只是简单的一个JSON文件，用json-server搭建的，主要用于演示功能。暂时实现的功能有如下几个：发帖、评论、编辑帖子、注册、登录等。
+                                                       
     
 主要用到：
-* react
-* redux
-* react-redux
-* redux-saga
-* react-router
-* react-loadable
-* reselect
-* antd
-* less
-* axios
+* React
+* Redux
+* React-redux
+* Redux-saga
+* React-router
+* React-loadable
+* Reselect
+* Braft-Editor
+* Antd
+* Less
+* Axios
 
 
 [挖坑自踩日常](./UPDATE.md)

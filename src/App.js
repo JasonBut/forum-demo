@@ -3,7 +3,7 @@ import "@babel/polyfill"
 import {Provider} from "react-redux"
 import {HashRouter as Router, Route, Switch} from "react-router-dom";
 import {lazy} from "./Utils/"; //按需导入功能API
-import Stores from "./Redux"
+import Stores from "./Redux";
 import {Layout} from "antd";
 import "antd/dist/antd.css";
 import "animate.css";

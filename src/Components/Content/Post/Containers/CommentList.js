@@ -11,6 +11,12 @@ const CommentListUI = (props) => {
             <List
                 className="comment-list animated fadeInUp slow"
                 dataSource={props.list}
+                pagination={{
+                    pageSize: 5,
+                    size: "small",
+                    simple: true,
+                    hideOnSinglePage : true,
+                }}
                 bordered
                 renderItem={(item) => {
                     return(
