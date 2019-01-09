@@ -2,7 +2,7 @@ import React,{Component} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {withRouter} from "react-router";
-import {mapStates,mapDispatches} from "../../../Redux/Reducers";
+import {mapStates,mapDispatches} from "../../../Redux/";
 import EditorUI from "../UI/EditorUI";
 import BraftEditor from "braft-editor";
 import {Form} from "antd";

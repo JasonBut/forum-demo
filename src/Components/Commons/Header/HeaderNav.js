@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {withRouter} from "react-router";
-import {mapStates} from "../../../Redux/Reducers";
+import {mapStates} from "../../../Redux/";
 import {Layout, Menu} from "antd";
 import {Link} from "react-router-dom";
 

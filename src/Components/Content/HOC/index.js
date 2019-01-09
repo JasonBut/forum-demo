@@ -2,7 +2,7 @@ import React,{Component} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {withRouter} from "react-router";
-import {mapDispatches, mapStates} from "../../../Redux/Reducers";
+import {mapDispatches, mapStates} from "../../../Redux/";
 
 
 const mapState = (state) => ({

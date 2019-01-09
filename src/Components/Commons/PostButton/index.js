@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import "./button.less";
 import {Button} from "antd";
-import {mapStates,mapDispatches} from "../../../Redux/Reducers";
+import {mapStates,mapDispatches} from "../../../Redux/";
 
 const mapState = (state) => ({
     isPosting : mapStates.getFormIsPosting(state),

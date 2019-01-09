@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import {Form} from "antd";
 import AuthUI from "../UI/AuthUI";
 import AuthSuccessUI from "../UI/AuthSuccessUI";
-import {mapStates,mapDispatches} from "../../../Redux/Reducers";
+import {mapStates,mapDispatches} from "../../../Redux/";
 
 const mapState = (state) => ({
     loginUsername : mapStates.getFormValue(state,"loginUsername"),
