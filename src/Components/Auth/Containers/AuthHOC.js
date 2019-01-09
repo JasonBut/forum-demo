@@ -50,9 +50,10 @@ export default (type) => {
 
         handleSubmit = (event) => {
             event.preventDefault();
-            this.props.form.validateFields((error,values) => {
+            const { form : {validateFields}, handleSubmit } = this.props;
+            validateFields((error,values) => {
                 if (!error) {
-                    this.props.handleSubmit(values);
+                    handleSubmit(values);
                 }
             })
         };

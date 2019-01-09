@@ -97,28 +97,35 @@ class Editor extends Component {
             isActive : true,
         });
 
-        const {location : { pathname }, mode, authorId} = this.props;
+        const {
+            location : { pathname },
+            form : { validateFields },
+            mode,
+            authorId,
+            handleSubmit
+        } = this.props;
+
         const isComment = this.isComment;
         const pathId = pathname.split("/")[2];
 
-        this.props.form.validateFields((error,values) => {
+        validateFields((error,values) => {
             if (!error) {
                 const {title, postContent, commentContent} = values;
                 let payload = {
-                    content : (postContent || commentContent).toHTML(),
+                    content : ( postContent || commentContent ).toHTML(),
                     title,
                     pathId,
                     mode,
                     authorId,
                     isComment,
                 };
-                this.props.handleSubmit(payload);
+                handleSubmit(payload);
             }
         });
     };
 
     render(){
-        const {err, form : {getFieldDecorator}} = this.props;
+        const { err, form : { getFieldDecorator } } = this.props;
         const {isActive} = this.state;
         const {isComment, controls, textareaType, handleSubmit} = this;
         //根据编辑器模式渲染不同内容
