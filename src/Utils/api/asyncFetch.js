@@ -58,11 +58,11 @@ export default async function asyncFetch ({ mode, type, rule, data}) {
         throw new Error(`Invalid type: "${type}", excepted 'String'`);
     }
 
-    let lowerCaseMode = mode && mode.toLowerCase();
+    const lowerCaseMode = mode && mode.toLowerCase();
 
-    if (lowerCaseMode !== "post" && lowerCaseMode !== "get" && lowerCaseMode !== "put") {
-        throw new Error(`Invalid mode : ${mode}, excepted "POST","GET" or "PUT"`);
-    }
+  if (!(['get', 'post', 'put'].includes(lowerCaseMode))) {
+    throw new Error(`Invalid mode : ${mode}, excepted "POST","GET" or "PUT"`);
+  }
 
     let path = filters(rule,lowerCaseMode).get(type.toLowerCase());   //通过过滤函数获取路径
 
@@ -74,7 +74,6 @@ export default async function asyncFetch ({ mode, type, rule, data}) {
         //这句代码是根据传入的参数去调整axios的get/post/put方法,并填入对应路径及数据
         const response = await axios[lowerCaseMode](`${URL}${path}`, data);
         path = null;    //解除filters引用
-        lowerCaseMode = null;
 
         if (!( response.status >= 200 && response.status < 300 )) {
             throw new Error(response.statusText);
