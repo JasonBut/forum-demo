@@ -27,4 +27,4 @@ QQ    : 153436677
 * Axios
 
 
-[挖坑自踩日常](./UPDATE.md)
+[项目笔记](./UPDATE.md)
