@@ -2,49 +2,49 @@
   "users": [
     {
       "id": "user_1",
-      "username": "Jason",
+      "guestName": "Jason",
       "password": "aaaaaa",
       "nickname": "Jason But"
     },
     {
       "id": "user_2",
-      "username": "Jack",
+      "guestName": "Jack",
       "password": "aaaaaa",
       "nickname": "Jack Chan"
     },
     {
       "id": "user_3",
-      "username": "John",
+      "guestName": "John",
       "password": "aaaaaa",
       "nickname": "John Chan"
     },
     {
       "id": "user_4",
-      "username": "Jimmy",
+      "guestName": "Jimmy",
       "password": "aaaaaa",
       "nickname": "JimA"
     },
     {
       "id": "user_5",
-      "username": "Joey",
+      "guestName": "Joey",
       "password": "aaaaaa",
       "nickname": "Joey666"
     },
     {
       "id": "user_6",
-      "username": "Joanna",
+      "guestName": "Joanna",
       "password": "aaaaaa",
       "nickname": "Joanna"
     },
     {
       "id": "user_7",
-      "username": "Jacky",
+      "guestName": "Jacky",
       "password": "aaaaaa",
       "nickname": "Jacky Chan"
     },
     {
       "id": "user_8",
-      "username": "Kim1111",
+      "guestName": "Kim1111",
       "password": "AAAAAA",
       "nickname": "Kim Lee"
     }
