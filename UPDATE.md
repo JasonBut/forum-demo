@@ -21,8 +21,9 @@ boardId之类的；posts记录文章的信息，例如postId，所在板块的bo
 的postId等。
 
     根据官方文档，我是按http://localhos:port/target/id这种方式去尝试获取数据，但当我通过axios去post数据的时候，发现
-总是会清空原数据，返回的错误信息是id为空，于是看文档，知道每个根类下的每项数据都必须设置一个id，因此我按文档方法去更改
-id，但发现整个文档的id键名是统一的，因此无论post还是comment都必须要id项，不能用自己定义的postId和commentId键名作为id名。
+总是会清空原数据，返回的错误信息是id为空，于是看文档，知道每个根类下的每项数据都必须设置唯一字段，因此我按文档方法去更改
+id，但发现整个文档的id字段名是统一的，因此无论post还是comment都必须要id项，不能同时用自定义的postId和commentId键名作为id
+名。
 
     无奈之下我更改了DB.json里所有的关于id的数据，之后就能正常获取到了，然后根据文档介绍，用filter方式正常post和get到数据
 了，之后封装好axios的get方法，方便日后使用。之后配置好路由，本身想用react.lazy和suspense去做code-splitting的，但发现
