@@ -55,13 +55,13 @@ asyncFetch.put = ({type, rule, data}) => asyncFetch({mode : "PUT",type, rule, da
 
 export default async function asyncFetch ({ mode, type, rule, data}) {
     if (typeof type !== "string") {
-        throw new Error(`Invalid type: "${type}", excepted 'String'`);
+        throw new Error(`Invalid type: "${type}", expected 'String'`);
     }
 
     const lowerCaseMode = mode && mode.toLowerCase();
 
   if (!(['get', 'post', 'put'].includes(lowerCaseMode))) {
-    throw new Error(`Invalid mode : ${mode}, excepted "POST","GET" or "PUT"`);
+    throw new Error(`Invalid mode : ${mode}, expected "POST","GET" or "PUT"`);
   }
 
     let path = filters(rule,lowerCaseMode).get(type.toLowerCase());   //通过过滤函数获取路径
