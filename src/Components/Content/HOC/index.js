@@ -40,7 +40,7 @@ export default (WrappedUIComponent,type) => {
 
             if (type === "post") {
                 return (
-                    (post && typeof post === "object")
+                    (!!post && typeof post === "object")
                         ? <WrappedUIComponent {...post} />
                         : null
                 );

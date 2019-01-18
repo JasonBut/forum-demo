@@ -68,7 +68,7 @@ export default function FormUI (props) {
                 )}
             </Form.Item>
 
-            { logErr && <p className="err-message">{logErr}</p> } {/*登录错误信息*/}
+            { !!logErr && <p className="err-message">{logErr}</p> } {/*登录错误信息*/}
 
             <Form.Item>
                 <Input type="submit" value={isLogin ? "登录" : "注册"} />

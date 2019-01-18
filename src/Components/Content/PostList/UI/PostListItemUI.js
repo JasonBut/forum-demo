@@ -23,7 +23,7 @@ PostListItemUI.propTypes = {
 export default function PostListItemUI (props) {
     const {id,postId,title,author,postDate} = props;
     return (
-        id &&
+        !!id &&
         <List.Item
             key={id}
             className="post-list-item animated fadeIn slow"

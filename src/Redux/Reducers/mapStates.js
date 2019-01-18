@@ -1,6 +1,6 @@
 import {createSelector} from "reselect"
 
-const getErrorMessage = (state) => state.App.err && state.App.err.toString();
+const getErrorMessage = (state) => !!state.App.err && state.App.err.toString();
 const getList = (state) => state.UI.list;
 const getPost = (state) => state.UI.post;
 const getNoMatch = (state) => state.App.noMatch;

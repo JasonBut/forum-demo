@@ -30,7 +30,7 @@ const formLoginSubmit = (payload) => {
     } = payload;
 
     //校检信息
-    if (username.length < 5 || (nickname && nickname.length < 4)) {
+    if (username.length < 5 || !!(nickname && nickname.length < 4)) {
         return {type : Types.REQUEST_FAILED, err : `账号或昵称必须不少于4字符`};
     }
     if (password.length < 6) {
@@ -60,15 +60,15 @@ const formValuePublish = (payload) => {
     const {title, content, isComment,...props} = payload;
 
     //校检内容
-    if ( (isComment && !content) || (!isComment && (!content || !title)) ) {
+    if ( !!(isComment && !content) || !!(!isComment && (!content || !title)) ) {
         return {type : Types.REQUEST_FAILED, err : `内容不能为空，请输入内容`}
     }
 
-    if (content && content.length < 15) {
+    if (!!content && content.length < 15) {
         return {type : Types.REQUEST_FAILED, err : `内容字数少于15个字符`}
     }
 
-    if (title && (title.length < 5 || title.length > 20)) {
+    if (!!title && (title.length < 5 || title.length > 20)) {
         return {type : Types.REQUEST_FAILED, err : `标题字数必须介乎于5 - 20个字符之间`}
     }
 

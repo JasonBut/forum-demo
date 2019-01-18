@@ -31,7 +31,7 @@ class PostArea extends Component {
 
         let isEditable, title, content, authorId;
         //获取到post数据后再传递prop到子组件,并根据登录和编辑状态条件去渲染PostButton和Editor组件
-        post && (
+        !!post && (
             (title = post.title) &&
             (content = post.content) &&
             (authorId = post.userId) &&
@@ -39,17 +39,17 @@ class PostArea extends Component {
         );
         return (
             <>
-                { (isLogged && isEditable)
+                { !!(isLogged && isEditable)
                     ? <PostButton>编辑帖子</PostButton>
                     : null
                 }
                 <div id="post">
-                    { isPosting
+                    { !!isPosting
                         ? <Editor mode="amend" title={title} content={content} />
                         : <Post />
                     }
                     <CommentList />
-                    {isLogged && <Editor mode="comment" />}
+                    {!!isLogged && <Editor mode="comment" />}
                 </div>
             </>
         );

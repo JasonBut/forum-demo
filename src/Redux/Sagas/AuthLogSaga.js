@@ -23,7 +23,7 @@ const authLoginRequest = function* (payload) {
         }
 
         //校检密码
-        if (userProfile && userProfile.password === password) {
+        if (!!userProfile && userProfile.password === password) {
             //本地缓存数据
             sessionStorage.setItem("isLogged","true");
             sessionStorage.setItem("authUserId",`${userProfile.id}`);

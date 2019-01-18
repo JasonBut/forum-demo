@@ -57,7 +57,7 @@ class Editor extends Component {
     };
 
     //判断是否评论模式
-    isComment = this.props.mode && this.props.mode.toLowerCase() === "comment";
+    isComment = !!this.props.mode && this.props.mode.toLowerCase() === "comment";
     textareaType = this.isComment ? "commentContent" : "postContent";
     controls = this.isComment
         ? ["undo", "redo", "line-height", "superscript", "subscript",
@@ -73,12 +73,12 @@ class Editor extends Component {
 
     componentDidMount() {
         const {mode} = this.props;
-        const lowerCaseMode = mode && mode.toLowerCase();
+        const lowerCaseMode = !!mode && mode.toLowerCase();
         // 如果编辑器当前正在编辑已有帖子,则将父组件传入的帖子数据填入对应文本框中
         if (lowerCaseMode === "amend") {
             const {oldContent, oldTitle, handleChange} = this.props;
-            oldTitle && handleChange({title : {value : oldTitle}});
-            oldContent && handleChange({postContent : {value : BraftEditor.createEditorState(oldContent)}});
+            !!oldTitle && handleChange({title : {value : oldTitle}});
+            !!oldContent && handleChange({postContent : {value : BraftEditor.createEditorState(oldContent)}});
         }
     };
 
@@ -88,7 +88,7 @@ class Editor extends Component {
         * 切换到帖子内容页面后编辑器依然打开的情况
         */
         const {toggleIsPosting,isPosting} = this.props;
-        isPosting && toggleIsPosting(isPosting);
+        !!isPosting && toggleIsPosting(isPosting);
     }
 
     handleSubmit = (event) => {

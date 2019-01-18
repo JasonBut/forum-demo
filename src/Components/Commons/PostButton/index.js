@@ -22,7 +22,7 @@ const PostButton = (props) =>     {
         <div className="button-area">
             {
                 /*登录后才渲染按钮*/
-                isLogged && (
+                !!isLogged && (
                     <Button
                         id="publish-button"
                         type="primary"

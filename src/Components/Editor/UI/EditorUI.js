@@ -54,7 +54,7 @@ const EditorUI = (props) => {
                 )}
             </Form.Item>
 
-            { (isActive && err) && <p className="err-message">{err}</p> }
+            { !!(isActive && err) && <p className="err-message">{err}</p> }
 
             <Form.Item>
                 <Input

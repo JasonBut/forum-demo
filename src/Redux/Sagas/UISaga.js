@@ -45,7 +45,7 @@ const fetchData = function* (payload) {
             //根据列表中每个条目的userId去计算发布者昵称
             //如没有userId但有boardName,则表示这是板块列表,直接返回
             for (const item of data) {
-                if (!item.userId || item.boardName){
+                if (!!(!item.userId || item.boardName)){
                     newData = [...data];
                     break
 

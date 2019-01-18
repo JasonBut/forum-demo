@@ -10,7 +10,7 @@ const postData = function* (payload) {
     }
 
     const {authorId : userId, mode, pathId, title, content, isComment} = payload;
-    const isAmend = (mode && mode.toLowerCase()) === "amend";       //判断是否编辑模式
+    const isAmend = (!!mode && mode.toLowerCase()) === "amend";       //判断是否编辑模式
 
     try {
         yield put({type : Types.FETCH_START});
@@ -31,9 +31,9 @@ const postData = function* (payload) {
         * 并将asyncFetch请求方式调整为put
         */
         if (isAmend) {
-            submitId = `post_${pathId}`;                                                    //帖子原id
-            dataBelongsId = yield call(asyncFetch.get,{type : "post", rule : pathId});      //获取帖子信息
-            dataBelongsId = dataBelongsId && dataBelongsId.boardId;                         //得到帖子所属板块id
+            submitId = `post_${pathId}`;                                                //帖子原id
+            dataBelongsId = yield call(asyncFetch.get,{type : "post", rule : pathId});  //获取帖子信息
+            dataBelongsId = !!dataBelongsId && dataBelongsId.boardId;                   //得到帖子所属板块id
             asyncMethods = "put";
         } else {
          /*
