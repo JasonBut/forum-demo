@@ -203,7 +203,7 @@ App稳定没有想象中重要。另外在加入404页面时，发现如果我�
     由于之前的帖子详情页和评论区都是普通的字符串，没有任何样式的，因此现在新增了富文本功能，用braft-ediotr作为富文本编辑
 器，代替了原有的Textarea组件。
     这里有一个情况，就是本来我是用antd自带的Form.Item组件包裹表单元素的，但发现需要用到getFieldDecorator，还需要用Form.
-create()去包裹组件。如果直接添加onChange会报错，但因为对antd的api不套熟悉，如果添加通过setFieldValue去改变数据，会影响组
+create()去包裹组件。如果直接添加onChange会报错，但因为对antd的api不太熟悉，如果添加通过setFieldValue去改变数据，会影响组
 件的结构。考虑后暂时先取消掉，用回自带的label去包裹元素，然后直接添加onChange事件回调。感觉Editor组件的逻辑有点复杂，之后
 会再进一步去简化。
 ```
@@ -211,8 +211,8 @@ create()去包裹组件。如果直接添加onChange会报错，但因为对antd
 ### 1.8
 ```
     今天看一下Antd文档的Form部分，了解到是基于rc-form封装的，文档里只是介绍了一下api和给了几个例子，看得不是很懂，于是去
-rc-form仔细看了一下文档，大概了解了用法。Form.create()这个方法是一个HOC，包裹后的表单能根据mapPropsToFields去获取values和
-onChange事件，这个很方便，其他部分还没有试，这次只用到这两个而已。掌握后就重构了Editor和Auth两个模块的表单部分，修改的部
-分不多，主要是UI部分修改了，另外在两个组件里添加多一层HOC，主要是submit方法需要调整下传递的payload，由于不熟练，花的时间
-比较多，不过还是完成了。
+看了一下rc-form文档，大概了解了用法。Form.create()这个方法是一个HOC，包裹后的表单能根据mapPropsToFields去获取values和
+onChange事件，然后用getFieldDecorator去包裹表单元素这个很方便，其他部分还没有试，这次只用到这两个而已。掌握后就重构了Editor
+和Auth两个模块的表单部分，修改的部分不多，主要是UI部分修改了，另外在两个组件里添加多一层HOC，主要是submit方法需要调整下
+传递的payload，由于不熟练，花的时间比较多，不过还是完成了。
 ```
