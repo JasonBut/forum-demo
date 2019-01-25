@@ -21,7 +21,7 @@ const mapState = (state,ownProps) => ({
 });
 
 const mapDispatch = {
-    handleChange : mapDispatches.formDataOnChange,
+    handleAuthChange : mapDispatches.formDataOnChange,
     handleSubmit : mapDispatches.formValuePublish,
     toggleIsPosting : mapDispatches.formToggleIsPosting,
 };
@@ -36,7 +36,7 @@ const formProps = {
         }
     },
     onFieldsChange (props,changedFields) {
-        props.handleChange(changedFields);
+        props.handleAuthChange(changedFields);
     },
 };
 
