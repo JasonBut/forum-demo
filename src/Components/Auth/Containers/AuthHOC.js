@@ -15,7 +15,7 @@ const mapState = (state) => ({
 });
 
 const mapDispatch = {
-    handleAuthChange : mapDispatches.formDataOnChange,
+    handleChange : mapDispatches.formDataOnChange,
     handleSubmit : mapDispatches.formLoginSubmit,
     logout : mapDispatches.authLogout,
 };
@@ -30,7 +30,7 @@ const formProps = {
         };
     },
     onFieldsChange(props, changedFields) {
-        props.handleAuthChange(changedFields);
+        props.handleChange(changedFields);
     }
 };
 
