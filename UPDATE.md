@@ -18,7 +18,7 @@ json-server去mock，但看了下mockjs，感觉有点麻烦，因为我的要�
 
     弄好json-server后，就开始写api去尝试get和post。我的DB.json里有4个分类，users记录用户信息；boards记录板块信息，有
 boardId之类的；posts记录文章的信息，例如postId，所在板块的boardId，内容等；comments记录每条评论的commentId，对应文章
-的postId等。
+的postId等。 
 
     根据官方文档，我是按http://localhos:port/target/id这种方式去尝试获取数据，但当我通过axios去post数据的时候，发现
 总是会清空原数据，返回的错误信息是id为空，于是看文档，知道每个根类下的每项数据都必须设置唯一字段，因此我按文档方法去更改
